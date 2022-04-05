@@ -1,24 +1,12 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Button from "./component/button";
 import { colors } from "./colors";
+import Nav from "./component/Navbar";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-
-        {/* <Button
-          bgColor={colors.primary_cadium_violet}
-          dir={"right"}
-          src={"images/google.svg"}
-          filled={false}
-        /> */}
-      </header>
+      <Nav />
     </div>
   );
 }
