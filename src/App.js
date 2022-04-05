@@ -1,5 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Button from "./component/button";
+import { colors } from "./colors";
 
 function App() {
   return (
@@ -9,14 +11,13 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+
+        {/* <Button
+          bgColor={colors.primary_cadium_violet}
+          dir={"right"}
+          src={"images/google.svg"}
+          filled={false}
+        /> */}
       </header>
     </div>
   );
