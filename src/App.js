@@ -3,6 +3,7 @@ import Button from "./component/button";
 import { colors } from "./colors";
 import Nav from "./component/Navbar";
 import Footer from "./component/footer";
+import InputField from "./component/inputfield";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         filled={false}
         dir={"right"}
       />
+      <InputField type={"password"} />
+      <InputField type={"text"} />
       <Footer />
     </div>
   );
