@@ -5,6 +5,10 @@ export const NavWrapper = styled.header`
   background: linear-gradient(101.08deg, #810486 0.51%, #810486 97.37%);
   padding: 0;
   transition: all 0.3s ease-in-out;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+
   @media (max-width: 768px) {
     height: 80px;
   }
