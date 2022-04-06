@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-
-const InputField = ({ type, placeholder, label }) => {
+import { colors } from "../../colors";
+const InputField = ({ type, placeholder, label, labelId }) => {
   const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
   const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
@@ -28,12 +28,12 @@ const InputField = ({ type, placeholder, label }) => {
 
   return (
     <InputFieldWrapper>
-      <Label htmlFor={label}>{label}:</Label>
+      <Label htmlFor={labelId}>{label}:</Label>
       {type === "text" ? (
         <Input
           userFocus={userFocus}
           type={type}
-          id={label}
+          id={labelId}
           placeholder={placeholder}
           className={
             valid === null ? null : valid === true ? "valid" : "invalid"
@@ -57,7 +57,7 @@ const InputField = ({ type, placeholder, label }) => {
         <Input
           type={type}
           ref={inputRef}
-          id={label}
+          id={labelId}
           onChange={handleChange}
           value={value}
           placeholder={placeholder}
@@ -83,31 +83,40 @@ const InputFieldWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 0.5rem;
 `;
 
 const Label = styled.label`
   font-family: Nunito;
-  font-style: Bold;
+  font-weight: 700;
   font-size: 20px;
-  line-height: 43px;
-  color: rgba(12, 18, 28, 0.75);
+  color: ${colors.chinese_black};
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 const Input = styled.input`
   font-family: "Nunito", sans-serif;
   font-size: 22px;
-  padding: 0.25rem;
-  border-radius: 0.5rem;
+  padding: 0.8rem 0.5rem;
+  border-radius: 20px;
   width: 100%;
-
+  border: 3px solid rgba(217, 217, 217, 1);
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
   &.valid {
-    color: limegreen;
-    border: 1px solid limegreen !important;
+    color: ${colors.sucess_color};
+    border: 3px solid ${colors.sucess_color} !important;
   }
 
   &.invalid {
-    color: red;
-    border: 1px solid red !important;
+    color: ${colors.error_color};
+    border: 3px solid ${colors.error_color} !important;
+  }
+  &:hover {
+    border: 3px solid ${colors.chinese_black};
+    cursor: pointer;
   }
   &:focus {
     outline: none;
