@@ -3,14 +3,16 @@ import styled from "styled-components";
 import { colors } from "../../colors";
 import Button from "../../component/button";
 import InputField from "../../component/inputfield";
+import Dropdown from "../../component/selectDropDown";
+import { ImGoogle } from "react-icons/im";
 const SignUp = () => {
   const [next, setNext] = useState(0);
   const handleNext = (num) => {
     setNext(num + next);
   };
   return (
-    <SignUpWrapper>
-      {/* <Doddle src="images/kiddieDoddles.svg" /> */}
+    <SignUpWrapper next={next}>
+      <img src="images/kiddieDoddles.svg" alt="doddle" />
       <FirstWrap next={next}>
         <HeadingText>Sign up</HeadingText>
         <InputWrap>
@@ -20,11 +22,9 @@ const SignUp = () => {
             placeholder={"Enter your name here ..."}
             labelId={"name"}
           />
-          <InputField
-            type="text"
-            label={"What is your favourite color?"}
-            placeholder={"Enter your favourite color here ..."}
-          />
+          <div>
+            <Dropdown />
+          </div>
           <InputField
             type="text"
             label={"What is your favourite color?"}
@@ -62,6 +62,7 @@ const SignUp = () => {
               bgColor={colors.secondary_color}
               dir={"left"}
               text={"previous"}
+              filled={true}
             />
           </span>
           <span onClick={() => handleNext(1)}>
@@ -71,7 +72,7 @@ const SignUp = () => {
         <CtaWrap>
           <span>
             <Button
-              src={"images/google.svg"}
+              src={ImGoogle}
               bgColor={colors.secondary_color}
               filled={true}
               text={"Finish up with Google instead"}
@@ -105,14 +106,30 @@ const SignUpWrapper = styled.div`
   padding: 1.5rem 1rem;
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  & > img {
+    position: absolute;
+    height: 30rem;
+    left: 15.5%;
+    bottom: -10%;
+    z-index: 10;
+    transition: all 0.3s ease-in-out;
+    @media (max-width: 1150px) {
+      transition: all 0.3s ease-in-out;
+      bottom: -100%;
+    }
+    ${({ next }) =>
+      next === 2 &&
+      `
+      transition: all 0.3s ease-in-out;
+      bottom: -100%;
+    `}
+  }
 `;
-const Doddle = styled.img`
-  posttion: absolute;
-  left: 0;
-  top: 0;
-`;
+
 const FirstWrap = styled.div`
-  transition: all 0.1s ease-in-out;
+  transition: all 0.3s ease-in-out;
   background-color: ${colors.white};
   box-shadow: 0px 2.6501548290252686px 53.00309753417969px 0px
     rgba(0, 0, 0, 0.37);
@@ -128,14 +145,13 @@ const FirstWrap = styled.div`
   flex-wrap: wrap !important;
   padding: 30px 20px;
   border-radius: 20px;
-  @media (max-width: 768px) {
-    transition: all 0.3s ease-in-out;
-    width: 95%;
-  }
+
   transition: all 0.3s ease-in-out;
   opacity: 1;
   @media (max-width: 768px) {
-    height: fit-content;
+    transition: all 0.3s ease-in-out;
+    height: 70vh;
+    width: 100%;
   }
   ${({ next }) =>
     next !== 0 &&
@@ -151,8 +167,7 @@ const FirstWrap = styled.div`
   `}
 `;
 const SecondWrap = styled.div`
-  z-index: 1;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.3s ease-in-out;
   background-color: ${colors.white};
   box-shadow: 0px 2.6501548290252686px 53.00309753417969px 0px
     rgba(0, 0, 0, 0.37);
@@ -168,26 +183,24 @@ const SecondWrap = styled.div`
   flex-wrap: wrap !important;
   padding: 30px 20px;
   border-radius: 20px;
-  @media (max-width: 768px) {
-    width: 95%;
-  }
 
   opacity: 1;
   @media (max-width: 768px) {
-    height: fit-content;
+    transition: all 0.3s ease-in-out;
+    height: 70vh;
+    width: 100%;
   }
   ${({ next }) =>
     next !== 1 &&
     `
-  transition: all 0.1s ease-in-out;
-  height: 0;
+  transition: all 0.3s ease-in-out;
+  height: 0 !important;
   overflow: hidden;
   padding: 0;
   opacity: 0;`}
 `;
 const SuccessScreen = styled.div`
-  z-index: 1;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.3s ease-in-out;
   background-color: ${colors.white};
   box-shadow: 0px 2.6501548290252686px 53.00309753417969px 0px
     rgba(0, 0, 0, 0.37);
@@ -203,18 +216,17 @@ const SuccessScreen = styled.div`
   flex-wrap: wrap !important;
   padding: 30px 20px;
   border-radius: 20px;
-  @media (max-width: 768px) {
-    width: 95%;
-  }
   opacity: 1;
   @media (max-width: 768px) {
-    height: fit-content;
+    transition: all 0.3s ease-in-out;
+    height: 70vh;
+    width: 100%;
   }
   ${({ next }) =>
     next !== 2 &&
     `
     padding: 0;
-      transition: all 0.1s ease-in-out;
+      transition: all 0.3s ease-in-out;
   height: 0;
   overflow: hidden;
   opacity: 0;
@@ -262,6 +274,7 @@ const CtaWrap = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
+
   justify-content: space-between;
   @media (max-width: 768px) {
     justify-content: start;
