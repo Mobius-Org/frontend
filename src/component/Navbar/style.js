@@ -32,9 +32,16 @@ export const NavWrapper = styled.header`
 export const Logo = styled.a`
   width: 150px;
   height: 63px;
+  transition: all 0.3s ease-in-out;
+  @media (max-width: 768px) {
+    width: 100px;
+    height: 50px;
+    transition: all 0.3s ease-in-out;
+  }
   & > img {
     width: 100%;
     height: 100%;
+    transition: all 0.3s ease-in-out;
   }
 `;
 export const Hamburger = styled.div`
@@ -55,6 +62,7 @@ export const Hamburger = styled.div`
     width: 30px;
     height: 4px;
     display: flex;
+    border-radius: 5px;
     transition: all 0.3s ease-in-out;
   }
   ${({ isOpen }) =>

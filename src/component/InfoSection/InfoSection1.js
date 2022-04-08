@@ -5,32 +5,37 @@ import {
   TextWrapper_1,
   TextWrapper1_h1,
   TextWrapper1_p,
+  TextWrapper_0,
+  TextWrapper_img,
+  Img_1,
 } from "./InfoSection.elements";
 import { Button1 } from "../../global-styles";
 import { colors } from "../../colors";
 
 const InfoSection1 = () => {
   return (
-    <div>
-      <div>
-        <Section1>
-          <TextWrapper_1>
-            <TextWrapper1_h1>Changing Our Learning Pattern</TextWrapper1_h1>
-            <TextWrapper1_p>
-              Lorem ipsum dolor sit amet, consectetur <br />
-              adipiscing elit. Aenean adipiscing nullam dapibus
-              <br /> justo ac lectus eros facilisi. Arcu nisl, nisl
-              <br /> venenatis ut velit habitasse mi placerat.
-            </TextWrapper1_p>
-            <Button filled={false} bg={colors.secondary_color} />
-          </TextWrapper_1>
+    <TextWrapper_0>
+      <Section1>
+        <TextWrapper_1>
+          <TextWrapper1_h1>Changing Our Learning Pattern</TextWrapper1_h1>
+          <TextWrapper1_p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+            adipiscing nullam dapibus justo ac lectus eros facilisi. Arcu nisl,
+            nisl venenatis ut velit habitasse mi placerat.
+          </TextWrapper1_p>
 
-          <div>
-            <img src="../../images/girl1.png" alt="" />
-          </div>
-        </Section1>
-      </div>
-    </div>
+          <Button
+            text={"Enroll Now"}
+            bgColor={colors.secondary_color}
+            filled={false}
+          />
+        </TextWrapper_1>
+
+        <TextWrapper_img>
+          <Img_1 src="../../images/girl1.png" alt="girl1" />
+        </TextWrapper_img>
+      </Section1>
+    </TextWrapper_0>
   );
 };
 

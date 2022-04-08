@@ -1,0 +1,61 @@
+.container{
+    width: 100%;
+    /* padding-left: 10%;
+    padding-right: 10%; */
+}
+.Wrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    padding-bottom: 10%;
+    padding-left: 15%;
+    padding-top: 5%;
+    
+}
+.shadowBox{
+    width: 100%;
+    box-shadow:0 0 100px rgba(0,0,0,0.8);
+    border-radius: 20px;
+    
+}
+.MicImg{
+    width: 100%;
+}
+.literacy{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 20px;
+    margin-top: -20%;
+    
+}
+.button{
+    padding-left: 10%;
+    padding-bottom: 20px;
+}
+.ParaContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    padding-left: 10%;
+}
+.h2{
+    margin-left: -55%;
+    padding-bottom: 20px;
+}
+.LeftDir{
+    margin-top: 15%;
+    margin-right: 80px;
+    font-size: 100px;
+    margin-left: -10%;
+   
+}
+
+.rightDir{
+    font-size: 150px;
+    margin-top: 10%;
+    /* margin-left: 80px; */
+    /* margin-right: -0px; */
+    padding-left: 50px;
+}
