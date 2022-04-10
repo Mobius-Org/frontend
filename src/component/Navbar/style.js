@@ -11,6 +11,7 @@ export const NavWrapper = styled.header`
   & > div {
     position: relative;
     transition: all 0.3s ease-in-out;
+    z-index: 1;
     background: linear-gradient(101.08deg, #810486 0.51%, #810486 97.37%);
     max-width: 1200px;
     width: 100%;
@@ -28,9 +29,16 @@ export const NavWrapper = styled.header`
 export const Logo = styled.a`
   width: 150px;
   height: 63px;
+  transition: all 0.3s ease-in-out;
+  @media (max-width: 768px) {
+    width: 100px;
+    height: 50px;
+    transition: all 0.3s ease-in-out;
+  }
   & > img {
     width: 100%;
     height: 100%;
+    transition: all 0.3s ease-in-out;
   }
 `;
 export const Hamburger = styled.div`
@@ -51,6 +59,7 @@ export const Hamburger = styled.div`
     width: 30px;
     height: 4px;
     display: flex;
+    border-radius: 5px;
     transition: all 0.3s ease-in-out;
   }
   ${({ isOpen }) =>
@@ -86,6 +95,7 @@ export const Hamburger = styled.div`
 export const Menu = styled.ul`
   @media (min-width: 768px) {
     postion: unset;
+    z-index: 100;
     width: unset;
     display: flex;
     flex-flow: row;

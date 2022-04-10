@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { colors } from "../../colors";
 
 export const ButtonWrap = styled.div`
+  margin: auto;
   border: 1px solid
     ${({ filled, bgColor }) => (filled === true ? bgColor : "none")};
   background-color: ${({ filled, bgColor }) =>
@@ -28,6 +29,12 @@ export const ButtonWrap = styled.div`
     border: 1px solid
       ${({ filled, bgColor }) => (filled === true ? "unset" : bgColor)};
     padding: 0.5rem 28px;
+  }
+  @media (max-width: 768px) {
+    gap: 0.5rem;
+    p {
+      font-size: 10px;
+    }
   }
 `;
 
