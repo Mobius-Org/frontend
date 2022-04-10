@@ -3,8 +3,12 @@ import styled from "styled-components";
 import { colors } from "../../colors";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 const InputField = ({ type, placeholder, label, labelId }) => {
-  const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
-  const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+  const email_REGEX = new RegExp(
+    "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
+  );
+  const PWD_REGEX = new RegExp(
+    "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
+  );
 
   const inputRef = useRef();
   const errRef = useRef();
@@ -23,7 +27,9 @@ const InputField = ({ type, placeholder, label, labelId }) => {
     if (type === "password") {
       setValid(PWD_REGEX.test(e.target.value));
     }
-    setValid(USER_REGEX.test(e.target.value));
+    if (type === "email") {
+      setValid(email_REGEX.test(e.target.value));
+    }
   };
   useEffect(() => {
     inputRef?.current?.focus();
@@ -69,6 +75,9 @@ const InputField = ({ type, placeholder, label, labelId }) => {
             aria-invalid={valid ? "false" : "true"}
             aria-describedby="confirmnote"
             onFocus={() => setUserFocus(true)}
+            className={
+              valid === null ? null : valid === true ? "valid" : "invalid"
+            }
             onBlur={() => {
               if (value === "") {
                 setValid(null);
