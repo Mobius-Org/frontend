@@ -11,6 +11,7 @@ export const NavWrapper = styled.header`
   & > div {
     position: relative;
     transition: all 0.3s ease-in-out;
+    z-index: 1;
     background: linear-gradient(101.08deg, #810486 0.51%, #810486 97.37%);
     max-width: 1200px;
     width: 100%;
@@ -94,6 +95,7 @@ export const Hamburger = styled.div`
 export const Menu = styled.ul`
   @media (min-width: 768px) {
     postion: unset;
+    z-index: 100;
     width: unset;
     display: flex;
     flex-flow: row;
