@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <Nav />
-      <ForgotPassword />
+      <SignUp />
       <Footer />
     </div>
   );

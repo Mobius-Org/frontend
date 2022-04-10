@@ -5,9 +5,9 @@ import Button from "../../component/button";
 import InputField from "../../component/inputfield";
 import { ImGoogle } from "react-icons/im";
 const ForgotPassword = () => {
-  const [next, setNext] = useState(true);
+  const [next, setNext] = useState(0);
   const handleNext = (num) => {
-    // setNext(num + next);
+    setNext(num + next);
   };
   return (
     <Wrapper>
@@ -39,6 +39,28 @@ const ForgotPassword = () => {
           </span>
         </CtaWrap>
       </Wrap>
+      <Wrap2 next={next}>
+        <HeadingText>Finish setting up</HeadingText>
+        <InputWrap>
+          <InputField
+            type={"password"}
+            labelId={"password"}
+            label={"What is your new password?"}
+            placeholder={"Enter your new password here ..."}
+          />
+          <InputField
+            type={"password"}
+            labelId={"cpassword"}
+            label={"Re-enter your password again"}
+            placeholder={"Enter your password here ..."}
+          />
+        </InputWrap>
+        <CtaWrap>
+          <span onClick={() => handleNext(1)}>
+            <Button bgColor={colors.secondary_color} text={"Reset Password"} />
+          </span>
+        </CtaWrap>
+      </Wrap2>
     </Wrapper>
   );
 };
@@ -93,8 +115,48 @@ const Wrap = styled.div`
     height: 70vh;
     width: 100%;
   }
+  ${({ next }) =>
+    next !== 0 &&
+    `
+  transition: all 0.3s ease-in-out;
+  height: 0 !important;
+  overflow: hidden;
+  padding: 0;
+  opacity: 0;`}
 `;
+const Wrap2 = styled.div`
+  transition: all 0.3s ease-in-out;
+  background-color: ${colors.white};
+  box-shadow: 0px 2.6501548290252686px 53.00309753417969px 0px
+    rgba(0, 0, 0, 0.37);
+  max-width: 1200px;
+  width: 50%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 1.5rem;
+  flex-wrap: wrap !important;
+  padding: 30px 20px;
+  border-radius: 20px;
 
+  opacity: 1;
+  @media (max-width: 768px) {
+    transition: all 0.3s ease-in-out;
+    height: 70vh;
+    width: 100%;
+  }
+  ${({ next }) =>
+    next !== 1 &&
+    `
+  transition: all 0.3s ease-in-out;
+  height: 0 !important;
+  overflow: hidden;
+  padding: 0;
+  opacity: 0;`}
+`;
 const HeadingText = styled.h1`
 Font-family: Nunito;
 Font-style:extra-bold;
