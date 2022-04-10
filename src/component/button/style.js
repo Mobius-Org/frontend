@@ -12,7 +12,7 @@ export const ButtonWrap = styled.div`
   flex-direction: ${({ dir }) => (dir === "left" ? "row-reverse" : "row")};
   gap: 1rem;
   align-items: center;
-  padding: 0.5rem 24px;
+  padding: 1rem 20px;
   border-radius: 24px;
   font-weight: 700;
   font-size: 14px;
@@ -28,12 +28,12 @@ export const ButtonWrap = styled.div`
       filled === true ? colors.white : bgColor};
     border: 1px solid
       ${({ filled, bgColor }) => (filled === true ? "unset" : bgColor)};
-    padding: 0.5rem 28px;
+    padding: 1rem 28px;
   }
   @media (max-width: 768px) {
     gap: 0.5rem;
     p {
-      font-size: 10px;
+      font-size: 16px;
     }
   }
 `;
