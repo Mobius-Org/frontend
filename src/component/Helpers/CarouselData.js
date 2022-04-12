@@ -1,7 +1,7 @@
 export const Data = [
   {
     id: 1,
-    img: "../../images/girl1.png",
+    img: "../../images/Financial.gif",
     title: "Financial Literacy",
     button: "Enroll Now",
     price: "2000",
@@ -10,7 +10,7 @@ export const Data = [
   },
   {
     id: 2,
-    img: "../../images/Boy1.svg",
+    img: "../../images/Basic.gif",
     title: "Course Page",
     button: "Enroll Now",
     price: "1500",
@@ -20,7 +20,7 @@ export const Data = [
 
   {
     id: 3,
-    img: "../../images/girl1.png",
+    img: "../../images/Matching.gif",
     button: "Enroll Now",
     title: "Financial Budget",
     price: "Free",

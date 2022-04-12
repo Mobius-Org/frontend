@@ -1,7 +1,7 @@
 import React from "react";
 import { Img, ImgWrapper,Span,InteractiveWrapper, H1 } from "./InfoSection.elements";
 
-const infoSection3 = () => {
+const InfoSection3 = () => {
   return (
     <div>
       <InteractiveWrapper>
@@ -16,4 +16,4 @@ const infoSection3 = () => {
   );
 };
 
-export default infoSection3;
+export default InfoSection3;

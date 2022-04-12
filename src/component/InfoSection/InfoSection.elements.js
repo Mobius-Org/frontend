@@ -10,13 +10,13 @@ export const Img = styled.img`
   display: inline-block;
   max-height: 550px;
   padding-top: 20px;
+  max-width: 100%;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `;
 
-export const ImgWrapper = styled.div`
-  /* max-width: 555px; */
-  /* display: flex; */
-  /* justify-content: ${({ start }) => (start ? "flex-start" : "flex-end")}; */
-`;
+export const ImgWrapper = styled.div``;
 export const Span = styled.span`
   background-color: orange;
   font-size: 42px;
@@ -24,6 +24,9 @@ export const Span = styled.span`
   padding-left: 5px;
   padding-right: 5px;
   border-radius: 10px;
+  @media (max-width: 768px) {
+    font-size: 22px;
+  }
 `;
 
 export const InteractiveWrapper = styled.div`
@@ -32,20 +35,52 @@ export const InteractiveWrapper = styled.div`
 
 export const H1 = styled.h1`
   color: #810486;
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+  }
 `;
 
 // ======================Section1 ===============
+export const TextWrapper_0 = styled.div`
+  background-color: #810486;
+  opacity: 0.95;
+  background-image: url("../../images/Frame.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: auto;
+  padding-bottom: 70px;
+`;
+
 export const Section1 = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-left: 150px;
-  padding-right: 150px;
+  flex-direction: row;
+  width: 80%;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    width: 90%;
+    display: flex;
+    height: fit-content !important;
+    flex-flow: column-reverse;
+    justify-content: unset;
+
+    padding: 1rem 0;
+  }
 `;
 
 export const TextWrapper_1 = styled.div`
+  width: 60%;
+  margin: 0 auto;
   text-align: justify;
   width: 50%;
-  padding-top: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const TextWrapper1_h1 = styled.h1`
@@ -54,6 +89,11 @@ export const TextWrapper1_h1 = styled.h1`
   font-weight: 800;
   line-height: 44px;
   color: #fff;
+  @media (max-width: 768px) {
+    font-size: 20px;
+    line-height: unset;
+    display: flex;
+  }
 `;
 
 export const TextWrapper1_p = styled.p`
@@ -62,22 +102,27 @@ export const TextWrapper1_p = styled.p`
   line-height: 43px;
   padding-bottom: 40px;
   color: #fff;
+  @media (max-width: 768px) {
+    line-height: normal;
+    font-size: 15px;
+    width: 100%;
+  }
 `;
 
-export const TextWrapper_0 = styled.div`
-  background-color: #810486;
-  opacity: 0.95;
-  background-image: url("../../images/Frame.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-`;
 export const TextWrapper_img = styled.div`
-  width: 50%;
+  width: 40%;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 50vh;
+    display: block;
+  }
 `;
 
 export const Img_1 = styled.img`
   width: 100%;
   display: inline-block;
+  @media (max-width: 768px) {
+  }
 `;
 
 //================ Mickey Section ==============
@@ -150,18 +195,38 @@ export const UpdateContainer = styled.div`
   width: 100%;
   padding-left: 20%;
   padding-right: 20%;
-  margin-top: 10%;
-  margin-bottom: 10%;
+  margin: 0 auto;
+  height: 30vw;
   align-items: center;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20%;
+  }
 `;
 
-export const Update_1 = styled.div`
-  width: 30%;
+export const Update1 = styled.div`
+  width: 50%;
+  @media (max-width: 768px) {
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+  }
 `;
 
-export const Update_h3 = styled.h3`
-  color: #0c121c;
+export const Updateh3 = styled.h3`
+  font-size: 32px;
   font-weight: 800;
+  color: purple;
+  margin: 0 auto;
+  @media (max-width: 768px) {
+    font-size: 15px;
+    padding-top: -20px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    padding-right: 20px;
+  }
 `;
 
 export const Form = styled.div`
@@ -171,12 +236,31 @@ export const Form = styled.div`
   border-radius: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  @media (max-width: 768px) {
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    border: none;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: -20px;
+  }
 `;
 
 export const FormInput = styled.input`
   outline: none;
   border: 2px solid #00b7ab;
   margin-right: 5px;
+  @media (max-width: 768px) {
+    margin-left: -5px;
+    width: 100%;
+  }
 `;
 
-
+export const ButtonCon = styled.div`
+  width: 50%;
+  margin: 0 auto;
+  padding-bottom: 5px;
+`;

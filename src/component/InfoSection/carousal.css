@@ -1,61 +1,110 @@
 .container{
     width: 100%;
-    /* padding-left: 10%;
-    padding-right: 10%; */
+    /* background-image: url(); */
+    
 }
 .Wrapper{
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    padding-top: -10px;
+    padding-bottom: 50px;
+    
+}
+.center{
+    padding-top: -20px;
+    padding-bottom: 40px;
+}
+.Flex{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
     width: 80%;
-    padding-bottom: 10%;
-    padding-left: 15%;
-    padding-top: 5%;
-    
+    padding-top: 40px;
+    margin: 0 auto;
+    height: 400px;
+    gap: 2rem;
+    margin-bottom: 60px;
 }
-.shadowBox{
-    width: 100%;
-    box-shadow:0 0 100px rgba(0,0,0,0.8);
+.courseName{
+    padding-bottom: 40px;
+}
+.imgSize{
+    width: auto;
     border-radius: 20px;
-    
-}
-.MicImg{
-    width: 100%;
+    padding-right: 10px;
 }
 .literacy{
-    display: flex;
-    justify-content: space-around;
-    padding-bottom: 20px;
-    margin-top: -20%;
-    
-}
-.button{
-    padding-left: 10%;
+    text-align: start;
+    font-weight: bold;
     padding-bottom: 20px;
 }
-.ParaContainer{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+.literacy_P{
     text-align: justify;
-    padding-left: 10%;
-}
-.h2{
-    margin-left: -55%;
     padding-bottom: 20px;
+    font-size: 22px;
+    line-height: 30px;
+    color: #0C121C;
 }
+.price{
+    text-align: start;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+.course{
+    background-color: orange;
+    font-size: 40px;
+    color: #fff;
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 .LeftDir{
-    margin-top: 15%;
-    margin-right: 80px;
-    font-size: 100px;
-    margin-left: -10%;
-   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 20px;
+}
+.left{
+    font-size: 30px;
+    background-color: purple;
+    border-radius: 100%;
+    color: white;
 }
 
 .rightDir{
-    font-size: 150px;
-    margin-top: 10%;
-    /* margin-left: 80px; */
-    /* margin-right: -0px; */
-    padding-left: 50px;
+   display: flex;
+    align-items: center;
+    padding-right: 20px;
+} 
+.right{
+    font-size: 30px;
+    background-color: purple;
+    border-radius: 100%;
+    color: white;
+} 
+
+@media (max-width: 768px){
+    .Flex{
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .LeftDir, .rightDir{
+        display: none;
+    }
+    .Wrapper{
+        padding-top: 40px;
+        padding-bottom: 200px;
+    }
+    .smallFlex{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .price{
+        margin-top: 20px;
+    }
 }
