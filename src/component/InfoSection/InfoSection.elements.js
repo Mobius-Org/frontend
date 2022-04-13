@@ -49,15 +49,17 @@ export const TextWrapper_0 = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   height: auto;
-  padding-bottom: 70px;
+  padding-bottom: 60px;
 `;
 
 export const Section1 = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 20px;
   flex-direction: row;
   width: 80%;
   margin: 0 auto;
+  align-items: center;
 
   @media (max-width: 768px) {
     width: 90%;
@@ -84,10 +86,10 @@ export const TextWrapper_1 = styled.div`
 `;
 
 export const TextWrapper1_h1 = styled.h1`
-  font-size: 42px;
+  font-size: 32px;
   padding-bottom: 40px;
   font-weight: 800;
-  line-height: 44px;
+  line-height: 24px;
   color: #fff;
   @media (max-width: 768px) {
     font-size: 20px;
@@ -97,9 +99,9 @@ export const TextWrapper1_h1 = styled.h1`
 `;
 
 export const TextWrapper1_p = styled.p`
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 600;
-  line-height: 43px;
+  line-height: 33px;
   padding-bottom: 40px;
   color: #fff;
   @media (max-width: 768px) {
@@ -121,7 +123,15 @@ export const TextWrapper_img = styled.div`
 export const Img_1 = styled.img`
   width: 100%;
   display: inline-block;
+  /* @media (max-width: 768px) {
+  } */
+`;
+
+export const BtnCon = styled.div`
+  margin-left: -370px;
+
   @media (max-width: 768px) {
+    padding-left: 200px;
   }
 `;
 

@@ -3,101 +3,71 @@ import styled from "styled-components";
 import { colors } from "../../colors";
 import Button from "../../component/button";
 import InputField from "../../component/inputfield";
-import Dropdown from "../../component/selectDropDown";
 import { ImGoogle } from "react-icons/im";
-const SignUp = () => {
+const ForgotPassword = () => {
   const [next, setNext] = useState(0);
   const handleNext = (num) => {
     setNext(num + next);
   };
   return (
-    <SignUpWrapper next={next}>
+    <Wrapper>
       <img src="images/kiddieDoddles.svg" alt="doddle" />
-      <FirstWrap next={next}>
-        <HeadingText>Sign up</HeadingText>
-        <InputWrap>
-          <InputField
-            type="text"
-            label={"What is your name?"}
-            placeholder={"Enter your name here ..."}
-            labelId={"name"}
-          />
-          <div>
-            <Dropdown />
-          </div>
-          <InputField
-            type="text"
-            label={"What is your favourite color?"}
-            placeholder={"Enter your favourite color here ..."}
-          />
-        </InputWrap>
-        <CtaWrap>
-          <span onClick={() => handleNext(1)}>
-            <Button text={"Next"} bgColor={colors.secondary_color} />
-          </span>
-          <p>
-            Already have an account? <span>Login here</span>
-          </p>
-        </CtaWrap>
-      </FirstWrap>
-      <SecondWrap next={next}>
-        <HeadingText>Finish setting up</HeadingText>
+      <Wrap next={next}>
+        <HeadingText>Forgotten Password</HeadingText>
         <InputWrap>
           <InputField
             type={"email"}
             labelId={"email"}
-            label={"What is your email address?"}
+            label={"What is your email address??"}
             placeholder={"Enter your email address here ..."}
           />
+        </InputWrap>
+        <CtaWrap>
+          <span onClick={() => handleNext()}>
+            <Button
+              dir={"left"}
+              filled={true}
+              bgColor={colors.secondary_color}
+              text={"Previous"}
+            />
+          </span>
+          <span
+            onClick={() => handleNext(1)}
+            style={{ fontWeight: "bold", cursor: "pointer" }}
+          >
+            <Button bgColor={colors.secondary_color} text={"Reset Password"} />
+          </span>
+        </CtaWrap>
+      </Wrap>
+      <Wrap2 next={next}>
+        <HeadingText>Finish setting up</HeadingText>
+        <InputWrap>
           <InputField
             type={"password"}
             labelId={"password"}
-            label={"Create a new password"}
+            label={"What is your new password?"}
+            placeholder={"Enter your new password here ..."}
+          />
+          <InputField
+            type={"password"}
+            labelId={"cpassword"}
+            label={"Re-enter your password again"}
             placeholder={"Enter your password here ..."}
           />
         </InputWrap>
         <CtaWrap>
-          <span onClick={() => handleNext(-1)}>
-            <Button
-              bgColor={colors.secondary_color}
-              dir={"left"}
-              text={"previous"}
-              filled={true}
-            />
-          </span>
           <span onClick={() => handleNext(1)}>
-            <Button bgColor={colors.secondary_color} text={"Sign up"} />
+            <Button bgColor={colors.secondary_color} text={"Reset Password"} />
           </span>
         </CtaWrap>
-        <CtaWrap>
-          <span>
-            <Button
-              src={ImGoogle}
-              bgColor={colors.secondary_color}
-              filled={true}
-              text={"Finish up with Google instead"}
-            />
-          </span>
-        </CtaWrap>
-      </SecondWrap>
-      <SuccessScreen next={next}>
-        <InputWrap next={next}>
-          <img src="images/kidsdoodle3.svg" />
-          <HeadingText>Congratulations!</HeadingText>
-          <p>Hello, I’m Mickey and I am happy to welcome you to Mobius.</p>
-          <Button
-            text={`Take me to Dashboard`}
-            bgColor={colors.secondary_color}
-          />
-        </InputWrap>
-      </SuccessScreen>
-    </SignUpWrapper>
+      </Wrap2>
+    </Wrapper>
   );
 };
 
-export default SignUp;
+export default ForgotPassword;
 
-const SignUpWrapper = styled.div`
+const Wrapper = styled.div`
   background-image: url("images/patternLogin.svg");
   background-size: contain;
   padding: 0;
@@ -108,6 +78,7 @@ const SignUpWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
   & > img {
     position: absolute;
     height: 30rem;
@@ -119,16 +90,10 @@ const SignUpWrapper = styled.div`
       transition: all 0.3s ease-in-out;
       bottom: -100%;
     }
-    ${({ next }) =>
-      next === 2 &&
-      `
-      transition: all 0.3s ease-in-out;
-      bottom: -100%;
-    `}
   }
 `;
 
-const FirstWrap = styled.div`
+const Wrap = styled.div`
   transition: all 0.3s ease-in-out;
   background-color: ${colors.white};
   box-shadow: 0px 2.6501548290252686px 53.00309753417969px 0px
@@ -139,14 +104,11 @@ const FirstWrap = styled.div`
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 1.5rem;
-  flex-wrap: wrap !important;
+  flex-direction: column;
+  gap: 2rem;
   padding: 30px 20px;
   border-radius: 20px;
 
-  transition: all 0.3s ease-in-out;
   opacity: 1;
   @media (max-width: 768px) {
     transition: all 0.3s ease-in-out;
@@ -157,16 +119,12 @@ const FirstWrap = styled.div`
     next !== 0 &&
     `
   transition: all 0.3s ease-in-out;
-  height: 0;
-  opacity: 0;
-  padding: 0;
+  height: 0 !important;
   overflow: hidden;
-  @media (max-width: 768px) {
-    height: 0;
-  }
-  `}
+  padding: 0;
+  opacity: 0;`}
 `;
-const SecondWrap = styled.div`
+const Wrap2 = styled.div`
   transition: all 0.3s ease-in-out;
   background-color: ${colors.white};
   box-shadow: 0px 2.6501548290252686px 53.00309753417969px 0px
@@ -199,39 +157,6 @@ const SecondWrap = styled.div`
   padding: 0;
   opacity: 0;`}
 `;
-const SuccessScreen = styled.div`
-  transition: all 0.3s ease-in-out;
-  background-color: ${colors.white};
-  box-shadow: 0px 2.6501548290252686px 53.00309753417969px 0px
-    rgba(0, 0, 0, 0.37);
-  max-width: 1200px;
-  width: 50%;
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 1.5rem;
-  flex-wrap: wrap !important;
-  padding: 30px 20px;
-  border-radius: 20px;
-  opacity: 1;
-  @media (max-width: 768px) {
-    transition: all 0.3s ease-in-out;
-    height: 70vh;
-    width: 100%;
-  }
-  ${({ next }) =>
-    next !== 2 &&
-    `
-    padding: 0;
-      transition: all 0.3s ease-in-out;
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
-    `}
-`;
 const HeadingText = styled.h1`
 Font-family: Nunito;
 Font-style:extra-bold;
@@ -249,13 +174,14 @@ const InputWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: fit-content;
   width: 90%;
+  & > div {
+    width: 100%;
+  }
   gap: 1rem;
-  ${({ next }) =>
-    next === 2 &&
-    `  
-    
-    & > img {
+
+  & > img {
     width: 70%;
     height: 40%;
     margin: auto;
@@ -266,7 +192,7 @@ const InputWrap = styled.div`
   }
   & > div {
     margin: auto;
-  }`}
+  }
 `;
 const CtaWrap = styled.div`
   width: 90%;
@@ -274,9 +200,9 @@ const CtaWrap = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
-
+  margin: 0 auto;
   justify-content: space-between;
-  @media (max-width: 768px) {
+  @media (max-width: 388px) {
     justify-content: start;
     align-items: start;
     flex-direction: column;

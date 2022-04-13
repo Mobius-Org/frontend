@@ -8,6 +8,7 @@ import {
   TextWrapper_0,
   TextWrapper_img,
   Img_1,
+  BtnCon,
 } from "./InfoSection.elements";
 import { Button1 } from "../../global-styles";
 import { colors } from "../../colors";
@@ -23,12 +24,13 @@ const InfoSection1 = () => {
             adipiscing nullam dapibus justo ac lectus eros facilisi. Arcu nisl,
             nisl venenatis ut velit habitasse mi placerat.
           </TextWrapper1_p>
-
-          <Button
-            text={"Enroll Now"}
-            bgColor={colors.secondary_color}
-            filled={false}
-          />
+          <BtnCon>
+            <Button
+              text={"Enroll Now"}
+              bgColor={colors.secondary_color}
+              filled={false}
+            />
+          </BtnCon>
         </TextWrapper_1>
 
         <TextWrapper_img>

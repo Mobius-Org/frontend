@@ -1,9 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-
-const InputField = ({ type, placeholder, label }) => {
-  const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
-  const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+import { colors } from "../../colors";
+import { HiEye, HiEyeOff } from "react-icons/hi";
+const InputField = ({ type, placeholder, label, labelId }) => {
+  const email_REGEX = new RegExp(
+    "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
+  );
+  const PWD_REGEX = new RegExp(
+    "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
+  );
 
   const inputRef = useRef();
   const errRef = useRef();
@@ -11,6 +16,8 @@ const InputField = ({ type, placeholder, label }) => {
   const [value, setValue] = useState("");
   const [valid, setValid] = useState(null);
   const [userFocus, setUserFocus] = useState(false);
+
+  const [hidden, setHidden] = useState(false);
 
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
@@ -20,7 +27,9 @@ const InputField = ({ type, placeholder, label }) => {
     if (type === "password") {
       setValid(PWD_REGEX.test(e.target.value));
     }
-    setValid(USER_REGEX.test(e.target.value));
+    if (type === "email") {
+      setValid(email_REGEX.test(e.target.value));
+    }
   };
   useEffect(() => {
     inputRef?.current?.focus();
@@ -28,12 +37,12 @@ const InputField = ({ type, placeholder, label }) => {
 
   return (
     <InputFieldWrapper>
-      <Label htmlFor={label}>{label}:</Label>
-      {type === "text" ? (
+      <Label htmlFor={labelId}>{label}:</Label>
+      {type !== "password" ? (
         <Input
           userFocus={userFocus}
           type={type}
-          id={label}
+          id={labelId}
           placeholder={placeholder}
           className={
             valid === null ? null : valid === true ? "valid" : "invalid"
@@ -54,24 +63,36 @@ const InputField = ({ type, placeholder, label }) => {
           }}
         />
       ) : (
-        <Input
-          type={type}
-          ref={inputRef}
-          id={label}
-          onChange={handleChange}
-          value={value}
-          placeholder={placeholder}
-          required
-          aria-invalid={valid ? "false" : "true"}
-          aria-describedby="confirmnote"
-          onFocus={() => setUserFocus(true)}
-          onBlur={() => {
-            if (value === "") {
-              setValid(null);
+        <Pwrap>
+          <Input
+            type={hidden ? "text" : type}
+            ref={inputRef}
+            id={labelId}
+            onChange={handleChange}
+            value={value}
+            placeholder={placeholder}
+            required
+            aria-invalid={valid ? "false" : "true"}
+            aria-describedby="confirmnote"
+            onFocus={() => setUserFocus(true)}
+            className={
+              valid === null ? null : valid === true ? "valid" : "invalid"
             }
-            setUserFocus(false);
-          }}
-        />
+            onBlur={() => {
+              if (value === "") {
+                setValid(null);
+              }
+              setUserFocus(false);
+            }}
+          />
+          <span>
+            {hidden ? (
+              <HiEyeOff size={25} onClick={() => setHidden(!hidden)} />
+            ) : (
+              <HiEye size={25} onClick={() => setHidden(!hidden)} />
+            )}
+          </span>
+        </Pwrap>
       )}
     </InputFieldWrapper>
   );
@@ -83,33 +104,60 @@ const InputFieldWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 0.5rem;
 `;
 
 const Label = styled.label`
   font-family: Nunito;
-  font-style: Bold;
+  font-weight: 700;
   font-size: 20px;
-  line-height: 43px;
-  color: rgba(12, 18, 28, 0.75);
+  color: ${colors.chinese_black};
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 const Input = styled.input`
   font-family: "Nunito", sans-serif;
   font-size: 22px;
-  padding: 0.25rem;
-  border-radius: 0.5rem;
+  padding: 0.8rem 0.5rem;
+  border-radius: 20px;
   width: 100%;
-
+  border: 3px solid rgba(217, 217, 217, 1);
+  transition: all 0.3s ease-in-out;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
   &.valid {
-    color: limegreen;
-    border: 1px solid limegreen !important;
+    color: ${colors.sucess_color};
+    border: 3px solid ${colors.sucess_color} !important;
   }
 
   &.invalid {
-    color: red;
-    border: 1px solid red !important;
+    color: ${colors.error_color};
+    border: 3px solid ${colors.error_color} !important;
+  }
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    border: 3px solid ${colors.chinese_black};
+    cursor: pointer;
   }
   &:focus {
     outline: none;
+  }
+`;
+
+const Pwrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  & > span {
+    position: absolute;
+    right: 2%;
+    font-size: 20px;
+    bottom: 25%;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    color: #c4c4c4;
   }
 `;
