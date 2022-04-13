@@ -40,7 +40,7 @@ const MickysecWrapper = styled.div`
   background: #f9d2ff;
   height: 85vh;
   display: flex;
-  
+  padding-bottom: 20px;
   @media (max-width: 768px) {
     height: fit-content;
   }

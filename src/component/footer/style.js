@@ -1,18 +1,18 @@
 import styled from "styled-components";
 import { colors } from "../../colors";
 export const FooterWrapper = styled.footer`
-  /* background: linear-gradient(101.08deg, #810486 0.51%, #810486 97.37%); */
+  background: linear-gradient(101.08deg, #810486 0.51%, #810486 97.37%);
   padding: 0;
   transition: all 0.3s ease-in-out;
-  background-color: black;
+  /* background-color: black; */
   @media (max-width: 768px) {
     height: 80px;
   }
 `;
 export const FooterContainer = styled.div`
   transition: all 0.3s ease-in-out;
-  background-color: black;
-  /* background: linear-gradient(101.08deg, #810486 0.51%, #810486 97.37%); */
+  /* background-color: black; */
+  background: linear-gradient(101.08deg, #810486 0.51%, #810486 97.37%);
   max-width: 1200px;
   width: 100%;
   height: fit-content;
