@@ -40,6 +40,7 @@ const MickysecWrapper = styled.div`
   background: #f9d2ff;
   height: 85vh;
   display: flex;
+  
   @media (max-width: 768px) {
     height: fit-content;
   }
@@ -74,9 +75,12 @@ const TextArea = styled.div`
   justify-content: space-between !important;
   gap: 0rem;
   align-items: start;
-  width: 40%;
+  width: 52%;
   height: 90%;
   margin: auto;
+  font-size: 22px;
+  line-height: normal;
+
   & > p {
     font-size: 24px;
     text-align: start;

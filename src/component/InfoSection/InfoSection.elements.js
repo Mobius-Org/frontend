@@ -137,81 +137,88 @@ export const BtnCon = styled.div`
 
 //================ Mickey Section ==============
 
-export const MickyContainer = styled.div`
-  background-image: url("../../images/MickyBg.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-top: 20px;
-`;
+// export const MickyContainer = styled.div`
+//   background-image: url("../../images/MickyBg.svg");
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   margin-top: 20px;
+// `;
 
-export const MickeyWrapper = styled.div`
-  max-width: 100%;
-  display: flex;
-  justify-content: space-between;
-  text-align: justify;
-  margin-left: 20%;
-  margin-right: 20%;
-  padding-top: 8%;
-  padding-bottom: 5%;
-`;
+// export const MickeyWrapper = styled.div`
+//   max-width: 100%;
+//   display: flex;
+//   justify-content: space-between;
+//   text-align: justify;
+//   margin-left: 20%;
+//   margin-right: 20%;
+//   padding-top: 8%;
+//   padding-bottom: 5%;
+// `;
 
-export const MickeyImageWrapper = styled.div`
-  width: 50%;
-`;
+// export const MickeyImageWrapper = styled.div`
+//   width: 50%;
+// `;
 
-export const MickyImg = styled.img`
-  height: 500px;
-`;
+// export const MickyImg = styled.img`
+//   height: 500px;
+// `;
 
-export const MickeyTextWrapper = styled.div`
-  padding-left: 20%;
-  padding-top: 5%;
-`;
+// export const MickeyTextWrapper = styled.div`
+//   padding-left: 20%;
+//   padding-top: 5%;
+// `;
 
-export const MickeyP = styled.p`
-  line-height: 35px;
-  padding-bottom: 5%;
-  font-weight: 600;
-  padding-right: 30px;
-  color: #0c121c;
-`;
+// export const MickeyP = styled.p`
+//   line-height: 35px;
+//   padding-bottom: 5%;
+//   font-weight: 600;
+//   padding-right: 30px;
+//   color: #0c121c;
+// `;
 
-export const Mickey_H1 = styled.h1`
-  font-weight: 800;
-  margin-top: -40px;
-  padding-top: -20px;
-  color: #810486;
-`;
+// export const Mickey_H1 = styled.h1`
+//   font-weight: 800;
+//   margin-top: -40px;
+//   padding-top: -20px;
+//   color: #810486;
+// `;
 
-export const MickySpan = styled.span`
-  color: #fff;
-  font-size: 42px;
-  font-weight: 800;
-  background-color: #ffa500;
-  padding: 10px;
-  border-radius: 10px;
-`;
+// export const MickySpan = styled.span`
+//   color: #fff;
+//   font-size: 42px;
+//   font-weight: 800;
+//   background-color: #ffa500;
+//   padding: 10px;
+//   border-radius: 10px;
+// `;
 
-export const Mickey_H4 = styled.h4`
-  padding-bottom: 5%;
-  color: #0c121c;
-`;
+// export const Mickey_H4 = styled.h4`
+//   padding-bottom: 5%;
+//   color: #0c121c;
+// `;
 
 //============InfoSection5 ================
 
 export const UpdateContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-direction: column;
   width: 100%;
-  padding-left: 20%;
-  padding-right: 20%;
+  gap: 4rem;
+  background-color: #2f87ed;
+  color: white;
+  /* padding-left: 20%;
+  padding-right: 20%; */
   margin: 0 auto;
   height: 30vw;
   align-items: center;
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20%;
+    gap: 0.05;
+    height: 50vw;
+    padding-bottom: 10%;
+    padding-top: 10%;
   }
 `;
 
@@ -227,12 +234,12 @@ export const Update1 = styled.div`
 export const Updateh3 = styled.h3`
   font-size: 32px;
   font-weight: 800;
-  color: purple;
+  color: white;
   margin: 0 auto;
   @media (max-width: 768px) {
     font-size: 15px;
-    padding-top: -20px;
-    padding-bottom: 10px;
+    padding-top: 20px;
+    /* padding-bottom: 10px; */
     display: flex;
     justify-content: center;
     padding-right: 20px;
@@ -240,22 +247,18 @@ export const Updateh3 = styled.h3`
 `;
 
 export const Form = styled.div`
-  border: 2px solid #00b7ab;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-radius: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
   display: flex;
+  gap: 0rem;
   flex-direction: row;
   @media (max-width: 768px) {
     width: 100%;
     display: flex;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     border: none;
     flex-direction: column;
     gap: 5px;
-    margin-top: -20px;
+    margin-top: -50px;
+    justify-content: center;
   }
 `;
 
@@ -263,6 +266,12 @@ export const FormInput = styled.input`
   outline: none;
   border: 2px solid #00b7ab;
   margin-right: 5px;
+  width: 30vw;
+  background-color: lightblue;
+  color: white;
+  text-indent: 5px;
+  border: none;
+
   @media (max-width: 768px) {
     margin-left: -5px;
     width: 100%;
@@ -273,4 +282,18 @@ export const ButtonCon = styled.div`
   width: 50%;
   margin: 0 auto;
   padding-bottom: 5px;
+  color: black;
+  margin-left: -25px;
+  & button {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 2px;
+    border: none;
+  }
+
+  @media (max-width: 768px) {
+    margin: 0 auto;
+  }
 `;

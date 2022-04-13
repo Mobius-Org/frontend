@@ -21,9 +21,10 @@ const InfoSection5 = () => {
       <div>
         <form action="">
           <Form>
-            <FormInput type="text" placeholder="input your Email Address" />
+            <FormInput type="text" placeholder="Enter your Email..." />
             <ButtonCon>
-              <Button1> {"Subcribe"}</Button1>
+              <button> Subcribe</button>
+              {/* <Button1> {"Subcribe"}</Button1> */}
             </ButtonCon>
           </Form>
         </form>

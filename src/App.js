@@ -1,6 +1,5 @@
 import "./App.css";
-// import Button from "./component/button";
-// import { colors } from "./colors";
+
 import Nav from "./component/Navbar";
 import Footer from "./component/footer";
 
@@ -17,9 +16,7 @@ function App() {
     <div className="App">
       <Nav />
       <LandingPage />
-      {/* <Mickysec />
-      <OurGames /> */}
-      {/* <ForgotPassword /> */}
+
       <Footer />
     </div>
   );
