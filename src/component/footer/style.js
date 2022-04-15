@@ -1,19 +1,18 @@
 import styled from "styled-components";
 import { colors } from "../../colors";
 export const FooterWrapper = styled.footer`
-  background: linear-gradient(101.08deg, #810486 0.51%, #810486 97.37%);
+  background: ${colors.white};
   padding: 0;
   transition: all 0.3s ease-in-out;
-  /* background-color: black; */
+  box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.15);
   @media (max-width: 768px) {
     height: 80px;
   }
 `;
 export const FooterContainer = styled.div`
   transition: all 0.3s ease-in-out;
-  /* background-color: black; */
-  background: linear-gradient(101.08deg, #810486 0.51%, #810486 97.37%);
-  max-width: 1200px;
+  background: inherit;
+  max-width: 1400px;
   width: 100%;
   height: fit-content;
   margin: 0 auto;
@@ -21,13 +20,52 @@ export const FooterContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  padding: 10px 20px;
+  padding: 20px 20px;
   @media (max-width: 768px) {
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 1rem;
   }
   & > div:last-of-type {
-    color: #d9dbe1;
+    color: grey;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+`;
+export const IconsWrapper = styled.ul`
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  li {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: #f5f5f7;
+    text-align: center;
+    font-size: 35px;
+    transition: all 0.3s ease-in-out;
+
+    a {
+      text-decoration: none;
+      color: #4d504f;
+    }
+    &:hover {
+      transition: all 0.3s ease-in-out;
+      background: #4d504f;
+      a {
+        color: #f5f5f7;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    width: 50%;
+    gap: auto;
+    li {
+      font-size: 20px;
+      width: 30px;
+      height: 30px;
+    }
   }
 `;
 

@@ -1,5 +1,9 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { colors } from "../../colors";
+import Button from "../button";
 import { NavWrapper, Logo, Hamburger, Menu, MenuItem } from "./style";
+import { FaChevronDown } from "react-icons/fa";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,11 +19,33 @@ const Nav = () => {
           <span></span>
         </Hamburger>
         <Menu isOpen={isOpen}>
-          <MenuItem> Home</MenuItem>
-          <MenuItem> Our Courses</MenuItem>
-          <MenuItem> Contact us</MenuItem>
-          <MenuItem> Account</MenuItem>
-          <MenuItem> Parent Page</MenuItem>
+          <span>
+            <MenuItem>
+              {" "}
+              <Link to={"/"}>Home</Link>
+            </MenuItem>
+            <MenuItem>
+              {" "}
+              <Link to="">Our Courses</Link>
+            </MenuItem>
+            <MenuItem>
+              {" "}
+              <Link to={""}>Contact us</Link>
+            </MenuItem>
+            <MenuItem>
+              {" "}
+              <Link to={""}>Parent Page</Link>
+            </MenuItem>
+            <MenuItem>
+              {" "}
+              <Link to="/signup">
+                Account {"  "} <FaChevronDown />
+              </Link>
+            </MenuItem>
+          </span>
+          <MenuItem>
+            <Button text={"Enroll Now"} bgColor={colors.secondary80} />
+          </MenuItem>
         </Menu>
       </div>
     </NavWrapper>
@@ -27,5 +53,3 @@ const Nav = () => {
 };
 
 export default Nav;
-
-

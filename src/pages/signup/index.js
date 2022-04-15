@@ -1,11 +1,69 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { colors } from "../../colors";
 import Button from "../../component/button";
 import InputField from "../../component/inputfield";
 import Dropdown from "../../component/selectDropDown";
 import { ImGoogle } from "react-icons/im";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import mobiusApp from "../../api/mobiusApp";
+import { toast } from "react-toastify";
+import { handleSignUp } from "../../store/action";
+import {
+  SignUpWrapper,
+  FirstWrap,
+  HeadingText,
+  InputWrap,
+  CtaWrap,
+  SecondWrap,
+  SuccessScreen,
+} from "./style";
 const SignUp = () => {
+  //
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const [loading, setLoading] = useState(false);
+
+  // getting form inputs
+  const [name, setName] = useState("");
+  const [age, setAge] = useState(null);
+  const [favColor, setFavColor] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // making a request
+  const handlesignup = async () => {
+    try {
+      const response = await mobiusApp.post("/auth/signUp", {
+        name,
+        age,
+        favColor,
+        email,
+        password,
+      });
+
+      dispatch(handleSignUp(response?.data));
+      console.log(response);
+
+      toast.success(response?.data?.message);
+      // navigate(from, { replace: true });
+    } catch (err) {
+      // console.log(err?.response);
+      if (err.response?.status === 400) {
+        toast.error(err?.response?.data?.message);
+        setLoading(false);
+      } else if (err.response?.status === 401) {
+        toast.error("Unauthorized");
+        setLoading(false);
+      } else {
+        toast.error(err?.response?.data?.message);
+        setLoading(false);
+      }
+    }
+  };
+
+  //slider
   const [next, setNext] = useState(0);
   const handleNext = (num) => {
     setNext(num + next);
@@ -21,14 +79,18 @@ const SignUp = () => {
             label={"What is your name?"}
             placeholder={"Enter your name here ..."}
             labelId={"name"}
+            functionName={setName}
+            cValue={name}
           />
           <div>
-            <Dropdown />
+            <Dropdown functionName={setAge} />
           </div>
           <InputField
             type="text"
             label={"What is your favourite color?"}
             placeholder={"Enter your favourite color here ..."}
+            functionName={setFavColor}
+            cValue={favColor}
           />
         </InputWrap>
         <CtaWrap>
@@ -36,7 +98,7 @@ const SignUp = () => {
             <Button text={"Next"} bgColor={colors.secondary_color} />
           </span>
           <p>
-            Already have an account? <span>Login here</span>
+            Already have an account? <Link to="/signin">Login here</Link>
           </p>
         </CtaWrap>
       </FirstWrap>
@@ -48,12 +110,16 @@ const SignUp = () => {
             labelId={"email"}
             label={"What is your email address?"}
             placeholder={"Enter your email address here ..."}
+            functionName={setEmail}
+            cValue={email}
           />
           <InputField
             type={"password"}
             labelId={"password"}
             label={"Create a new password"}
             placeholder={"Enter your password here ..."}
+            functionName={setPassword}
+            cValue={password}
           />
         </InputWrap>
         <CtaWrap>
@@ -65,7 +131,7 @@ const SignUp = () => {
               filled={true}
             />
           </span>
-          <span onClick={() => handleNext(1)}>
+          <span onClick={handlesignup}>
             <Button bgColor={colors.secondary_color} text={"Sign up"} />
           </span>
         </CtaWrap>
@@ -95,210 +161,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
-
-const SignUpWrapper = styled.div`
-  background-image: url("images/patternLogin.svg");
-  background-size: contain;
-  padding: 0;
-  transition: all 0.3s ease-in-out;
-  height: calc(100vh - 166px);
-  padding: 1.5rem 1rem;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  & > img {
-    position: absolute;
-    height: 30rem;
-    left: 15.5%;
-    bottom: -10%;
-    z-index: 10;
-    transition: all 0.3s ease-in-out;
-    @media (max-width: 1150px) {
-      transition: all 0.3s ease-in-out;
-      bottom: -100%;
-    }
-    ${({ next }) =>
-      next === 2 &&
-      `
-      transition: all 0.3s ease-in-out;
-      bottom: -100%;
-    `}
-  }
-`;
-
-const FirstWrap = styled.div`
-  transition: all 0.3s ease-in-out;
-  background-color: ${colors.white};
-  box-shadow: 0px 2.6501548290252686px 53.00309753417969px 0px
-    rgba(0, 0, 0, 0.37);
-  max-width: 1200px;
-  width: 50%;
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 1.5rem;
-  flex-wrap: wrap !important;
-  padding: 30px 20px;
-  border-radius: 20px;
-
-  transition: all 0.3s ease-in-out;
-  opacity: 1;
-  @media (max-width: 768px) {
-    transition: all 0.3s ease-in-out;
-    height: 70vh;
-    width: 100%;
-  }
-  ${({ next }) =>
-    next !== 0 &&
-    `
-  transition: all 0.3s ease-in-out;
-  height: 0;
-  opacity: 0;
-  padding: 0;
-  overflow: hidden;
-  @media (max-width: 768px) {
-    height: 0;
-  }
-  `}
-`;
-const SecondWrap = styled.div`
-  transition: all 0.3s ease-in-out;
-  background-color: ${colors.white};
-  box-shadow: 0px 2.6501548290252686px 53.00309753417969px 0px
-    rgba(0, 0, 0, 0.37);
-  max-width: 1200px;
-  width: 50%;
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 1.5rem;
-  flex-wrap: wrap !important;
-  padding: 30px 20px;
-  border-radius: 20px;
-
-  opacity: 1;
-  @media (max-width: 768px) {
-    transition: all 0.3s ease-in-out;
-    height: 70vh;
-    width: 100%;
-  }
-  ${({ next }) =>
-    next !== 1 &&
-    `
-  transition: all 0.3s ease-in-out;
-  height: 0 !important;
-  overflow: hidden;
-  padding: 0;
-  opacity: 0;`}
-`;
-const SuccessScreen = styled.div`
-  transition: all 0.3s ease-in-out;
-  background-color: ${colors.white};
-  box-shadow: 0px 2.6501548290252686px 53.00309753417969px 0px
-    rgba(0, 0, 0, 0.37);
-  max-width: 1200px;
-  width: 50%;
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 1.5rem;
-  flex-wrap: wrap !important;
-  padding: 30px 20px;
-  border-radius: 20px;
-  opacity: 1;
-  @media (max-width: 768px) {
-    transition: all 0.3s ease-in-out;
-    height: 70vh;
-    width: 100%;
-  }
-  ${({ next }) =>
-    next !== 2 &&
-    `
-    padding: 0;
-      transition: all 0.3s ease-in-out;
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
-    `}
-`;
-const HeadingText = styled.h1`
-Font-family: Nunito;
-Font-style:extra-bold;
-Font size: 16px;
-color:rgba(12, 18, 28, 0.75);
-align-self: center;
- transition: all 0.3s ease-in-out;
-
- @media (max-width: 768px) {
-      transition: all 0.3s ease-in-out;
-      font-size: 1.5rem;
-    }
-`;
-const InputWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 90%;
-  gap: 1rem;
-  ${({ next }) =>
-    next === 2 &&
-    `  
-    
-    & > img {
-    width: 70%;
-    height: 40%;
-    margin: auto;
-  }
-  & > p {
-    font-size: 20px;
-    font-weight: 700;
-  }
-  & > div {
-    margin: auto;
-  }`}
-`;
-const CtaWrap = styled.div`
-  width: 90%;
-  align-self: start !important;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-
-  justify-content: space-between;
-  @media (max-width: 768px) {
-    justify-content: start;
-    align-items: start;
-    flex-direction: column;
-  }
-  & > p {
-    font-family: Nunito;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 20px;
-    @media (max-width: 768px) {
-      font-size: 1rem;
-    }
-    color: ${colors.chinese_black};
-    & > span {
-      font-family: Nunito;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 20px;
-      @media (max-width: 768px) {
-        font-size: 1rem;
-      }
-      color: ${colors.secondary_color};
-    }
-  }
-`;
+export { SignUp };

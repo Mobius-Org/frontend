@@ -1,5 +1,5 @@
 import React from "react";
-import { Button1 } from "../../global-styles";
+import { Button1 } from "../../../../global-styles";
 import {
   UpdateContainer,
   Update1,

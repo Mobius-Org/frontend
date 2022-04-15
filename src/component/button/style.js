@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colors } from "../../colors";
 
 export const ButtonWrap = styled.div`
-  margin: auto;
+  // margin: auto;
   border: 1px solid
     ${({ filled, bgColor }) => (filled === true ? bgColor : "none")};
   background-color: ${({ filled, bgColor }) =>
@@ -12,7 +12,7 @@ export const ButtonWrap = styled.div`
   flex-direction: ${({ dir }) => (dir === "left" ? "row-reverse" : "row")};
   gap: 1rem;
   align-items: center;
-  padding: 1rem 20px;
+  padding: 15px 2rem;
   border-radius: 24px;
   font-weight: 700;
   font-size: 14px;
@@ -28,7 +28,7 @@ export const ButtonWrap = styled.div`
       filled === true ? colors.white : bgColor};
     border: 1px solid
       ${({ filled, bgColor }) => (filled === true ? "unset" : bgColor)};
-    padding: 1rem 28px;
+    padding: 15px 2.1rem;
   }
   @media (max-width: 768px) {
     gap: 0.5rem;

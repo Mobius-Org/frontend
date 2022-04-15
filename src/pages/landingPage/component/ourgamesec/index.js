@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import SechHeader from "../../component/sectionheader";
+import SechHeader from "../../../../component/sectionheader";
 const OurGames = () => {
   return (
     <OurGamesWrap>

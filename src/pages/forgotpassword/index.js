@@ -7,6 +7,8 @@ import { ImGoogle } from "react-icons/im";
 const ForgotPassword = () => {
   const [next, setNext] = useState(0);
   const handleNext = (num) => {
+    if (next === 0 && num === -1) return;
+    if (next === 1 && num === 1) return;
     setNext(num + next);
   };
   return (
@@ -23,7 +25,7 @@ const ForgotPassword = () => {
           />
         </InputWrap>
         <CtaWrap>
-          <span onClick={() => handleNext()}>
+          <span onClick={() => handleNext(-1)}>
             <Button
               dir={"left"}
               filled={true}
@@ -40,7 +42,7 @@ const ForgotPassword = () => {
         </CtaWrap>
       </Wrap>
       <Wrap2 next={next}>
-        <HeadingText>Finish setting up</HeadingText>
+        <HeadingText>Create new password</HeadingText>
         <InputWrap>
           <InputField
             type={"password"}
@@ -65,7 +67,7 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export { ForgotPassword };
 
 const Wrapper = styled.div`
   background-image: url("images/patternLogin.svg");

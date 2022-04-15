@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../button/index";
+import Button from "../../../../component/button/index";
 import {
   Section1,
   TextWrapper_1,
@@ -10,8 +10,8 @@ import {
   Img_1,
   BtnCon,
 } from "./InfoSection.elements";
-import { Button1 } from "../../global-styles";
-import { colors } from "../../colors";
+import { Button1 } from "../../../../global-styles";
+import { colors } from "../../../../colors";
 
 const InfoSection1 = () => {
   return (

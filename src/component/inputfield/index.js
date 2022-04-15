@@ -2,7 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../colors";
 import { HiEye, HiEyeOff } from "react-icons/hi";
-const InputField = ({ type, placeholder, label, labelId }) => {
+const InputField = ({
+  cValue,
+  type,
+  placeholder,
+  label,
+  labelId,
+  functionName,
+}) => {
   const email_REGEX = new RegExp(
     "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
   );
@@ -24,6 +31,7 @@ const InputField = ({ type, placeholder, label, labelId }) => {
 
   const handleChange = (e) => {
     setValue(e.target.value);
+    functionName(e.target.value);
     if (type === "password") {
       setValid(PWD_REGEX.test(e.target.value));
     }

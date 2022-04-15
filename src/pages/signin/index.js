@@ -5,7 +5,50 @@ import Button from "../../component/button";
 import InputField from "../../component/inputfield";
 import Dropdown from "../../component/selectDropDown";
 import { ImGoogle } from "react-icons/im";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import mobiusApp from "../../api/mobiusApp";
+import { handleSignIn } from "../../store/action";
+import { useDispatch } from "react-redux";
 const SignIn = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  const [loading, setLoading] = useState(false);
+  // getting input data
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  //fetching data
+  const handleLogin = async () => {
+    try {
+      const response = await mobiusApp.post("/auth/login", {
+        email,
+        password,
+      });
+
+      dispatch(handleSignIn(response?.data));
+      console.log(response);
+
+      toast.success(response?.data?.message);
+      // navigate(from, { replace: true });
+    } catch (err) {
+      console.log(err?.response);
+
+      if (err.response?.status === 400) {
+        toast.error(err?.response?.data?.message);
+        setLoading(false);
+      } else if (err.response?.status === 401) {
+        toast.error(err?.response?.data?.message);
+        setLoading(false);
+      } else {
+        toast.error(err?.response?.data?.message);
+        setLoading(false);
+      }
+    }
+  };
+
   const [next, setNext] = useState(true);
   const handleNext = (num) => {
     // setNext(num + next);
@@ -21,23 +64,27 @@ const SignIn = () => {
             labelId={"email"}
             label={"What is your email address??"}
             placeholder={"Enter your email address here ..."}
+            functionName={setEmail}
+            cValue={email}
           />
           <InputField
             type={"password"}
             labelId={"password"}
             label={"What is your password"}
             placeholder={"Enter your password here ..."}
+            functionName={setPassword}
+            cValue={password}
           />
         </InputWrap>
         <CtaWrap>
-          <span onClick={() => handleNext()}>
+          <span onClick={handleLogin}>
             <Button bgColor={colors.secondary_color} text={"Sign In"} />
           </span>
           <span
             onClick={() => handleNext(1)}
             style={{ fontWeight: "bold", cursor: "pointer" }}
           >
-            Forgotton Password?
+            <Link to="/forgot-password"> Forgotton Password?</Link>
           </span>
         </CtaWrap>
         <CtaWrap>
@@ -55,7 +102,7 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export { SignIn };
 
 const SignUpWrapper = styled.div`
   background-image: url("images/patternLogin.svg");

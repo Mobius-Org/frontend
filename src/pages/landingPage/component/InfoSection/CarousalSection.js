@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { colors } from "../../colors";
-import Button from "../button";
+import { colors } from "../../../../colors";
+import Button from "../../../../component/button";
 import "./carousal.css";
 import { MdSkipNext } from "react-icons/md";
 import { MdSkipPrevious } from "react-icons/md";
@@ -62,8 +62,8 @@ const CarousalSection = () => {
 
 export default CarousalSection;
 const Container = styled.div`
-background-image:url("images/CourseBg.png");
-`
+  background-image: url("images/CourseBg.png");
+`;
 
 {
   /* <div className="shadowBox">

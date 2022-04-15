@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { colors } from "../../colors";
-import Button from "../../component/button";
-import SechHeader from "../../component/sectionheader";
+import { colors } from "../../../../colors";
+import Button from "../../../../component/button";
+import SechHeader from "../../../../component/sectionheader";
 
 const Mickysec = () => {
   return (
