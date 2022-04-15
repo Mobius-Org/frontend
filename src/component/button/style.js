@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { colors } from "../../colors";
 
 export const ButtonWrap = styled.div`
@@ -7,7 +7,8 @@ export const ButtonWrap = styled.div`
     ${({ filled, bgColor }) => (filled === true ? bgColor : "none")};
   background-color: ${({ filled, bgColor }) =>
     filled === true ? "none" : bgColor};
-  width: fit-content;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: ${({ dir }) => (dir === "left" ? "row-reverse" : "row")};
   gap: 1rem;
@@ -46,4 +47,37 @@ export const IconArrow = styled.div`
   display: flex;
   align-items: center;
   transition: all 0.3s ease-in-out;
+`;
+export const Spinner = keyframes`
+   from {
+      transform: rotate(0turn);
+    }
+    to {
+      transform: rotate(1turn);
+    }
+`;
+export const Loading = styled.div`
+  width: 100%;
+  height: 100%;
+  background: ${colors.white};
+
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: ${colors.white};
+    border-radius: 100%;
+    animation: ${Spinner} 1s ease infinite;
+  }
+  &:hover::after {
+    border-top-color: ${colors.secondary80};
+  }
 `;

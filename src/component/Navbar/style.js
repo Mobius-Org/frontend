@@ -58,7 +58,7 @@ export const Hamburger = styled.div`
   display: flex;
   flex-flow: column nowrap;
   gap: 5px;
-  background: ${colors.primary_cadium_violet};
+  background: ${colors.secondary_color};
   height: fit-content;
   width: fit-content;
   padding: 10px;

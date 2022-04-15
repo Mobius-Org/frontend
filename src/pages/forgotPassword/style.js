@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../colors";
-
-export const SignUpWrapper = styled.div`
+export const Wrapper = styled.div`
   background-image: url("images/patternLogin.svg");
   background-size: contain;
   padding: 0;
@@ -12,6 +11,7 @@ export const SignUpWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
   & > img {
     position: absolute;
     height: 30rem;
@@ -21,22 +21,16 @@ export const SignUpWrapper = styled.div`
     transition: all 0.3s ease-in-out;
     @media (max-width: 1150px) {
       transition: all 0.3s ease-in-out;
-      bottom: -100%;
+      bottom: -400%;
     }
-    ${({ next }) =>
-      next === 2 &&
-      `
-      
-      transition: all 0.3s ease-in-out;
-      bottom: -100%;
-    `}
   }
   @media (max-width: 768px) {
     padding: 0;
+    height: calc(100vh - 166px);
   }
 `;
 
-export const FirstWrap = styled.div`
+export const Wrap = styled.div`
   transition: all 0.3s ease-in-out;
   background-color: ${colors.white};
   box-shadow: 0px 2.6501548290252686px 53.00309753417969px 0px
@@ -47,14 +41,12 @@ export const FirstWrap = styled.div`
   margin: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 1.5rem;
-  flex-wrap: wrap !important;
+  flex-direction: column;
+  gap: 2rem;
   padding: 30px 20px;
   border-radius: 20px;
-  position:unset
-  transition: all 0.3s ease-in-out;
+  position: unset;
+
   opacity: 1;
   @media (max-width: 768px) {
     transition: all 0.3s ease-in-out;
@@ -64,26 +56,23 @@ export const FirstWrap = styled.div`
   ${({ next }) =>
     next !== 0 &&
     `
-  transition: all 0.3s ease-in-out;
+   transition: all 0.3s ease-in-out;
   height: 0;
   opacity: 0;
   padding: 0;
   overflow: hidden;
   position:absolute;
   top:-150%;
-  @media (max-width: 768px) {
-    height: 0;
-  }
   `}
 `;
-export const SecondWrap = styled.div`
+export const Wrap2 = styled.div`
   transition: all 0.3s ease-in-out;
   background-color: ${colors.white};
   box-shadow: 0px 2.6501548290252686px 53.00309753417969px 0px
     rgba(0, 0, 0, 0.37);
   max-width: 1200px;
   width: 50%;
-  height: 90%;
+  height: 100%;
   margin: auto;
   display: flex;
   align-items: center;
@@ -104,49 +93,15 @@ export const SecondWrap = styled.div`
     next !== 1 &&
     `
     position:absolute;
-    left:-200%;
+    bottom:-100%;
   transition: all 0.3s ease-in-out;
   height: 0 !important;
   overflow: hidden;
   padding: 0;
   opacity: 0;`}
 `;
-export const SuccessScreen = styled.div`
-  transition: all 0.3s ease-in-out;
-  background-color: ${colors.white};
-  box-shadow: 0px 2.6501548290252686px 53.00309753417969px 0px
-    rgba(0, 0, 0, 0.37);
-  max-width: 1200px;
-  width: 50%;
-  height: 90%;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 1.5rem;
-  flex-wrap: wrap !important;
-  padding: 30px 20px;
-  border-radius: 20px;
-  opacity: 1;
-  @media (max-width: 768px) {
-    transition: all 0.3s ease-in-out;
-    height: 70vh;
-    width: 100%;
-  }
-  ${({ next }) =>
-    next !== 2 &&
-    `
-    position:absolute;
-    bottom:100%;
-    padding: 0;
-      transition: all 0.3s ease-in-out;
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
-    `}
-`;
 export const HeadingText = styled.h1`
+  font-family: Nunito;
 Font-family: Nunito;
 Font-style:extra-bold;
 Font size: 16px;
@@ -163,14 +118,14 @@ export const InputWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
+  height: fit-content;
   width: 90%;
+  & > div {
+    width: 100%;
+  }
   gap: 1rem;
-  ${({ next }) =>
-    next === 2 &&
-    `  
-    
-    & > img {
+
+  & > img {
     width: 70%;
     height: 40%;
     margin: auto;
@@ -181,8 +136,7 @@ export const InputWrap = styled.div`
   }
   & > div {
     margin: auto;
-    position: relative;
-  }`}
+  }
 `;
 export const CtaWrap = styled.div`
   width: 90%;
@@ -190,84 +144,38 @@ export const CtaWrap = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
+  margin: 0 auto;
   justify-content: space-between;
   @media (max-width: 768px) {
     justify-content: start;
     align-items: start;
     flex-direction: column;
   }
-  & > p {
+
+  color: ${colors.chinese_black};
+  & > span {
     font-family: Nunito;
     font-style: normal;
     font-weight: bold;
     font-size: 20px;
     @media (max-width: 768px) {
       font-size: 1rem;
-    }
-    color: ${colors.chinese_black};
-    & > a {
-      font-family: Nunito;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 20px;
-      text-decoration: none;
-      @media (max-width: 768px) {
-        font-size: 1rem;
-      }
-      color: ${colors.secondary_color};
-    }
-    @media (max-width: 768px) {
       width: 100%;
-    }
-  }
-  span.first {
-    @media (max-width: 768px) {
-      width: 100%;
-      & > div {
+      &:first-of-type > div {
         text-align: center;
         align-items: center;
-        padding: 15px 36%;
+        padding: 15px 37%;
+        display: flex;
+        text-align: center;
+      }
+      &:last-of-type > div {
+        text-align: center;
+        align-items: center;
+        padding: 15px 28.5%;
         display: flex;
         text-align: center;
       }
     }
-  }
-  span.last {
-    @media (max-width: 768px) {
-      width: 100%;
-      & > div {
-        display: flex;
-        padding: 15px auto;
-        width: 100%;
-        gap: 0.45rem;
-        &:hover {
-          padding: 15px 5px;
-        }
-      }
-    }
-  }
-`;
-export const InputWrapDiv = styled.div`
-  position: relative;
-`;
-
-export const ErrorMessage = styled.div`
-  transition: all 0.3s ease-in-out;
-  font-family: Nunito;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  color: ${colors.error_color};
-  position: absolute;
-  bottom: ${({ errFor }) => (errFor === "passWord" ? "-90%" : "-50%")};
-  z-index: 10;
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: 15px;
-  background-color: #c9f0ed;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.37);
-  text-align: start;
-  @media (max-width: 768px) {
-    bottom: ${({ errFor }) => (errFor === "passWord" ? "-130%" : "-55%")};
+    color: ${colors.secondary_color};
   }
 `;
