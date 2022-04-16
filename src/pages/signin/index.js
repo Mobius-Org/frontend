@@ -106,9 +106,7 @@ const SignIn = () => {
   };
 
   const [next, setNext] = useState(true);
-  const handleNext = (num) => {
-    // setNext(num + next);
-  };
+  const handleNext = (num) => {};
   return (
     <SignUpWrapper>
       <img src="images/kiddieDoddles.svg" alt="doddle" />

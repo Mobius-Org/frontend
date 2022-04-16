@@ -1,6 +1,32 @@
 import styled, { keyframes } from "styled-components";
 import { colors } from "../../colors";
 
+const Breathing = keyframes` 
+  0% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  25% {
+    -webkit-transform: scale(2);
+    -ms-transform: scale(2);
+    transform: scale(2);
+    color: ${colors.chinese_black};
+  }
+
+  60% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+`;
 export const ButtonWrap = styled.div`
   // margin: auto;
   border: 1px solid
@@ -47,6 +73,7 @@ export const IconArrow = styled.div`
   display: flex;
   align-items: center;
   transition: all 0.3s ease-in-out;
+  animation: ${Breathing} 3s ease-in-out infinite;
 `;
 export const Spinner = keyframes`
    from {
