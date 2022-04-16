@@ -8,9 +8,7 @@ const Button = ({ src, dir, filled, bgColor, text, loadingState }) => {
     <>
       <ButtonWrap dir={dir} filled={filled} bgColor={bgColor}>
         {loadingState === true ? (
-          <ButtonWrap>
-            <Loading></Loading>
-          </ButtonWrap>
+          <Loading></Loading>
         ) : (
           <>
             {src && (
