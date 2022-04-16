@@ -64,7 +64,32 @@ export const Spinner = keyframes`
         border-right-color: ${"#5396ba"};
     }
 `;
+const Breathing = keyframes` 
+  0% {
+    -webkit-transform: scale(0.97);
+    -ms-transform: scale(0.97);
+    transform: scale(0.97);
+  }
 
+  25% {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+   
+  }
+
+  60% {
+    -webkit-transform: scale(0.97);
+    -ms-transform: scale(0.97);
+    transform: scale(0.97);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+`;
 const KidAdvertWrapper = styled.div`
   width: 100%;
   height: fit-content;
@@ -298,6 +323,7 @@ const ImageWrapper5 = styled.div`
   background: #fff;
   border: 4px solid transparent;
   animation: ${Spinner} 1.3s ease-in-out infinite;
+
   transform: translate(-50%, -50%) !important;
 
   & img {
@@ -305,6 +331,7 @@ const ImageWrapper5 = styled.div`
     height: 100%;
     border-radius: inherit;
     object-fit: contain;
+    animation: ${Breathing} 4s ease-in-out infinite;
   }
   &:hover {
     transition: all 0.3s ease-in-out;

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { keyframes } from "styled-components";
 import { colors } from "../../../../colors";
 const OurInteractiveGames = () => {
   return (
@@ -27,6 +28,31 @@ const OurInteractiveGames = () => {
 };
 
 export default OurInteractiveGames;
+const Breathing = keyframes` 
+  0% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  25% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+`;
 
 const Container = styled.div`
   width: 100%;
@@ -70,6 +96,7 @@ const SecHeading = styled.div`
     left: 10%;
     width: 100%;
     height: 50vh;
+    animation: ${Breathing} 5s ease-out infinite normal;
     @media (max-width: 768px) {
       display: none;
     }
