@@ -1,6 +1,8 @@
 import React from "react";
+import Nav from "../../component/Navbar";
+import SideNav from "../../pages/dashboard/components/sidenav";
+import { TopNav } from "../../pages/dashboard/components/topnav";
 import styled from "styled-components";
-import { SideNav, TopNav } from "../../pages/dashboard";
 
 const DashBoardLayout = ({ children }) => {
   return (
@@ -15,12 +17,11 @@ const DashBoardLayout = ({ children }) => {
 export { DashBoardLayout };
 
 const Wrapper = styled.div`
-   width: min-width(100opx, 100%);
+  width: 100%;
+  max-width: 1400px;
   height: fit-content;
-  margin: 0 auto;
-  border
-  display: flex;
 `;
 const Main = styled.main`
-  margin-left: 320px;
+  border: 1px solid red;
+  margin-left: 270px;
 `;
