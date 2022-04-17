@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthLayout, DashBoardLayout } from "../layout";
+import { NotFound } from "../pages";
 import { authRoutes, dashBoardRoutes } from "./routes";
 
 export const AppRouter = () => {
@@ -24,6 +25,8 @@ export const AppRouter = () => {
             element={<DashBoardLayout>{route.element}</DashBoardLayout>}
           />
         ))}
+        {/* 404 */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

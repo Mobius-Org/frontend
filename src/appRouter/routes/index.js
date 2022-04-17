@@ -21,7 +21,6 @@ const authRoutes = [
     element: <ResetPassword />,
   },
   { name: "home", path: "/", element: <LandingPage /> },
-  // { name: "default", path: "*", element: <NotFound /> },
 ];
 
 const dashBoardRoutes = [
