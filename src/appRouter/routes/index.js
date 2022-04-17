@@ -1,4 +1,11 @@
-import { ForgotPassword, LandingPage, SignIn, SignUp } from "../../pages";
+import {
+  ForgotPassword,
+  LandingPage,
+  SignIn,
+  SignUp,
+  ResetPassword,
+  NotFound,
+} from "../../pages";
 
 const authRoutes = [
   { name: "signUp", path: "/signup", element: <SignUp /> },
@@ -8,7 +15,13 @@ const authRoutes = [
     path: "/forgot-password",
     element: <ForgotPassword />,
   },
+  {
+    name: "resetPassword",
+    path: "/reset-password",
+    element: <ResetPassword />,
+  },
   { name: "home", path: "/", element: <LandingPage /> },
+  { name: "default", path: "*", element: <NotFound /> },
 ];
 
 const dashBoardRoutes = [

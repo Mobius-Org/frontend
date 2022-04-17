@@ -21,6 +21,7 @@ const Nav = () => {
   }, [scrollPosition]);
 
   const [isOpen, setIsOpen] = useState(false);
+  const handleClick = () => setIsOpen(!isOpen);
   return (
     <NavWrapper scrolled={scrolled}>
       <div>
@@ -38,29 +39,41 @@ const Nav = () => {
           <span>
             <MenuItem>
               {" "}
-              <Link to={"/"}>Home</Link>
+              <Link onClick={handleClick} to={"/"}>
+                Home
+              </Link>
             </MenuItem>
             <MenuItem>
               {" "}
-              <Link to="#Courses">Our Courses</Link>
+              <Link onClick={handleClick} to="#Courses">
+                Our Courses
+              </Link>
             </MenuItem>
             <MenuItem>
               {" "}
-              <Link to={"#Contact-us"}>Contact us</Link>
+              <Link onClick={handleClick} to={"#Contact-us"}>
+                Contact us
+              </Link>
             </MenuItem>
             <MenuItem>
               {" "}
-              <Link to={""}>Parent Page</Link>
+              <Link onClick={handleClick} to={""}>
+                Parent Page
+              </Link>
             </MenuItem>
             <MenuItem>
               {" "}
-              <Link to="/signup">
+              <Link onClick={handleClick} to="/signup">
                 Account {"  "} <FaChevronDown />
               </Link>
             </MenuItem>
           </span>
           <MenuItem>
-            <Button text={"Enroll Now"} bgColor={colors.secondary80} />
+            <Button
+              onClick={handleClick}
+              text={"Enroll Now"}
+              bgColor={colors.secondary80}
+            />
           </MenuItem>
         </Menu>
       </div>

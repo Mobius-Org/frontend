@@ -25,14 +25,14 @@ export const SignUpWrapper = styled.div`
     }
     ${({ next }) =>
       next === 2 &&
-      `
-      
+      ` 
       transition: all 0.3s ease-in-out;
       bottom: -100%;
     `}
   }
   @media (max-width: 768px) {
     padding: 0;
+    height: 70vh;
   }
 `;
 
@@ -60,6 +60,8 @@ export const FirstWrap = styled.div`
     transition: all 0.3s ease-in-out;
     height: 70vh;
     width: 100%;
+    border-radius: 0px;
+
   }
   ${({ next }) =>
     next !== 0 &&
@@ -99,6 +101,7 @@ export const SecondWrap = styled.div`
     transition: all 0.3s ease-in-out;
     height: 70vh;
     width: 100%;
+    border-radius: 0px;
   }
   ${({ next }) =>
     next !== 1 &&
@@ -129,10 +132,12 @@ export const SuccessScreen = styled.div`
   padding: 30px 20px;
   border-radius: 20px;
   opacity: 1;
+
   @media (max-width: 768px) {
     transition: all 0.3s ease-in-out;
     height: 70vh;
     width: 100%;
+    border-radius: 0px;
   }
   ${({ next }) =>
     next !== 2 &&
@@ -246,6 +251,20 @@ export const CtaWrap = styled.div`
       }
     }
   }
+  span.success {
+    width: fit-content;
+    margin: auto;
+    @media (max-width: 768px) {
+      width: 100%;
+      & > div {
+        text-align: center;
+        align-items: center;
+        padding: 15px 20%;
+        display: flex;
+        text-align: center;
+      }
+    }
+  }
 `;
 export const InputWrapDiv = styled.div`
   position: relative;
@@ -268,6 +287,6 @@ export const ErrorMessage = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.37);
   text-align: start;
   @media (max-width: 768px) {
-    bottom: ${({ errFor }) => (errFor === "passWord" ? "-130%" : "-55%")};
+    bottom: ${({ errFor }) => (errFor === "passWord" ? "-130%" : "85%")};
   }
 `;

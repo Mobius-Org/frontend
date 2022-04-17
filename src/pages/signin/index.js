@@ -28,7 +28,7 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
+  const [passwordError, setPasswordError] = useState(null);
   //fetching data
   const handleLogin = async () => {
     if (email === "" || password === "") {

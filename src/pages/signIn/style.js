@@ -25,7 +25,7 @@ export const SignUpWrapper = styled.div`
   }
   @media (max-width: 768px) {
     padding: 0;
-    height: calc(100vh - 166px);
+    height: 70vh;
   }
 `;
 
@@ -52,6 +52,7 @@ export const Wrap = styled.div`
     transition: all 0.3s ease-in-out;
     height: 70vh;
     width: 100%;
+    border-radius: 0;
   }
 `;
 
@@ -167,6 +168,6 @@ export const ErrorMessage = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.37);
   text-align: start;
   @media (max-width: 768px) {
-    bottom: ${({ errFor }) => (errFor === "passWord" ? "-130%" : "-55%")};
+    bottom: ${({ errFor }) => (errFor === "passWord" ? "-130%" : "-80%")};
   }
 `;

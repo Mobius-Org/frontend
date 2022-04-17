@@ -28,15 +28,15 @@ const Breathing = keyframes`
   }
 `;
 export const ButtonWrap = styled.div`
-  // margin: auto;
+  margin: auto;
   border: 1px solid
     ${({ filled, bgColor }) => (filled === true ? bgColor : "none")};
   background-color: ${({ filled, bgColor }) =>
     filled === true ? "none" : bgColor};
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: ${({ dir }) => (dir === "left" ? "row-reverse" : "row")};
+  width: 100%;
+  height: 100%;
   gap: 1rem;
   align-items: center;
   padding: 15px 2rem;
@@ -57,10 +57,14 @@ export const ButtonWrap = styled.div`
       ${({ filled, bgColor }) => (filled === true ? "unset" : bgColor)};
     padding: 15px 2.1rem;
   }
+  p {
+    align-self: center;
+  }
   @media (max-width: 768px) {
     gap: 0.5rem;
     p {
       font-size: 16px;
+      margin: auto;
     }
   }
 `;
@@ -68,12 +72,14 @@ export const ButtonWrap = styled.div`
 export const Icon = styled.img`
   width: 25px;
   height: 25px;
+  align-self: center;
 `;
 export const IconArrow = styled.div`
   display: flex;
   align-items: center;
   transition: all 0.3s ease-in-out;
   animation: ${Breathing} 3s ease-in-out infinite;
+  align-self: center;
 `;
 export const Spinner = keyframes`
    from {
@@ -85,8 +91,8 @@ export const Spinner = keyframes`
 `;
 export const Loading = styled.div`
   width: 100%;
-  height: 100%;
-  background: ${colors.white};
+  height: 2rem;
+  background: unset;
 
   position: relative;
   &::after {
@@ -100,11 +106,11 @@ export const Loading = styled.div`
     bottom: 0;
     margin: auto;
     border: 4px solid transparent;
-    border-top-color: ${colors.white};
+    border-top-color: ${colors.chinese_black};
     border-radius: 100%;
     animation: ${Spinner} 1s ease infinite;
   }
   &:hover::after {
-    border-top-color: ${colors.secondary80};
+    border-top-color: ${colors.chinese_black};
   }
 `;
