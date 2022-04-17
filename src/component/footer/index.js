@@ -4,10 +4,12 @@ import { FooterWrapper, FooterContainer, Logo, IconsWrapper } from "./style";
 import { ImPlay, ImDribbble, ImInstagram, ImTwitter } from "react-icons/im";
 const Footer = () => {
   return (
-    <FooterWrapper>
+    <FooterWrapper id="Contact-us">
       <FooterContainer>
         <Logo>
-          <img src="images/logo.svg" alt="mobius_logo" />
+          <Link to="/">
+            <img src="images/logo.svg" alt="mobius_logo" />
+          </Link>
         </Logo>
         <IconsWrapper>
           <li>

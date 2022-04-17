@@ -141,7 +141,8 @@ const KidAdvertWrapperInnerImage = styled.div`
   @media (max-width: 768px) {
     display: flex;
     width: 100%;
-    height: 40vh;
+    height: 50vh;
+    // border: 1px solid red;
   }
 `;
 const ImageWrapper = styled.div`

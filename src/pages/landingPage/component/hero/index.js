@@ -25,9 +25,7 @@ const Hero = () => {
         </HeroText>
         <HeroImage>
           <ImageWrapper>
-            <span id="first"></span>
             <img src="images/hero1.svg" alt="hero" id="hero" />
-            <span id="last"></span>
           </ImageWrapper>
         </HeroImage>
       </HeroWrapper>
@@ -109,6 +107,7 @@ const HeroWrapper = styled.div`
     width: 90%;
     height: fit-content;
     flex-direction: column;
+    gap: 2rem;
   }
 `;
 const HeroText = styled.div`
@@ -139,6 +138,9 @@ const HeroText = styled.div`
     height: fit-content;
     gap: 1rem;
     padding: 1rem 0;
+    & > img {
+      display: none;
+    }
   }
 `;
 const AdText = styled.p`
@@ -198,6 +200,9 @@ const ImageWrapper = styled.div`
   height: 100%;
   margin: auto 0;
   position: relative;
+  @media (max-width: 768px) {
+    height: 46.4vh;
+  }
   img {
     width: 100%;
     height: 80%;
