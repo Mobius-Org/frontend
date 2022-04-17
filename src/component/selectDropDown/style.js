@@ -24,6 +24,7 @@ export const Container = styled.div`
     font-family: Nunito;
     font-weight: 700;
     font-size: 20px;
+    letter-spacing: 0.5px;
     color: ${colors.chinese_black};
     @media (max-width: 768px) {
       font-size: 1rem;
