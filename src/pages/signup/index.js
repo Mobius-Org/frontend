@@ -37,7 +37,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
+  const [passwordError, setPasswordError] = useState(null);
   // making a request
   const handlesignup = async () => {
     if (
@@ -49,7 +49,7 @@ const SignUp = () => {
     ) {
       toast.error("Please fill all the fields", {
         position: "top-center",
-        autoClose: 1000,
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -75,7 +75,7 @@ const SignUp = () => {
 
       toast.success(response?.data?.message, {
         position: "top-center",
-        autoClose: 1000,
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -89,7 +89,7 @@ const SignUp = () => {
       if (err.response?.status === 400) {
         toast.error(err?.response?.data?.message, {
           position: "top-center",
-          autoClose: 1000,
+          autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -100,7 +100,7 @@ const SignUp = () => {
       } else if (err.response?.status === 401) {
         toast.error("Unauthorized", {
           position: "top-center",
-          autoClose: 1000,
+          autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -111,7 +111,7 @@ const SignUp = () => {
       } else {
         toast.error(err?.response?.data?.message, {
           position: "top-center",
-          autoClose: 1000,
+          autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -248,11 +248,15 @@ const SignUp = () => {
           <img src="images/kidsdoodle3.svg" />
           <HeadingText>Congratulations!</HeadingText>
           <p>Hello, I’m Mickey and I am happy to welcome you to Mobius.</p>
-          <Button
-            text={`Take me to Dashboard`}
-            bgColor={colors.secondary_color}
-          />
         </InputWrap>
+        <CtaWrap>
+          <span className="success" onClick={() => navigate("/dashboard")}>
+            <Button
+              text={`Take me to Dashboard`}
+              bgColor={colors.secondary_color}
+            />
+          </span>
+        </CtaWrap>
       </SuccessScreen>
     </SignUpWrapper>
   );

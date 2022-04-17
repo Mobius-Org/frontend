@@ -26,7 +26,7 @@ export const Wrapper = styled.div`
   }
   @media (max-width: 768px) {
     padding: 0;
-    height: calc(100vh - 166px);
+    height: 70vh;
   }
 `;
 
@@ -52,6 +52,7 @@ export const Wrap = styled.div`
     transition: all 0.3s ease-in-out;
     height: 70vh;
     width: 100%;
+    border-radius: 0;
   }
   ${({ next }) =>
     next !== 0 &&

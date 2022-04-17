@@ -78,9 +78,14 @@ export const Logo = styled.a`
     height: 50px;
     transition: all 0.3s ease-in-out;
   }
-  & > img {
+  & > a > img {
     width: 100%;
     height: 100%;
     transition: all 0.3s ease-in-out;
+    :hover {
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      transform: scale(0.9);
+    }
   }
 `;

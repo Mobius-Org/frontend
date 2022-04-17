@@ -8,9 +8,25 @@ export const NavWrapper = styled.header`
   position: sticky;
   top: 0;
   z-index: 999;
-
+  box-shadow: ${({ scrolled }) =>
+    scrolled ? `0px 2px 4px ${colors.secondary60}` : "none"};
   @media (max-width: 768px) {
     height: 80px;
+    ${({ scrolled }) =>
+      scrolled
+        ? `
+   position: fixed;
+    top: 0%;
+    left: 0%;
+    right: 0%;
+      `
+        : `
+        background: ${colors.white};
+  padding: 0;
+  transition: all 0.3s ease-in-out;
+  position: sticky;
+  top: 0;
+  z-index: 999;`}}
   }
   & > div {
     position: relative;
@@ -39,7 +55,7 @@ export const Logo = styled.a`
     height: 50px;
     transition: all 0.3s ease-in-out;
   }
-  & > img {
+  & > a > img {
     width: 100%;
     height: 100%;
     transition: all 0.3s ease-in-out;

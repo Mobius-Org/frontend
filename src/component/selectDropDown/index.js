@@ -1,7 +1,7 @@
 import { ListboxInput, ListboxOption, ListboxList } from "@reach/listbox";
 import React, { useEffect, useState } from "react";
 import { Container, MenuList, PopOver, ListboxI } from "./style";
-
+import { FaChevronDown } from "react-icons/fa";
 const Dropdown = ({ sort, functionName, style }) => {
   const [value, setValue] = useState("5");
   const handleChange = (value) => {
@@ -17,7 +17,7 @@ const Dropdown = ({ sort, functionName, style }) => {
         value={value}
         onChange={handleChange}
       >
-        <MenuList arrow />
+        <MenuList arrow={<FaChevronDown />} />
         <PopOver>
           <ListboxList>
             <ListboxOption value="5">05 years</ListboxOption>
