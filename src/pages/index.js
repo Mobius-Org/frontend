@@ -1,4 +1,4 @@
-export * from "./forgotPassword";
+export * from "./forgotpassword";
 export * from "./signup";
 export * from "./signin";
 export * from "./landingPage";
