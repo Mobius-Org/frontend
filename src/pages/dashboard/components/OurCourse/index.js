@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { colors } from "../../../../colors";
 import CourseCard from "../../../../component/courseCard";
 
-const OurCourses = () => {
+const OurCourses = ({ text }) => {
   const courses = [
     {
       title: "Arithmetic",
@@ -32,7 +32,7 @@ const OurCourses = () => {
       <OurProgramsWrapper>
         <SecHeading>
           <h2>
-            Available <span>Courses</span>
+            {text} <span>Courses</span>
           </h2>
         </SecHeading>
         <CoursesList>

@@ -12,7 +12,7 @@ const authReducer = (state = init, action) => {
   if (action.type === SIGNUP) {
     return {
       ...state,
-      profile: action.payload.data,
+      profile: action.payload,
       sign_up: true,
     };
   }

@@ -15,8 +15,8 @@ const DashBoardLayout = ({ children }) => {
       transition={{ duration: 1 }}
       exit={{ opacity: 0 }}
     >
+      <Nav />
       <InnerWrap>
-        <Nav />
         <Main>{children}</Main>
       </InnerWrap>
     </Wrapper>
@@ -30,6 +30,7 @@ const Wrapper = styled(motion.div)`
   max-width: 1600px;
   height: fit-content;
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   @media (max-width: 768px) {
     flex-direction: column;

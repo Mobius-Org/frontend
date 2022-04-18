@@ -71,8 +71,9 @@ const SignUp = () => {
         password,
       });
 
-      dispatch(handleSignUp(response?.data));
+      dispatch(handleSignUp(response?.data.user));
       setLoading(false);
+      console.log(response.data);
 
       toast.success(response?.data?.message, {
         position: "top-center",
@@ -198,7 +199,7 @@ const SignUp = () => {
             />
             {emailError === false && (
               <ErrorMessage>
-                Please enter a valid email: obinna@gmail.com
+                Please enter a valid email: something@gmail.com
               </ErrorMessage>
             )}
           </InputWrapDiv>
@@ -206,7 +207,7 @@ const SignUp = () => {
             <InputField
               type={"password"}
               labelId={"password"}
-              label={"Create a new password"}
+              label={"Create password"}
               placeholder={"Enter your password here ..."}
               functionName={setPassword}
               cValue={password}

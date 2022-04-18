@@ -7,6 +7,7 @@ import {
   LandingPage,
 } from "../../pages";
 import { Overview } from "../../pages/dashboard";
+import AllCourses from "../../pages/dashboard/components/allcourses";
 
 const authRoutes = [
   { name: "signUp", path: "/signup", element: <SignUp /> },
@@ -34,7 +35,7 @@ const dashBoardRoutes = [
   {
     name: "All Courses",
     path: "/dashboard/AllCourses",
-    element: <div>All courses</div>,
+    element: <AllCourses />,
     displayName: "Courses",
   },
   {

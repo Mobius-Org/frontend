@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import OurCourses from "../OurCourse";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
+import { useSelector } from "react-redux";
 const Overview = () => {
+  const state = useSelector((state) => state);
+
   return (
     <OverviewWrap>
       <BannerWrapper>
         <SecHeading>
-          <h2>Hi Uche,</h2>
+          <h2>Hi {state?.auth?.profile?.name},</h2>
         </SecHeading>
         <Banner>
           <ImgTextContainer>
@@ -25,7 +28,7 @@ const Overview = () => {
           </ImgTextContainer>
         </Banner>
       </BannerWrapper>
-      <OurCourses />
+      <OurCourses text={"Available"} />
     </OverviewWrap>
   );
 };

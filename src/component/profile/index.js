@@ -5,7 +5,7 @@ import { colors } from "../../colors";
 import { useSelector } from "react-redux";
 const Profile = () => {
   const state = useSelector((state) => state);
-  const { profile } = state.auth;
+
   return (
     <ProfileWrapper>
       <Notification>
@@ -15,7 +15,7 @@ const Profile = () => {
         <img src="images/girl pc.png" alt="profile" />
       </ProfileImg>
       <ProfileName>
-        <span>{profile?.name}</span>
+        <span>{state?.auth?.profile?.name}</span>
       </ProfileName>
     </ProfileWrapper>
   );

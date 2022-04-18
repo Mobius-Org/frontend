@@ -132,7 +132,7 @@ const SignIn = () => {
             />
             {emailError === false && (
               <ErrorMessage>
-                Please enter a valid email: obinna@gmail.com
+                Please enter a valid email: something@gmail.com
               </ErrorMessage>
             )}
           </InputWrapDiv>
@@ -140,7 +140,7 @@ const SignIn = () => {
             <InputField
               type={"password"}
               labelId={"password"}
-              label={"Create a new password"}
+              label={"Enter password"}
               placeholder={"Enter your password here ..."}
               functionName={setPassword}
               cValue={password}
