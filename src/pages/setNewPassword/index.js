@@ -3,13 +3,8 @@ import { colors } from "../../colors";
 import Button from "../../component/button";
 import InputField from "../../component/inputfield";
 import Modal from "../../component/modal";
-import {
-  CtaWrap,
-  HeadingText,
-  InputWrap,
-  Wrap2,
-  Wrapper,
-} from "../forgotpassword/style";
+import { Wrap2, Wrapper } from "../forgotpassword/style";
+
 import { ErrorMessage, InputWrapDiv } from "../signin/style";
 
 const SetNewPassword = () => {
