@@ -10,7 +10,7 @@ import {
   Wrap2,
   Wrapper,
 } from "../forgotPassword/style";
-import { ErrorMessage, InputWrapDiv } from "../signIn/style";
+import { ErrorMessage, InputWrapDiv } from "../signin/style";
 
 const SetNewPassword = () => {
   const [showModal, SetShowModal] = useState(false);

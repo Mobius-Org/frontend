@@ -5,7 +5,7 @@ import InputField from "../../component/inputfield";
 import { ImGoogle } from "react-icons/im";
 import { CtaWrap, HeadingText, InputWrap, Wrap, Wrap2, Wrapper } from "./style";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ErrorMessage, InputWrapDiv } from "../signIn/style";
+import { ErrorMessage, InputWrapDiv } from "../signin/style";
 const ForgotPassword = () => {
   const navigate = useNavigate();
   const location = useLocation();

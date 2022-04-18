@@ -2,9 +2,9 @@ import {
   ForgotPassword,
   LandingPage,
   SignIn,
-  SignUp,
   NotFound,
   SetNewPassword,
+  SignUp,
 } from "../../pages";
 import { Overview } from "../../pages/dashboard";
 
