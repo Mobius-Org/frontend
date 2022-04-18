@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../../colors";
-export const SignUpWrapper = styled.div`
+import { motion } from "framer-motion";
+export const SignUpWrapper = styled(motion.div)`
   background-image: url("images/patternLogin.svg");
   background-size: contain;
   padding: 0;

@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { colors } from "../../colors";
 import Button from "../button";
 import { NavWrapper, Logo, Hamburger, Menu, MenuItem } from "./style";
 import { FaChevronDown } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import Profile from "../profile";
+import { dashBoardRoutes } from "../../appRouter/routes";
 
 const Nav = () => {
+  const location = useLocation();
+  const state = useSelector((state) => state);
+  const { sign_in } = state?.auth;
+  const currentlocation = location.pathname;
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   document.addEventListener("scroll", function (e) {
     setScrollPosition(window.scrollY);
   });
-
   useEffect(() => {
     if (scrollPosition > 1) {
       setScrolled(true);
@@ -21,7 +27,9 @@ const Nav = () => {
   }, [scrollPosition]);
 
   const [isOpen, setIsOpen] = useState(false);
-  const handleClick = () => setIsOpen(!isOpen);
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <NavWrapper scrolled={scrolled}>
       <div>
@@ -36,44 +44,61 @@ const Nav = () => {
           <span></span>
         </Hamburger>
         <Menu isOpen={isOpen}>
-          <span>
-            <MenuItem>
-              {" "}
-              <Link onClick={handleClick} to={"/"}>
-                Home
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              {" "}
-              <Link onClick={handleClick} to="#Courses">
-                Our Courses
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              {" "}
-              <Link onClick={handleClick} to={"#Contact-us"}>
-                Contact us
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              {" "}
-              <Link onClick={handleClick} to={""}>
-                Parent Page
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              {" "}
-              <Link onClick={handleClick} to="/signup">
-                Account {"  "} <FaChevronDown />
-              </Link>
-            </MenuItem>
-          </span>
+          {currentlocation.includes("/dashboard") ? (
+            <span>
+              {dashBoardRoutes.map(({ name, icon, path, displayName }, i) => (
+                <MenuItem>
+                  {" "}
+                  <Link onClick={handleClick} to={path}>
+                    {name}
+                  </Link>
+                </MenuItem>
+              ))}
+            </span>
+          ) : (
+            <span>
+              <MenuItem>
+                {" "}
+                <Link onClick={handleClick} to={"/"}>
+                  Home
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                {" "}
+                <Link onClick={handleClick} to="#Courses">
+                  Our Courses
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                {" "}
+                <Link onClick={handleClick} to={"#Contact-us"}>
+                  Contact us
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                {" "}
+                <Link onClick={handleClick} to={""}>
+                  Parent Page
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                {" "}
+                <Link onClick={handleClick} to="/signup">
+                  Account {"  "} <FaChevronDown />
+                </Link>
+              </MenuItem>
+            </span>
+          )}
           <MenuItem>
-            <Button
-              onClick={handleClick}
-              text={"Enroll Now"}
-              bgColor={colors.secondary80}
-            />
+            {sign_in ? (
+              <Profile />
+            ) : (
+              <Button
+                onClick={handleClick}
+                text={"Enroll Now"}
+                bgColor={colors.secondary80}
+              />
+            )}
           </MenuItem>
         </Menu>
       </div>

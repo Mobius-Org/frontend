@@ -5,30 +5,44 @@ import InputField from "../../component/inputfield";
 import { ImGoogle } from "react-icons/im";
 import { CtaWrap, HeadingText, InputWrap, Wrap, Wrap2, Wrapper } from "./style";
 import { useLocation, useNavigate } from "react-router-dom";
+import { ErrorMessage, InputWrapDiv } from "../signIn/style";
 const ForgotPassword = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const [next, setNext] = useState(0);
-  const handleNext = () => {
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState(null);
+
+  const handleBack = () => {
     console.log(location);
     navigate(`/signin`);
   };
+  const handleSubmit = (e) => {};
   return (
     <Wrapper>
       <img src="images/kiddieDoddles.svg" alt="doddle" />
-      <Wrap next={next}>
+      <Wrap>
         <HeadingText>Forgotten Password</HeadingText>
         <InputWrap>
-          <InputField
-            type={"email"}
-            labelId={"email"}
-            label={"What is your email address??"}
-            placeholder={"Enter your email address here ..."}
-          />
+          <InputWrapDiv>
+            <InputField
+              type={"email"}
+              labelId={"email"}
+              label={"What is your email address?"}
+              placeholder={"Enter your email address here ..."}
+              functionName={setEmail}
+              cValue={email}
+              Validator={setEmailError}
+            />
+            {emailError === false && (
+              <ErrorMessage>
+                Please enter a valid email: obinna@gmail.com
+              </ErrorMessage>
+            )}
+          </InputWrapDiv>
         </InputWrap>
         <CtaWrap>
-          <span onClick={() => handleNext(-1)}>
+          <span onClick={handleBack}>
             <Button
               dir={"left"}
               filled={true}
@@ -37,7 +51,7 @@ const ForgotPassword = () => {
             />
           </span>
           <span
-            onClick={handleNext}
+            onClick={handleSubmit}
             style={{ fontWeight: "bold", cursor: "pointer" }}
           >
             <Button bgColor={colors.secondary_color} text={"Reset Password"} />

@@ -1,9 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
-
+import { FaChevronDown } from "react-icons/fa";
+import { dashBoardRoutes } from "../../../../appRouter/routes";
 const SideNav = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleCurrentId = (path) => {
+    navigate(path);
+  };
   return (
     <SideNavWrapper>
       <SideNavInner>
@@ -21,48 +28,24 @@ const SideNav = () => {
                 <span></span>
               </Hamburger>
             </div>
-            {/*
-            <Menu isOpen={isOpen}>
-              <span>
-                <MenuItem>
-                  {" "}
-                  <Link onClick={handleClick} to={"/"}>
-                    Home
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  {" "}
-                  <Link onClick={handleClick} to="#Courses">
-                    Our Courses
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  {" "}
-                  <Link onClick={handleClick} to={"#Contact-us"}>
-                    Contact us
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  {" "}
-                  <Link onClick={handleClick} to={""}>
-                    Parent Page
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  {" "}
-                  <Link onClick={handleClick} to="/signup">
-                    Account {"  "} <FaChevronDown />
-                  </Link>
-                </MenuItem>
-              </span>
-              <MenuItem>
-                <Button
-                  onClick={handleClick}
-                  text={"Enroll Now"}
-                  bgColor={colors.secondary80}
-                />
-              </MenuItem>
-            </Menu> */}
+            <Menu>
+              {dashBoardRoutes.map(({ name, icon, path, displayName }, i) => {
+                return (
+                  <MenuItem onClick={() => handleCurrentId(path)} key={i}>
+                    {" "}
+                    <Link
+                      to={path}
+                      className={path === location.pathname ? "active" : null}
+                    >
+                      <span>
+                        <FaChevronDown />
+                      </span>
+                      <span>{name}</span>
+                    </Link>
+                  </MenuItem>
+                );
+              })}
+            </Menu>
           </div>
           <div>
             <div className="LogOutWrap">
@@ -85,6 +68,12 @@ const SideNavWrapper = styled.nav`
   position: sticky;
   top: 0;
   left: 0;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+  }
 `;
 const SideNavInner = styled.div`
   width: 100%;
@@ -116,19 +105,18 @@ const NavWrapper = styled.div`
   width: 90%;
   margin: auto;
   margin-left: 10%;
-  border: 1px solid red;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   div.firstWrap {
-    border: 1px solid coral;
+    // border: 1px solid coral;
     height: 60%;
   }
 
   div.LogOutWrap {
     height: fit-content;
     width: fit-content;
-    border: 1px solid red;
+
     padding: 15px 1rem;
     display: flex;
     align-items: center;
@@ -196,4 +184,62 @@ const Hamburger = styled.div`
         transform: rotate(0deg);
       }
   }`}
+`;
+
+const Menu = styled.div`
+  margin-top: 2.5rem;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+`;
+
+const MenuItem = styled.div`
+  // border: 1px solid black;
+  width: 80%;
+  margin-left: 20%;
+  height: fit-contnet;
+  display: flex;
+  border-radius: 30px 0px 0px 30px;
+  & > a {
+    width: 100%;
+    color: ${colors.white};
+    height: 3.5rem;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: inherit;
+    font-weight: 600;
+    background: ${colors.secondary80};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease-in-out;
+    gap: 1rem;
+    & span:first-of-type {
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    & span:last-of-type {
+      font-weight: 600;
+      text-align: start;
+      width: 70%;
+    }
+
+    &.active {
+      transition: all 0.3s ease-in-out;
+      color: ${colors.secondary80};
+      background: ${colors.white};
+    }
+    &:hover {
+      transition: all 0.3s ease-in-out;
+      color: ${colors.secondary80};
+      background: ${colors.white};
+      transform: scale(1.1);
+    }
+  }
 `;

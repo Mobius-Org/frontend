@@ -9,7 +9,17 @@ export const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
         font-family: 'Nunito', sans-serif;
     }
+    &::-webkit-scrollbar {
+        background-color: ${colors.secondary20};
+        
+    }
     
+    &::-webkit-scrollbar-thumb {
+        background-color: ${colors.secondary_color};
+        border-radius: 15px;
+        box-shadow:  0 15px 6px ${colors.secondary20};
+        cursor: pointer;
+    }
     h1, h2, h3, h4, h5, h6 {
         color: ${colors.secondary_text_color};
     }
@@ -65,7 +75,7 @@ export const Container = styled.div`
 
 export const Button1 = styled.button`
   border-radius: 15px;
-  background: ${({ primary }) => (primary ? '#fff' : "#0467FB")};
+  background: ${({ primary }) => (primary ? "#fff" : "#0467FB")};
   white-space: nowrap;
   padding: ${({ big }) => (big ? "12px 64px" : "10px 20px")};
   color: #fff;

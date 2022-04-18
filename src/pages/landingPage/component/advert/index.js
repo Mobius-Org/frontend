@@ -3,9 +3,16 @@ import styled from "styled-components";
 import { keyframes } from "styled-components";
 import { colors } from "../../../../colors";
 import Button from "../../../../component/button";
+import { motion } from "framer-motion";
 const KidAdvert = () => {
   return (
-    <KidAdvertWrapper>
+    <KidAdvertWrapper
+      as={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
       <KidAdvertWrapperInner>
         <KidAdvertWrapperInnerImage>
           <ImageWrapper>
@@ -90,7 +97,7 @@ const Breathing = keyframes`
     transform: scale(1);
   }
 `;
-const KidAdvertWrapper = styled.div`
+const KidAdvertWrapper = styled(motion.div)`
   width: 100%;
   height: fit-content;
   padding: 2rem;

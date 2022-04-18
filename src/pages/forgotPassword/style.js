@@ -54,17 +54,6 @@ export const Wrap = styled.div`
     width: 100%;
     border-radius: 0;
   }
-  ${({ next }) =>
-    next !== 0 &&
-    `
-   transition: all 0.3s ease-in-out;
-  height: 0;
-  opacity: 0;
-  padding: 0;
-  overflow: hidden;
-  position:absolute;
-  top:-150%;
-  `}
 `;
 export const Wrap2 = styled.div`
   transition: all 0.3s ease-in-out;
@@ -73,33 +62,23 @@ export const Wrap2 = styled.div`
     rgba(0, 0, 0, 0.37);
   max-width: 1200px;
   width: 50%;
-  height: 100%;
+  height: 90%;
   margin: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 1.5rem;
-  flex-wrap: wrap !important;
+  flex-direction: column;
+  gap: 2rem;
   padding: 30px 20px;
   border-radius: 20px;
   position: unset;
+
   opacity: 1;
   @media (max-width: 768px) {
     transition: all 0.3s ease-in-out;
     height: 70vh;
     width: 100%;
+    border-radius: 0;
   }
-  ${({ next }) =>
-    next !== 1 &&
-    `
-    position:absolute;
-    bottom:-100%;
-  transition: all 0.3s ease-in-out;
-  height: 0 !important;
-  overflow: hidden;
-  padding: 0;
-  opacity: 0;`}
 `;
 export const HeadingText = styled.h1`
   font-family: Nunito;

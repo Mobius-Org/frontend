@@ -3,9 +3,10 @@ import {
   LandingPage,
   SignIn,
   SignUp,
-  ResetPassword,
   NotFound,
+  SetNewPassword,
 } from "../../pages";
+import { Overview } from "../../pages/dashboard";
 
 const authRoutes = [
   { name: "signUp", path: "/signup", element: <SignUp /> },
@@ -18,19 +19,35 @@ const authRoutes = [
   {
     name: "resetPassword",
     path: "/reset-password",
-    element: <ResetPassword />,
+    element: <SetNewPassword />,
   },
   { name: "home", path: "/", element: <LandingPage /> },
 ];
 
 const dashBoardRoutes = [
-  { name: "AllCourses", path: "/dashboard", element: <div>all courses</div> },
-  { name: "MyCourses", path: "/MyCourses", element: <div>My courses</div> },
+  {
+    name: "Dashboard",
+    path: "/dashboard",
+    element: <Overview />,
+    displayName: "Welcome To Mobius !",
+  },
+  {
+    name: "All Courses",
+    path: "/dashboard/AllCourses",
+    element: <div>All courses</div>,
+    displayName: "Courses",
+  },
   {
     name: "Badges",
-    path: "/Badges",
+    path: "/dashboard/Badges",
     element: <div>Badges</div>,
+    displayName: "Bagdes",
   },
-  { name: "MyContent", path: "/Content", element: <div>My Content</div> },
+  {
+    name: "My Contents",
+    path: "/dashboard/Content",
+    element: <div>My Content</div>,
+    displayName: "Your Contents",
+  },
 ];
 export { authRoutes, dashBoardRoutes };

@@ -20,6 +20,7 @@ import {
   ErrorMessage,
   InputWrapDiv,
 } from "./style";
+import { motion } from "framer-motion";
 const SignUp = () => {
   //
   const dispatch = useDispatch();
@@ -129,7 +130,14 @@ const SignUp = () => {
     setNext(num + next);
   };
   return (
-    <SignUpWrapper next={next}>
+    <SignUpWrapper
+      as={motion.div}
+      initial={{ opacity: 0.5, x: 200 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.2 }}
+      exit={{ opacity: 0, x: 200 }}
+      next={next}
+    >
       <img src="images/kiddieDoddles.svg" alt="doddle" />
       <FirstWrap next={next}>
         <HeadingText>Sign up</HeadingText>

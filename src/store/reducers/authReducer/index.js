@@ -19,7 +19,7 @@ const authReducer = (state = init, action) => {
   if (action.type === SIGNIN) {
     return {
       ...state,
-      profile: action.payload.data,
+      profile: action.payload,
       sign_in: true,
     };
   }
@@ -37,4 +37,3 @@ const authReducer = (state = init, action) => {
 };
 
 export default authReducer;
-

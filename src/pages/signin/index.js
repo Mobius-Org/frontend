@@ -17,6 +17,7 @@ import {
   InputWrapDiv,
   ErrorMessage,
 } from "./style";
+import { motion } from "framer-motion";
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -51,8 +52,8 @@ const SignIn = () => {
         email,
         password,
       });
-
-      dispatch(handleSignIn(response?.data));
+      console.log(response.data);
+      dispatch(handleSignIn(response?.data.user));
       setLoading(false);
 
       toast.success(response?.data?.message, {
@@ -108,7 +109,13 @@ const SignIn = () => {
   const [next, setNext] = useState(true);
   const handleNext = (num) => {};
   return (
-    <SignUpWrapper>
+    <SignUpWrapper
+      as={motion.div}
+      initial={{ opacity: 0.5, y: 200 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2 }}
+      exit={{ opacity: 0, y: 200 }}
+    >
       <img src="images/kiddieDoddles.svg" alt="doddle" />
       <Wrap next={next}>
         <HeadingText>Sign in</HeadingText>
