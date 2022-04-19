@@ -1,27 +1,51 @@
 import React from "react";
-import OurCourses from "../OurCourse";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import EmptyState from "../../../../component/emptystate";
+import { broCanva } from "../../../../assets";
+import { EmptyState } from "../../../../component";
+import OurCourses from "../ourcourses";
 
 const AllCourses = () => {
-  const  state= useSelector(state => state);
-  const enrolledCourses = state?.auth?.profile?.enrolledCourse
-  return <Container>
-    <AllCoursesInner>
-      {
-        enrolledCourses.length > 0 ?      <OurCourses text={"Enrolled"}/> :
-        <EmptyState src={'./images/brocanva.png'} text={"You have not enrolled for any course yet"} alt={'emptyCourse'}/>
-      }
- 
-    </AllCoursesInner>
-  </Container>;
+  const state = useSelector((state) => state);
+  const enrolledCourses = state?.auth?.profile?.enrolledCourse;
+  return (
+    <Container>
+      <AllCoursesInner>
+        {enrolledCourses.length > 0 ? (
+          <OurCourses text={"Enrolled Courses"} />
+        ) : (
+          <EmptyState
+            src={broCanva}
+            text={"You have not enrolled for any course yet"}
+            alt={"emptyCourse"}
+          />
+        )}
+      </AllCoursesInner>
+    </Container>
+  );
 };
 
-export default AllCourses;
+export { AllCourses };
 
 const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
 
-`
-
-const AllCoursesInner = styled.div``
+const AllCoursesInner = styled.div`
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  @media (max-width: 768px) {
+    margin: 0 auto;
+    width: 90%;
+    height: fit-content;
+    flex-direction: column;
+    gap: 2rem;
+  }
+`;

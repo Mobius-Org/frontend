@@ -74,13 +74,13 @@ export const Hamburger = styled.div`
   display: flex;
   flex-flow: column nowrap;
   gap: 5px;
-  background: ${colors.secondary_color};
+  // background: ${colors.secondary_color};
   height: fit-content;
   width: fit-content;
   padding: 10px;
   border-radius: 5px;
   & > span {
-    background: ${colors.white};
+    background: ${colors.secondary80};
     width: 30px;
     height: 4px;
     display: flex;

@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { asset4, colorPaint, moneyP } from "../../../../assets";
 import { colors } from "../../../../colors";
-import CourseCard from "../../../../component/courseCard";
+// import { CourseCard } from "../../../../component";
 
 const OurPrograms = () => {
   const courses = [
@@ -10,21 +11,21 @@ const OurPrograms = () => {
       description:
         "Learn Basic operations of math, which are addition, subtraction, multiplication and division.  ",
       price: 3000,
-      image: "images/asset 4.jpeg",
+      image: asset4,
     },
     {
       title: "Know Your Colors",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt  .",
       price: 1000,
-      image: "images/colorpaint.jfif",
+      image: colorPaint,
     },
     {
       title: "Learn Money",
       description:
         "Join us to learn the history of money, the value and how to properly use money.",
       price: 2000,
-      image: "images/moneyP.jpg",
+      image: moneyP,
     },
   ];
   return (
@@ -40,7 +41,8 @@ const OurPrograms = () => {
         </SecHeading>
         <CoursesList>
           {courses.map((course, index) => (
-            <CourseCard key={index} {...course} />
+            // <CourseCard key={index} {...course} />
+            <div>hello card</div>
           ))}
         </CoursesList>
       </OurProgramsWrapper>
@@ -48,7 +50,7 @@ const OurPrograms = () => {
   );
 };
 
-export default OurPrograms;
+export { OurPrograms };
 const Container = styled.div`
   width: 100%;
   height: fit-content;

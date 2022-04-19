@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { colors } from "../../colors";
-import Button from "../../component/button";
-import InputField from "../../component/inputfield";
+
 import { ImGoogle } from "react-icons/im";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import mobiusApp from "../../api/mobiusApp";
 import { handleSignIn } from "../../store/action";
@@ -18,13 +17,15 @@ import {
   ErrorMessage,
 } from "./style";
 import { motion } from "framer-motion";
+import { kiddles } from "../../assets";
+import { Button, InputField } from "../../component";
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  // const location = useLocation();
+  // const from = location.state?.from?.pathname || "/";
 
-  const [loading, setLoading] = useState(false);
+  const [setLoading] = useState(false);
   // getting input data
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -106,7 +107,7 @@ const SignIn = () => {
     }
   };
 
-  const [next, setNext] = useState(true);
+  const [next] = useState(true);
   const handleNext = (num) => {};
   return (
     <SignUpWrapper
@@ -116,7 +117,7 @@ const SignIn = () => {
       transition={{ duration: 0.2 }}
       exit={{ opacity: 0, y: 200 }}
     >
-      <img src="images/kiddieDoddles.svg" alt="doddle" />
+      <img src={kiddles} alt="doddle" />
       <Wrap next={next}>
         <HeadingText>Sign in</HeadingText>
         <InputWrap>

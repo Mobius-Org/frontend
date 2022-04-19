@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
+import { ctaPlay, lineG, ticTacImage } from "../../../../assets";
 import { colors } from "../../../../colors";
 const OurInteractiveGames = () => {
   return (
     <Container>
       <OurInteractiveGamesWrapper>
         <SecHeading>
-          <img src={"images/lineG.png"} alt="" id="arrowG" />
+          <img src={lineG} alt="" id="arrowG" />
           <h2>
             Our Interactive <span>Games</span>
           </h2>
@@ -18,8 +19,8 @@ const OurInteractiveGames = () => {
         </SecHeading>
         <OurGame>
           <ImageWrapper>
-            <img src={"images/ctaPlay.png"} alt="" id="play" />
-            <img src={"images/tictactoe.png"} alt="" />
+            <img src={ctaPlay} alt="" id="play" />
+            <img src={ticTacImage} alt="tictacimg" />
           </ImageWrapper>
         </OurGame>
       </OurInteractiveGamesWrapper>
@@ -27,7 +28,7 @@ const OurInteractiveGames = () => {
   );
 };
 
-export default OurInteractiveGames;
+export {OurInteractiveGames};
 const Breathing = keyframes` 
   0% {
     -webkit-transform: scale(0.9);

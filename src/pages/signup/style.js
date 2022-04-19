@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { colors } from "../../colors";
 import { motion } from "framer-motion";
+import { patternLogin } from "../../assets";
 export const SignUpWrapper = styled(motion.div)`
-  background-image: url("images/patternLogin.svg");
+  background-image: url(${patternLogin});
   background-size: contain;
   padding: 0;
   transition: all 0.3s ease-in-out;

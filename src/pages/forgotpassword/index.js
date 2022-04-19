@@ -1,22 +1,14 @@
 import React, { useState } from "react";
 import { colors } from "../../colors";
-import Button from "../../component/button";
-import InputField from "../../component/inputfield";
-import { ImGoogle } from "react-icons/im";
-import {
-  CtaWrap,
-  HeadingText,
-  InputWrap,
-  Wrap,
-  Wrap2,
-  Wrapper,
-} from "./style.js";
+import { CtaWrap, HeadingText, InputWrap, Wrap, Wrapper } from "./style.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ErrorMessage, InputWrapDiv } from "../signin/style";
+import { Button, InputField } from "../../component";
+import { kiddles } from "../../assets";
 const ForgotPassword = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  // const from = location.state?.from?.pathname || "/";
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(null);
 
@@ -27,7 +19,7 @@ const ForgotPassword = () => {
   const handleSubmit = (e) => {};
   return (
     <Wrapper>
-      <img src="images/kiddieDoddles.svg" alt="doddle" />
+      <img src={kiddles} alt="doddle" />
       <Wrap>
         <HeadingText>Forgotten Password</HeadingText>
         <InputWrap>

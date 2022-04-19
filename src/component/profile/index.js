@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { BsFillBellFill } from "react-icons/bs";
 import { colors } from "../../colors";
 import { useSelector } from "react-redux";
+import pic from "../../assets/images/girl pc.png";
 const Profile = () => {
   const state = useSelector((state) => state);
 
@@ -12,7 +13,7 @@ const Profile = () => {
         <BsFillBellFill size={28} />
       </Notification>
       <ProfileImg>
-        <img src="images/girl pc.png" alt="profile" />
+        <img src={pic} alt="profile" />
       </ProfileImg>
       <ProfileName>
         <span>{state?.auth?.profile?.name}</span>
@@ -21,7 +22,7 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export { Profile };
 
 const ProfileWrapper = styled.div`
   display: flex;

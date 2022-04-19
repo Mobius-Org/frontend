@@ -1,10 +1,4 @@
-import {
-  ListboxInput,
-  ListboxButton,
-  ListboxPopover,
-  ListboxList,
-  ListboxOption,
-} from "@reach/listbox";
+import { ListboxButton, ListboxPopover, ListboxList } from "@reach/listbox";
 import "@reach/listbox/styles.css";
 
 import styled from "styled-components";

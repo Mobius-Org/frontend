@@ -59,7 +59,7 @@ const SideNav = () => {
   );
 };
 
-export default SideNav;
+export { SideNav };
 
 const SideNavWrapper = styled.nav`
   width: 261px;

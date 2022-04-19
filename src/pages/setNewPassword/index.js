@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import { kiddles } from "../../assets";
 import { colors } from "../../colors";
-import Button from "../../component/button";
-import InputField from "../../component/inputfield";
-import Modal from "../../component/modal";
+import { Button, InputField, Modal } from "../../component";
+
 import {
   CtaWrap,
   HeadingText,
@@ -26,7 +26,7 @@ const SetNewPassword = () => {
         SetShowModal={SetShowModal}
         children={<div>Hellow</div>}
       />
-      <img src="images/kiddieDoddles.svg" alt="doddle" />
+      <img src={kiddles} alt="doddle" />
 
       <Wrap2>
         <HeadingText>Create new password</HeadingText>

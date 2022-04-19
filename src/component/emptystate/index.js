@@ -1,7 +1,7 @@
 import React from "react";
-import Button from "../button";
 import styled from "styled-components";
 import { colors } from "../../colors";
+import { Button } from "../button";
 
 const EmptyState = ({ text, src, alt }) => {
   return (
@@ -24,11 +24,11 @@ const EmptyState = ({ text, src, alt }) => {
   );
 };
 
-export default EmptyState;
+export { EmptyState };
 
 const EnrollCoursesWrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
 `;
 const EnrollWrapper = styled.div`
   width: 30%;
@@ -37,10 +37,10 @@ const EnrollWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  margin-top: 2%;
+
   @media (max-width: 768px) {
     width: 90%;
-    height: 80%;
+    height: 70vh;
     display: flex;
     margin: auto;
   }
@@ -48,22 +48,27 @@ const EnrollWrapper = styled.div`
 const EnrollImgWrapper = styled.div`
   width: 100%;
   height: 100%;
+  @media (max-width: 768px) {
+    height: 80%;
+  }
 
   & > img {
     width: 100%;
     height: 70%;
     @media (max-width: 768px) {
-      height: 70%;
+      height: 90%;
     }
   }
   & > h3 {
+    font-size: 18px;
     @media (max-width: 768px) {
-      font-size: 18px;
+      font-size: 16px;
+      padding: 1rem 0;
     }
   }
 `;
 const ButtonWrapper = styled.div`
   width: fit-content;
   margin: 0 auto;
-  margin-top: -8rem;
+  padding: 1rem;
 `;

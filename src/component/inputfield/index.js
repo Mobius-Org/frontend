@@ -130,7 +130,7 @@ const InputField = ({
   );
 };
 
-export default InputField;
+export { InputField };
 
 const InputFieldWrapper = styled.div`
   display: flex;

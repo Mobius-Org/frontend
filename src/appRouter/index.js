@@ -1,16 +1,9 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthLayout, DashBoardLayout } from "../layout";
-import { NotFound } from "../pages";
 import { authRoutes, dashBoardRoutes } from "./routes";
 import { AnimatePresence } from "framer-motion";
 
 export const AppRouter = ({ showModal, setShowModal }) => {
-  // const location = useLocation();
   return (
     <Router>
       {/* Auth Routes */}

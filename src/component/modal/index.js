@@ -1,10 +1,7 @@
-import React, { useRef, useState, useEffect } from "react";
+import React from "react";
 
 import styled from "styled-components";
-import { colors } from "../../colors";
 const Modal = ({ children, showModal, SetShowModal }) => {
-  const handleClick = (e) => {};
-
   return (
     <EditProfileWrap showModal={showModal}>
       <Container showModal={showModal}>
@@ -15,7 +12,7 @@ const Modal = ({ children, showModal, SetShowModal }) => {
   );
 };
 
-export default Modal;
+export { Modal };
 
 const EditProfileWrap = styled.div`
   position: fixed;
@@ -55,97 +52,6 @@ const AButton = styled.button`
   &:hover {
     transition: all 0.3s ease-in-out;
     transform: scale(0.96);
-  }
-`;
-
-const Button = styled.button`
-  background: ${colors.main_color};
-  color: #fff;
-  width: fit-content;
-  padding: 1rem;
-  border-radius: 10px;
-  outline: 0;
-  font-size: 1rem;
-  border: none;
-  transition: all 0.3s ease-in-out;
-
-  &:hover {
-    transition: all 0.3s ease-in-out;
-    padding: 0 1.05rem;
-    width: fit-content;
-    cursor: pointer;
-    background: #c75af6;
-    height: 2.8rem;
-  }
-`;
-
-const ProfileDetails = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-  width: 70%;
-  margin: 1rem auto;
-  height: 18rem;
-  gap: 0.5rem;
-  & > div {
-    display: flex;
-    flex-flow: row;
-    width: 100%;
-    justify-content: space-between;
-    transition: all 0.3s ease-in-out;
-
-    &: hover {
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
-      transform: scale(0.96);
-    }
-  }
-`;
-
-const ProfileImage = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-
-  width: 70%;
-  margin: 1rem auto;
-  height: 18rem;
-  & > img {
-    height: 200px;
-    width: 200px;
-    margin: auto;
-    border-radius: 50%;
-    border: 1px solid #f5f5f7;
-    object-fit: cover;
-  }
-  & > div {
-    display: flex;
-    justify-content: space-between;
-    flex-flow: row wrap;
-    margin: auto;
-    width: 70%;
-    & > div,
-    & > button {
-      width: fit-content;
-      padding: 0 1rem;
-      border-radius: 10px;
-      outline: 0;
-      border: none;
-      transition: all 0.3s ease-in-out;
-
-      &:hover {
-        transition: all 0.3s ease-in-out;
-        padding: 0 1.05rem;
-        width: fit-content;
-        cursor: pointer;
-        background: #c75af6;
-        height: 2.8rem;
-      }
-    }
-    & > button {
-      background: ${colors.main_color};
-      color: #fff;
-    }
   }
 `;
 

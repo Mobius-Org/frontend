@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 import { colors } from "../../../../colors";
-import Button from "../../../../component/button";
+import { arrHl, heroBg, thinsmooth } from "../../../../assets";
+import { Button } from "../../../../component";
+
 const Hero = () => {
   return (
     <Container>
@@ -20,12 +22,12 @@ const Hero = () => {
           <BtnWrap>
             <Button text={"Enroll Now"} bgColor={colors.secondary80} />
           </BtnWrap>
-          <img src="images/arrHL.svg" alt="arrH" id="arrH" />
-          <img src="images/thinsmooth.svg" alt="star" id="star" />
+          <img src={arrHl} alt="arrH" id="arrH" />
+          <img src={thinsmooth} alt="star" id="star" />
         </HeroText>
         <HeroImage>
           <ImageWrapper>
-            <img src="images/hero1.svg" alt="hero" id="hero" />
+            <img src={heroBg} alt="hero" id="hero" />
           </ImageWrapper>
         </HeroImage>
       </HeroWrapper>
@@ -33,7 +35,7 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export { Hero };
 const Breathing = keyframes` 
   0% {
     -webkit-transform: scale(0.9);

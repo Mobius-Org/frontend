@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { colors } from "../../colors";
-import Button from "../button";
 import { NavWrapper, Logo, Hamburger, Menu, MenuItem } from "./style";
 import { FaChevronDown } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import Profile from "../profile";
 import { dashBoardRoutes } from "../../appRouter/routes";
+import { logo } from "../../assets";
+import { Button } from "../button";
+import { Profile } from "../profile";
 
 const Nav = () => {
   const location = useLocation();
@@ -35,7 +36,7 @@ const Nav = () => {
       <div>
         <Logo>
           <Link to="/">
-            <img src="images/logo.svg" alt="mobius_logo" />
+            <img src={logo} alt="mobius_logo" />
           </Link>
         </Logo>
         <Hamburger isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
@@ -90,7 +91,7 @@ const Nav = () => {
             </span>
           )}
           <MenuItem>
-            {sign_in ? (
+            {sign_in && currentlocation.includes("/dashboard") ? (
               <Profile />
             ) : (
               <Button
@@ -106,4 +107,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export { Nav };
