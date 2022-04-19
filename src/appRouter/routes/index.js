@@ -3,7 +3,7 @@ import {
   NotFound,
   SetNewPassword,
   SignUp,
-  ForgotPassword,
+  // ForgotPassword,
   LandingPage,
 } from "../../pages";
 import { Overview } from "../../pages/dashboard";
@@ -15,7 +15,7 @@ const authRoutes = [
   {
     name: "forgotPassword",
     path: "/forgot-password",
-    element: <ForgotPassword />,
+    element: <div>forgot</div>,
   },
   {
     name: "resetPassword",
