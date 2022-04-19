@@ -1,10 +1,10 @@
-import { rootReducer } from "./reducers";
+import rootReducer from "./reducers/index";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
 const store = () => {
   const initialState = JSON.parse(
-    localStorage.getItem("store") ?? JSON.stringify({})
+    localStorage.getItem("MobiusStore") ?? JSON.stringify({})
   );
 
   const persistMiddleware = (store) => (next) => (action) => {
@@ -13,7 +13,7 @@ const store = () => {
     const saveData = store.getState();
     delete saveData.error;
     delete saveData.success;
-    localStorage.setItem("store", JSON.stringify(saveData));
+    localStorage.setItem("MobiusStore", JSON.stringify(saveData));
     return result;
   };
 

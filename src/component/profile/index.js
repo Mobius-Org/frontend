@@ -1,0 +1,53 @@
+import React from "react";
+import styled from "styled-components";
+import { BsFillBellFill } from "react-icons/bs";
+import { colors } from "../../colors";
+import { useSelector } from "react-redux";
+import pic from "../../assets/images/girl pc.png";
+const Profile = () => {
+  const state = useSelector((state) => state);
+
+  return (
+    <ProfileWrapper>
+      <Notification>
+        <BsFillBellFill size={28} />
+      </Notification>
+      <ProfileImg>
+        <img src={pic} alt="profile" />
+      </ProfileImg>
+      <ProfileName>
+        <span>{state?.auth?.profile?.name}</span>
+      </ProfileName>
+    </ProfileWrapper>
+  );
+};
+
+export { Profile };
+
+const ProfileWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 10px;
+`;
+const Notification = styled.div`
+  color: ${colors.secondary80};
+`;
+const ProfileImg = styled.div`
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+`;
+const ProfileName = styled.div`
+  span {
+    font-family: Nunito;
+    font-weight: Bold;
+    font-ize: 16px;
+    color: #4d504f;
+  }
+`;

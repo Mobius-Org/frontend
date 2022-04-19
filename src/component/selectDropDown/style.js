@@ -1,10 +1,4 @@
-import {
-  ListboxInput,
-  ListboxButton,
-  ListboxPopover,
-  ListboxList,
-  ListboxOption,
-} from "@reach/listbox";
+import { ListboxButton, ListboxPopover, ListboxList } from "@reach/listbox";
 import "@reach/listbox/styles.css";
 
 import styled from "styled-components";
@@ -24,6 +18,7 @@ export const Container = styled.div`
     font-family: Nunito;
     font-weight: 700;
     font-size: 20px;
+    letter-spacing: 0.5px;
     color: ${colors.chinese_black};
     @media (max-width: 768px) {
       font-size: 1rem;

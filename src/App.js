@@ -1,19 +1,17 @@
+import { ToastContainer } from "react-toastify";
 import "./App.css";
-import Button from "./component/button";
-import { colors } from "./colors";
-import Nav from "./component/Navbar";
-import Footer from "./component/footer";
-import InputField from "./component/inputfield";
-import SignUp from "./pages/signup";
-import SignIn from "./pages/signin";
-import ForgotPassword from "./pages/forgotpassword";
+import { AppRouter } from "./appRouter";
+import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
+import { Modal } from "./component";
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <div className="App">
-      <Nav />
-      <SignUp />
-      <Footer />
+      <ToastContainer />
+      <Modal showModal={showModal} SetShowModal={setShowModal} />
+      <AppRouter showModal={showModal} SetShowModal={setShowModal} />
     </div>
   );
 }
