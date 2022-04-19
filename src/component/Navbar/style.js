@@ -2,38 +2,18 @@ import styled from "styled-components";
 import { colors } from "../../colors";
 
 export const NavWrapper = styled.header`
-  background: ${colors.white};
+  background: linear-gradient(101.08deg, #810486 0.51%, #810486 97.37%);
   padding: 0;
   transition: all 0.3s ease-in-out;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  box-shadow: ${({ scrolled }) =>
-    scrolled ? `0px 2px 4px ${colors.secondary60}` : "none"};
   @media (max-width: 768px) {
     height: 80px;
-    ${({ scrolled }) =>
-      scrolled
-        ? `
-   position: fixed;
-    top: 0%;
-    left: 0%;
-    right: 0%;
-      `
-        : `
-        background: ${colors.white};
-  padding: 0;
-  transition: all 0.3s ease-in-out;
-  position: sticky;
-  top: 0;
-  z-index: 999;`}}
   }
   & > div {
     position: relative;
     transition: all 0.3s ease-in-out;
     z-index: 1;
-    background: ${colors.white};
-    max-width: 1400px;
+    background: linear-gradient(101.08deg, #810486 0.51%, #810486 97.37%);
+    max-width: 1200px;
     width: 100%;
     height: fit-content;
     margin: 0 auto;
@@ -55,15 +35,10 @@ export const Logo = styled.a`
     height: 50px;
     transition: all 0.3s ease-in-out;
   }
-  & > a > img {
+  & > img {
     width: 100%;
     height: 100%;
     transition: all 0.3s ease-in-out;
-    :hover {
-      transition: all 0.3s ease-in-out;
-      cursor: pointer;
-      transform: scale(0.9);
-    }
   }
 `;
 export const Hamburger = styled.div`
@@ -74,13 +49,13 @@ export const Hamburger = styled.div`
   display: flex;
   flex-flow: column nowrap;
   gap: 5px;
-  // background: ${colors.secondary_color};
+  background: ${colors.white};
   height: fit-content;
   width: fit-content;
   padding: 10px;
   border-radius: 5px;
   & > span {
-    background: ${colors.secondary80};
+    background: ${colors.primary_cadium_violet};
     width: 30px;
     height: 4px;
     display: flex;
@@ -121,101 +96,44 @@ export const Menu = styled.ul`
   @media (min-width: 768px) {
     postion: unset;
     z-index: 100;
-    width: 72%;
+    width: unset;
     display: flex;
     flex-flow: row;
     height: fit-content;
     gap: 2rem;
     align-items: center;
+    justify-content: space-around;
     list-style: none;
-    color: #707070;
+    color: ${colors.white};
     font-size: 16px;
     font-weight: 800;
     transition: all 0.3s ease-in-out;
-    justify-content: space-between;
-    & > span {
-      display: flex;
-      gap: 2.5rem;
-    }
   }
   width: 100%;
   postion: absolute;
   top: 80px;
-  height: ${({ isOpen }) => (isOpen ? "90vh" : "0")};
+  height: ${({ isOpen }) => (isOpen ? "300px" : "0")};
   padding: ${({ isOpen }) => (isOpen ? "0" : "0")};
   width: 100vw;
   display: flex;
-  gap: 2.5rem;
+  gap: 1rem;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   list-style: none;
   color: ${colors.white};
   font-size: 24px !important;
   font-weight: 800;
   transition: all 0.3s ease-in-out;
   overflow: hidden;
-  @media (max-width: 768px) {
-    & > span {
-      display: flex;
-      flex-direction: column;
-      height: fit-conetnt;
-      gap: 2.5rem;
-    }
-  }
 `;
 
 export const MenuItem = styled.li`
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  a {
-    text-decoration: none;
-    color: #707070;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    letter-spacing: 1px;
-    position: relative;
-    text-decoration: none;
-    text-transform: capitalize;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    -webkit-transition: all 0.5s ease;
-
-    :hover {
-      color: ${colors.secondary_color};
-      transition: all 0.3s ease;
-      -webkit-transition: all 1s ease;
-    }
-    :before,
-    :after {
-      content: "";
-      position: absolute;
-      width: 0%;
-      height: 2px;
-      bottom: -8px;
-      background: ${colors.secondary_color};
-      border-radius: 10px;
-    }
-    :before {
-      left: 0;
-      transition: 0.3s;
-    }
-    :after {
-      background: ${colors.secondary_color};
-      right: 0;
-    }
-    :hover:before {
-      background: ${colors.secondary_color};
-      width: 100%;
-      transition: width 0.3s cubic-bezier((0.22, 0.61, 0.36, 1));
-      border-radius: 0.5px;
-    }
-    :hover:after {
-      background: transparent;
-      width: 100%;
-      border-radius: 0.5px;
-    }
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    border-bottom: 3px solid ${colors.accent};
+    padding-bottom: 2px;
   }
 `;
