@@ -1,5 +1,5 @@
 export * from "./button";
-export * from "./coursecard";
+// export * from "./coursecard";
 export * from "./emptystate";
 export * from "./footer";
 export * from "./inputfield";
