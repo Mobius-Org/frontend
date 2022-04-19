@@ -2,8 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 import { colors } from "../../../../colors";
-import Button from "../../../../component/button";
 import { motion } from "framer-motion";
+import {
+  boyH,
+  gilPaint,
+  girlPic,
+  groupPic1,
+  smallGirl,
+  sTk,
+} from "../../../../assets";
+import { Button } from "../../../../component";
 const KidAdvert = () => {
   return (
     <KidAdvertWrapper
@@ -16,22 +24,22 @@ const KidAdvert = () => {
       <KidAdvertWrapperInner>
         <KidAdvertWrapperInnerImage>
           <ImageWrapper>
-            <img src="images/groupPic1.png" alt="" />
+            <img src={groupPic1} alt="" />
           </ImageWrapper>
           <ImageWrapper1>
-            <img src="images/small girl.png" alt="" />
+            <img src={smallGirl} alt="" />
           </ImageWrapper1>
           <ImageWrapper2>
-            <img src="images/boyh.png" alt="" />
+            <img src={boyH} alt="" />
           </ImageWrapper2>
           <ImageWrapper3>
-            <img src="images/stk.png" alt="" />
+            <img src={sTk} alt="" />
           </ImageWrapper3>
           <ImageWrapper4>
-            <img src="images/gil paint.png" alt="" />
+            <img src={gilPaint} alt="" />
           </ImageWrapper4>
           <ImageWrapper5>
-            <img src="images/girl pc.png" alt="" />
+            <img src={girlPic} alt="" />
           </ImageWrapper5>
         </KidAdvertWrapperInnerImage>
         <KidAdvertWrapperInnerText>
@@ -50,7 +58,7 @@ const KidAdvert = () => {
   );
 };
 
-export default KidAdvert;
+export { KidAdvert };
 export const Spinner = keyframes`
    25%{
       transform: rotate(90deg);

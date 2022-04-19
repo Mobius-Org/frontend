@@ -1,6 +1,11 @@
-import { SignIn, SetNewPassword, SignUp, LandingPage } from "../../pages";
-import { Overview } from "../../pages/dashboard";
-import AllCourses from "../../pages/dashboard/components/allcourses";
+import {
+  SignIn,
+  SetNewPassword,
+  SignUp,
+  LandingPage,
+  ForgotPassword,
+} from "../../pages";
+import { Overview, AllCourses } from "../../pages/dashboard";
 
 const authRoutes = [
   { name: "signUp", path: "/signup", element: <SignUp /> },
@@ -8,7 +13,7 @@ const authRoutes = [
   {
     name: "forgotPassword",
     path: "/forgot-password",
-    element: <div>forgot</div>,
+    element: <ForgotPassword />,
   },
   {
     name: "resetPassword",

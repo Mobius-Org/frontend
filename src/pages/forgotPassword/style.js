@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { patternLogin } from "../../assets";
 import { colors } from "../../colors";
 export const Wrapper = styled.div`
-  background-image: url("images/patternLogin.svg");
+  background-image: url(${patternLogin});
   background-size: contain;
   padding: 0;
   transition: all 0.3s ease-in-out;

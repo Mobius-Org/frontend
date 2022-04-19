@@ -1,5 +1,4 @@
-import Footer from "../../component/footer";
-import Nav from "../../component/Navbar";
+import { Footer, Nav } from "../../component";
 
 const AuthLayout = ({ children, showModal, setShowModal }) => {
   return (

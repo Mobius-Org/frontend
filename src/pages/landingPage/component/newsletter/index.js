@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
-import Button from "../../../../component/button";
+import { Button } from "../../../../component";
+
 const Newsletter = () => {
   return (
     <Container>
@@ -25,7 +26,7 @@ const Newsletter = () => {
   );
 };
 
-export default Newsletter;
+export { Newsletter };
 
 const Container = styled.div`
   width: 100%;

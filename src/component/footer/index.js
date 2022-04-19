@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FooterWrapper, FooterContainer, Logo, IconsWrapper } from "./style";
 import { ImPlay, ImDribbble, ImInstagram, ImTwitter } from "react-icons/im";
+import { logo } from "../../assets";
 const Footer = () => {
   return (
     <FooterWrapper id="Contact-us">
       <FooterContainer>
         <Logo>
           <Link to="/">
-            <img src="images/logo.svg" alt="mobius_logo" />
+            <img src={logo} alt="mobius_logo" />
           </Link>
         </Logo>
         <IconsWrapper>
@@ -39,4 +40,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export { Footer };

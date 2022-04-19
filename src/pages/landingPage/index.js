@@ -1,10 +1,12 @@
 import React from "react";
-import KidAdvert from "./component/advert";
-import Hero from "./component/hero";
-import Newsletter from "./component/Newletter";
-import OurInteractiveGames from "./component/ourInteractiveGames";
-import OurPrograms from "./component/ourprograms";
 import { motion } from "framer-motion";
+import {
+  Hero,
+  KidAdvert,
+  Newsletter,
+  OurInteractiveGames,
+  OurPrograms,
+} from "./component";
 
 const LandingPage = ({ children }) => {
   console.log(children);

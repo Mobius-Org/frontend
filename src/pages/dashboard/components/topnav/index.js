@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Profile from "../../../../component/profile";
 import { dashBoardRoutes } from "../../../../appRouter/routes";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Profile } from "../../../../component";
 function TopNav() {
   const location = useLocation();
   return (

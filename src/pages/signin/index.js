@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { colors } from "../../colors";
-import Button from "../../component/button";
-import InputField from "../../component/inputfield";
+
 import { ImGoogle } from "react-icons/im";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -18,6 +17,8 @@ import {
   ErrorMessage,
 } from "./style";
 import { motion } from "framer-motion";
+import { kiddles } from "../../assets";
+import { Button, InputField } from "../../component";
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -116,7 +117,7 @@ const SignIn = () => {
       transition={{ duration: 0.2 }}
       exit={{ opacity: 0, y: 200 }}
     >
-      <img src="images/kiddieDoddles.svg" alt="doddle" />
+      <img src={kiddles} alt="doddle" />
       <Wrap next={next}>
         <HeadingText>Sign in</HeadingText>
         <InputWrap>

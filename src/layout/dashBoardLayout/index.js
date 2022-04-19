@@ -1,8 +1,8 @@
 import React from "react";
-import Nav from "../../component/Navbar";
 import styled from "styled-components";
 import { colors } from "../../colors";
 import { motion } from "framer-motion";
+import { Nav } from "../../component";
 
 const DashBoardLayout = ({ children }) => {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../colors";
-import Button from "../button";
+import { Button } from "../button";
 const CourseCard = (course) => {
   const { title, description, price, image } = course;
   return (
@@ -23,7 +23,7 @@ const CourseCard = (course) => {
   );
 };
 
-export default CourseCard;
+export { CourseCard };
 
 const Card = styled.div`
   width: 415px;

@@ -1,8 +1,9 @@
 import React from "react";
-import OurCourses from "../OurCourse";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
 import { useSelector } from "react-redux";
+import { bannerKids } from "../../../../assets";
+import OurCourses from "../ourcourses";
 const Overview = () => {
   const state = useSelector((state) => state);
 
@@ -16,7 +17,7 @@ const Overview = () => {
           <ImgTextContainer>
             <ImgContainer>
               {" "}
-              <img src="./images/BannerKids.png" alt="" />
+              <img src={bannerKids} alt="" />
             </ImgContainer>
             <TextContainer>
               <h2>Welcome to Mobius!</h2>
@@ -79,6 +80,7 @@ const OverviewWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+]
 `;
 
 const Banner = styled.div`

@@ -31,4 +31,4 @@ const Button = ({ src, dir, filled, bgColor, text, loadingState }) => {
   );
 };
 
-export default Button;
+export { Button };

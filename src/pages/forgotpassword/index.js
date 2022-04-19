@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { colors } from "../../colors";
-import Button from "../../component/button";
-import InputField from "../../component/inputfield";
 import { CtaWrap, HeadingText, InputWrap, Wrap, Wrapper } from "./style.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ErrorMessage, InputWrapDiv } from "../signin/style";
+import { Button, InputField } from "../../component";
+import { kiddles } from "../../assets";
 const ForgotPassword = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,7 +19,7 @@ const ForgotPassword = () => {
   const handleSubmit = (e) => {};
   return (
     <Wrapper>
-      <img src="images/kiddieDoddles.svg" alt="doddle" />
+      <img src={kiddles} alt="doddle" />
       <Wrap>
         <HeadingText>Forgotten Password</HeadingText>
         <InputWrap>

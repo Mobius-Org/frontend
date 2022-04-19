@@ -12,7 +12,7 @@ const Modal = ({ children, showModal, SetShowModal }) => {
   );
 };
 
-export default Modal;
+export { Modal };
 
 const EditProfileWrap = styled.div`
   position: fixed;
