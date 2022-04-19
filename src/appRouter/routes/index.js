@@ -30,25 +30,21 @@ const dashBoardRoutes = [
     name: "Dashboard",
     path: "/dashboard",
     element: <Overview />,
-    displayName: "Welcome To Mobius !",
   },
   {
     name: "All Courses",
     path: "/dashboard/AllCourses",
     element: <AllCourses />,
-    displayName: "Courses",
   },
   {
     name: "Badges",
     path: "/dashboard/Badges",
     element: <div>Badges</div>,
-    displayName: "Bagdes",
   },
   {
     name: "My Contents",
     path: "/dashboard/Content",
     element: <div>My Content</div>,
-    displayName: "Your Contents",
   },
 ];
 export { authRoutes, dashBoardRoutes };

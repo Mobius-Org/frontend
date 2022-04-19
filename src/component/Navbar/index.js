@@ -90,7 +90,7 @@ const Nav = () => {
             </span>
           )}
           <MenuItem>
-            {sign_in ? (
+            {!sign_in ? (
               <Profile />
             ) : (
               <Button

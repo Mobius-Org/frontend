@@ -10,30 +10,28 @@ const OurCourses = ({ text }) => {
       description:
         "Learn Basic operations of math, which are addition, subtraction, multiplication and division.  ",
       price: 3000,
-      image: "images/asset 4.jpeg",
+      image: "./images/asset 4.jpeg",
     },
     {
       title: "Know Your Colors",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt  .",
       price: 1000,
-      image: "images/colorpaint.jfif",
+      image: "./images/colorpaint.jfif",
     },
     {
       title: "Learn Money",
       description:
         "Join us to learn the history of money, the value and how to properly use money.",
       price: 2000,
-      image: "images/moneyP.jpg",
+      image: "./images/moneyP.jpg",
     },
   ];
   return (
     <Container>
       <OurProgramsWrapper>
         <SecHeading>
-          <h2>
-            {text} <span>Courses</span>
-          </h2>
+          <h2>{text}</h2>
         </SecHeading>
         <CoursesList>
           {courses.map((course, index) => (

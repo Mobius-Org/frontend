@@ -8,7 +8,7 @@ const EmptyState = ({ text, src, alt }) => {
     <EnrollCoursesWrapper>
       <EnrollWrapper>
         <EnrollImgWrapper>
-          <img src={src} alt={alt} />
+          <img src={"./images/brocanva.png"} alt={alt} />
           <h3>{text}</h3>
         </EnrollImgWrapper>
         <ButtonWrapper>

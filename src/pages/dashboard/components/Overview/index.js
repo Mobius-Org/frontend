@@ -28,7 +28,7 @@ const Overview = () => {
           </ImgTextContainer>
         </Banner>
       </BannerWrapper>
-      <OurCourses text={"Available"} />
+      <OurCourses text={"Available Courses"} />
     </OverviewWrap>
   );
 };
