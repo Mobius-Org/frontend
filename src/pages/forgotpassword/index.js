@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { colors } from "../../colors";
 import Button from "../../component/button";
 import InputField from "../../component/inputfield";
-import { ImGoogle } from "react-icons/im";
-import { CtaWrap, HeadingText, InputWrap, Wrap, Wrap2, Wrapper } from "./style";
+import { CtaWrap, HeadingText, InputWrap, Wrap, Wrapper } from "./style.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ErrorMessage, InputWrapDiv } from "../signin/style";
 const ForgotPassword = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  // const from = location.state?.from?.pathname || "/";
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(null);
 

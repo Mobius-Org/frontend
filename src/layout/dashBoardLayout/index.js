@@ -1,7 +1,5 @@
 import React from "react";
 import Nav from "../../component/Navbar";
-import SideNav from "../../pages/dashboard/components/sidenav";
-import { TopNav } from "../../pages/dashboard/components/topnav";
 import styled from "styled-components";
 import { colors } from "../../colors";
 import { motion } from "framer-motion";

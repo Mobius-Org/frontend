@@ -3,7 +3,7 @@ import { colors } from "../../colors";
 import Button from "../../component/button";
 import InputField from "../../component/inputfield";
 import { ImGoogle } from "react-icons/im";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import mobiusApp from "../../api/mobiusApp";
 import { handleSignIn } from "../../store/action";
@@ -21,10 +21,10 @@ import { motion } from "framer-motion";
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  // const location = useLocation();
+  // const from = location.state?.from?.pathname || "/";
 
-  const [loading, setLoading] = useState(false);
+  const [setLoading] = useState(false);
   // getting input data
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -106,7 +106,7 @@ const SignIn = () => {
     }
   };
 
-  const [next, setNext] = useState(true);
+  const [next] = useState(true);
   const handleNext = (num) => {};
   return (
     <SignUpWrapper

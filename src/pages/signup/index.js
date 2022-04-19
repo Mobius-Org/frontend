@@ -4,7 +4,7 @@ import Button from "../../component/button";
 import InputField from "../../component/inputfield";
 import Dropdown from "../../component/selectDropDown";
 import { ImGoogle } from "react-icons/im";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import mobiusApp from "../../api/mobiusApp";
 import { toast } from "react-toastify";
@@ -25,8 +25,8 @@ const SignUp = () => {
   //
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  // const location = useLocation();
+  // const from = location.state?.from?.pathname || "/";
   const [loading, setLoading] = useState(false);
 
   // getting form inputs
@@ -254,7 +254,7 @@ const SignUp = () => {
       </SecondWrap>
       <SuccessScreen next={next}>
         <InputWrap next={next}>
-          <img src="images/kidsdoodle3.svg" />
+          <img src="images/kidsdoodle3.svg" alt={"kiddoodles"} />
           <HeadingText>Congratulations!</HeadingText>
           <p>Hello, I’m Mickey and I am happy to welcome you to Mobius.</p>
         </InputWrap>

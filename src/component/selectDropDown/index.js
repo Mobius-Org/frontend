@@ -1,6 +1,6 @@
 import { ListboxInput, ListboxOption, ListboxList } from "@reach/listbox";
-import React, { useEffect, useState } from "react";
-import { Container, MenuList, PopOver, ListboxI } from "./style";
+import React, { useState } from "react";
+import { Container, MenuList, PopOver } from "./style";
 import { FaChevronDown } from "react-icons/fa";
 const Dropdown = ({ sort, functionName, style }) => {
   const [value, setValue] = useState("5");

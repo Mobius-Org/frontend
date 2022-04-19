@@ -1,11 +1,4 @@
-import {
-  SignIn,
-  NotFound,
-  SetNewPassword,
-  SignUp,
-  // ForgotPassword,
-  LandingPage,
-} from "../../pages";
+import { SignIn, SetNewPassword, SignUp, LandingPage } from "../../pages";
 import { Overview } from "../../pages/dashboard";
 import AllCourses from "../../pages/dashboard/components/allcourses";
 

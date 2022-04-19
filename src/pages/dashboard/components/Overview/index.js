@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import OurCourses from "../OurCourse";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
