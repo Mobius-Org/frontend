@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { asset4, colorPaint, moneyP } from "../../../../assets";
 import { colors } from "../../../../colors";
-// import { CourseCard } from "../../../../component";
+import { CourseCard } from "../../../../component";
 
 const OurCourses = ({ text }) => {
   const courses = [
@@ -36,8 +36,7 @@ const OurCourses = ({ text }) => {
         </SecHeading>
         <CoursesList>
           {courses.map((course, index) => (
-            // <CourseCard key={index} {...course} />
-            <div>our course</div>
+            <CourseCard key={index} {...course} />
           ))}
         </CoursesList>
       </OurProgramsWrapper>
