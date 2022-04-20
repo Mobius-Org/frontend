@@ -19,7 +19,7 @@ import {
   InputWrapDiv,
 } from "./style";
 import { motion } from "framer-motion";
-import { kiddles } from "../../assets";
+import { kiddles, kiddles3 } from "../../assets";
 import { Button, InputField } from "../../component";
 import Dropdown from "../../component/selectdropdown";
 const SignUp = () => {
@@ -255,7 +255,7 @@ const SignUp = () => {
       </SecondWrap>
       <SuccessScreen next={next}>
         <InputWrap next={next}>
-          <img src="images/kidsdoodle3.svg" alt={"kiddoodles"} />
+          <img src={kiddles3} alt={"kiddoodles"} />
           <HeadingText>Congratulations!</HeadingText>
           <p>Hello, I’m Mickey and I am happy to welcome you to Mobius.</p>
         </InputWrap>
