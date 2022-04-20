@@ -59,29 +59,29 @@ export const Wrap = styled.div`
 `;
 
 export const HeadingText = styled.h1`
-Font-family: Nunito;
+  /* Font-family: Nunito;
 Font-style:extra-bold;
-Font size: 16px;
-color:rgba(12, 18, 28, 0.75);
-align-self: center;
- transition: all 0.3s ease-in-out;
+Font size: 16px; */
+  color: rgba(12, 18, 28, 0.75);
+  align-self: center;
+  transition: all 0.3s ease-in-out;
 
- @media (max-width: 768px) {
-      transition: all 0.3s ease-in-out;
-      font-size: 1.5rem;
-    }
+  @media (max-width: 768px) {
+    transition: all 0.3s ease-in-out;
+    font-size: 1.5rem;
+  }
 `;
 export const InputWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 95%;
-  & > div{
-    width:100%;
+  & > div {
+    width: 100%;
   }
-  gap: 1rem;  
-    
-    & > img {
+  gap: 1rem;
+
+  & > img {
     width: 70%;
     height: 40%;
     margin: auto;
@@ -92,7 +92,7 @@ export const InputWrap = styled.div`
   }
   & > div {
     margin: auto;
-
+  }
 `;
 export const CtaWrap = styled.div`
   width: 95%;
@@ -123,32 +123,29 @@ export const CtaWrap = styled.div`
         color: ${colors.secondary_color};
       }
     }
-    @media(max-width:768px){
-      width:100%;
+    @media (max-width: 768px) {
+      width: 100%;
       // border:1px solid red;
-      &:first-of-type > div{
-        text-align:center;
-        align-items:center;
-        padding :15px 37%;
-       display:flex;
-       text-align:center;
+      &:first-of-type > div {
+        text-align: center;
+        align-items: center;
+        padding: 15px 37%;
+        display: flex;
+        text-align: center;
       }
-     &:last-of-type > div{
-      
-       display:flex;
-       padding:15px  auto;
-       width:100%;
-       gap:0.45rem;
-       &:hover{
-       padding:15px  auto;
-
-       }
+      &:last-of-type > div {
+        display: flex;
+        padding: 15px auto;
+        width: 100%;
+        gap: 0.45rem;
+        &:hover {
+          padding: 15px auto;
+        }
       }
     }
   }
- 
-  }
 `;
+
 export const InputWrapDiv = styled.div`
   position: relative;
 `;

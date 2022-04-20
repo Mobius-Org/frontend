@@ -1,11 +1,10 @@
-import {
-  SignIn,
-  SetNewPassword,
-  SignUp,
-  LandingPage,
-  ForgotPassword,
-} from "../../pages";
-import { Overview, AllCourses } from "../../pages/dashboard";
+import SignUp from "../../pages/signup/index";
+import SignIn from "../../pages/signin/index";
+import ForgotPassword from "../../pages/forgotPassword/index";
+import SetNewPassword from "../../pages/setNewPassword/index";
+import LandingPage from "../../pages/landingPage/index";
+import AllCourses from "../../pages/dashboard/components/allcourses/index";
+import Overview from "../../pages/dashboard/components/Overview/index";
 
 const authRoutes = [
   { name: "signUp", path: "/signup", element: <SignUp /> },

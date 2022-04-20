@@ -11,7 +11,7 @@ const AllCourses = () => {
   return (
     <Container>
       <AllCoursesInner>
-        {enrolledCourses.length > 0 ? (
+        {enrolledCourses.length === 0 ? (
           <OurCourses text={"Enrolled Courses"} />
         ) : (
           <EmptyState
@@ -25,7 +25,7 @@ const AllCourses = () => {
   );
 };
 
-export { AllCourses };
+export default AllCourses;
 
 const Container = styled.div`
   width: 100%;

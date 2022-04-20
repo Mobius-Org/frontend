@@ -19,6 +19,7 @@ import {
 import { motion } from "framer-motion";
 import { kiddles } from "../../assets";
 import { Button, InputField } from "../../component";
+
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -190,4 +191,4 @@ const SignIn = () => {
   );
 };
 
-export { SignIn };
+export default SignIn;

@@ -4,6 +4,7 @@ import { colors } from "../../../../colors";
 import { useSelector } from "react-redux";
 import { bannerKids } from "../../../../assets";
 import OurCourses from "../ourcourses";
+
 const Overview = () => {
   const state = useSelector((state) => state);
 
@@ -34,7 +35,8 @@ const Overview = () => {
   );
 };
 
-export { Overview };
+export default Overview;
+
 const SecHeading = styled.div`
   display: flex;
   // flex-direction: column;
@@ -80,7 +82,6 @@ const OverviewWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-]
 `;
 
 const Banner = styled.div`
@@ -145,7 +146,7 @@ const TextContainer = styled.div`
   & > p {
     width: 90%;
     color: #fff;
-    fomt-size: 24px;
+    font-size: 24px;
     font-weight: 600;
     @media (max-width: 768px) {
       font-size: 13px;

@@ -9,7 +9,7 @@ import {
   InputWrap,
   Wrap2,
   Wrapper,
-} from "../forgotpassword/style";
+} from "../forgotPassword/style";
 
 import { ErrorMessage, InputWrapDiv } from "../signin/style";
 
@@ -82,4 +82,4 @@ const SetNewPassword = () => {
   );
 };
 
-export { SetNewPassword };
+export default SetNewPassword;

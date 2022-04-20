@@ -43,7 +43,7 @@ export const NavWrapper = styled.header`
     flex-direction: row;
     flex-wrap: wrap !important;
     padding: 10px 20px;
-  }
+  /* } commmented here  */
 `;
 
 export const Logo = styled.a`
@@ -139,7 +139,7 @@ export const Menu = styled.ul`
     }
   }
   width: 100%;
-  postion: absolute;
+  /* postion: absolute; */
   top: 80px;
   height: ${({ isOpen }) => (isOpen ? "90vh" : "0")};
   padding: ${({ isOpen }) => (isOpen ? "0" : "0")};

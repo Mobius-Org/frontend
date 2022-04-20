@@ -83,17 +83,17 @@ export const Wrap2 = styled.div`
 `;
 export const HeadingText = styled.h1`
   font-family: Nunito;
-Font-family: Nunito;
-Font-style:extra-bold;
-Font size: 16px;
-color:rgba(12, 18, 28, 0.75);
-align-self: center;
- transition: all 0.3s ease-in-out;
+  font-family: Nunito;
+  font-style: extra-bold;
+  /* Font-size: 16px; */
+  color: rgba(12, 18, 28, 0.75);
+  align-self: center;
+  transition: all 0.3s ease-in-out;
 
- @media (max-width: 768px) {
-      transition: all 0.3s ease-in-out;
-      font-size: 1.5rem;
-    }
+  @media (max-width: 768px) {
+    transition: all 0.3s ease-in-out;
+    font-size: 1.5rem;
+  }
 `;
 export const InputWrap = styled.div`
   display: flex;

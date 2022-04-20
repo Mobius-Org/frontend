@@ -26,4 +26,4 @@ const LandingPage = ({ children }) => {
   );
 };
 
-export { LandingPage };
+export default LandingPage;
