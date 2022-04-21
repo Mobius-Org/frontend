@@ -21,7 +21,8 @@ import {
 import { motion } from "framer-motion";
 import { kiddles, kiddles3 } from "../../assets";
 import { Button, InputField } from "../../component";
-import Dropdown from "../../component/selectdropdowns";
+import Dropdown from "../../component/selectdropdown";
+
 const SignUp = () => {
   //
   const dispatch = useDispatch();

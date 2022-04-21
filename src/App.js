@@ -4,7 +4,6 @@ import { AppRouter } from "./appRouter";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { Modal } from "./component";
-import { TicTacToe } from "./games";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -12,8 +11,7 @@ function App() {
     <div className="App">
       <ToastContainer />
       <Modal showModal={showModal} SetShowModal={setShowModal} />
-      <TicTacToe />
-      {/* <AppRouter showModal={showModal} SetShowModal={setShowModal} /> */}
+      <AppRouter showModal={showModal} SetShowModal={setShowModal} />
     </div>
   );
 }
