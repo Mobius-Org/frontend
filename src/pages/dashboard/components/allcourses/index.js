@@ -11,7 +11,7 @@ const AllCourses = () => {
   return (
     <Container>
       <AllCoursesInner>
-        {enrolledCourses.length > 0 ? (
+        {enrolledCourses?.length > 0 ? (
           <OurCourses text={"Enrolled Courses"} />
         ) : (
           <EmptyState
