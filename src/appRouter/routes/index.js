@@ -5,7 +5,7 @@ import {
   LandingPage,
   ForgotPassword,
 } from "../../pages";
-import { Overview, AllCourses } from "../../pages/dashboard";
+import { Overview, AllCourses, MyContents } from "../../pages/dashboard";
 
 const authRoutes = [
   { name: "signUp", path: "/signup", element: <SignUp /> },
@@ -47,7 +47,7 @@ const dashBoardRoutes = [
   {
     name: "My Contents",
     path: "/dashboard/Content",
-    element: <div>My Content</div>,
+    element: <MyContents />,
   },
 ];
 export { authRoutes, dashBoardRoutes };

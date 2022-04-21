@@ -23,7 +23,9 @@ import ticTacImage from "./tictactoe.png";
 import kiddles from "./kiddieDoddles.svg";
 import broCanva from "./brocanva.png";
 import kiddles3 from "./kidsdoodle3.svg";
+import girlCanva from "./girlCanva.png";
 export {
+  girlCanva,
   bannerImg,
   kiddles3,
   banner,
