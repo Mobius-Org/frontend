@@ -11,7 +11,7 @@ const Dropdown = ({ sort, functionName, style }) => {
 
   return (
     <Container style={style ? style : null}>
-      <span id="my-label">How old are you?</span>
+      <span id="my-label">How old are you??</span>
       <ListboxInput
         aria-labelledby="my-label"
         value={value}
