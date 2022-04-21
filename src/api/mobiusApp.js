@@ -2,8 +2,7 @@ import axios from "axios";
 
 export default axios.create({
   baseURL:
-    // "https://cors-anywhere.herokuapp.com/" +
-    "https://mobius-stage.herokuapp.com/mbApi/v1",
+    "http://mobiusorg-env.eba-tac3kb3k.eu-west-2.elasticbeanstalk.com/api/v1",
   headers: {
     "Access-Control-Allow-Origin": "*",
   },
