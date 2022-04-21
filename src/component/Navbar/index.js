@@ -9,6 +9,7 @@ import { logo } from "../../assets";
 import { Button } from "../button";
 import { Profile } from "../profile";
 
+// create navigatio
 const Nav = () => {
   const location = useLocation();
   const state = useSelector((state) => state);
