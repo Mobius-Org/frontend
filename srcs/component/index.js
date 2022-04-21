@@ -6,4 +6,4 @@ export * from "./inputfield";
 export * from "./modal";
 export * from "./navbar";
 export * from "./profile";
-export * from "./selectdropdowns";
+export * from "./selectdropdown";
