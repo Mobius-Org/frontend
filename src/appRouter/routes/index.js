@@ -20,6 +20,11 @@ const authRoutes = [
     path: "/reset-password",
     element: <SetNewPassword />,
   },
+  //   {
+  //   name: "tictactoe",
+  //   path: "/tictactoe",
+  //   element: <SetNewPassword />,
+  // },
   { name: "home", path: "/", element: <LandingPage /> },
 ];
 
