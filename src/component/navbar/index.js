@@ -13,7 +13,7 @@ import { Profile } from "../profile";
 const Nav = () => {
   const location = useLocation();
   const state = useSelector((state) => state);
-  const { sign_in } = state?.auth;
+  const { sign_in } = state.auth ? state.auth : null;
   const currentlocation = location.pathname;
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrolled, setScrolled] = useState(false);
