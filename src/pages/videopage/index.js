@@ -34,23 +34,25 @@ const Video = () => {
           <p>{text}</p>
           <FinLit>
             {/* =========================================================== */}
-            {(currVal === 1 || currVal === data.length - 1) && (
-              <div onClick={() => handleDecrease()}>
-                <Button
-                  text={" Go to Prev Video"}
-                  bgColor={colors.secondary80}
-                  dir={"left"}
-                />{" "}
-              </div>
-            )}
+            <div>
+              {(currVal === 1 || currVal === data.length - 1) && (
+                <ButtonWrapper onClick={() => handleDecrease()}>
+                  <Button
+                    text={" Go to Prev Video"}
+                    bgColor={colors.secondary80}
+                    dir={"left"}
+                  />{" "}
+                </ButtonWrapper>
+              )}
+            </div>
 
-            <div onClick={() => handleIncrease()}>
+            <ButtonWrapper onClick={() => handleIncrease()}>
               <Button
                 text={"Go to Next Video"}
                 bgColor={colors.secondary80}
                 dir={"right"}
               />{" "}
-            </div>
+            </ButtonWrapper>
           </FinLit>
         </ModuleCon>
       </VideoWrapper>
@@ -78,6 +80,16 @@ const FinLit = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+    gap: 1rem;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
 `;
 const VideoSpace = styled.div`
   /* border: 2px solid green; */
@@ -90,8 +102,23 @@ const ModuleCon = styled.div`
   flex-direction: column;
   gap: 1rem;
   width: 80%;
+
+    @media (max-width: 768px) {
+      width: 90%;
+      text-align: justify;
+    }
+  
 `;
 
 const DownloadWrapper = styled.div`
   width: 10%;
+
+  @media (max-width: 768px) {
+    width: 50%;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  @media (max-width: 768px) {
+  }
 `;
