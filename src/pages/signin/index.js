@@ -25,7 +25,7 @@ const SignIn = () => {
   // const location = useLocation();
   // const from = location.state?.from?.pathname || "/";
 
-  const [loading, setLoading] = useState(false);
+  const [setLoading] = useState(false);
   // getting input data
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);

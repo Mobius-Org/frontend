@@ -19,7 +19,7 @@ const ForgotPassword = () => {
   const { token } = auth?.profile;
 
   const handleBack = () => {
-    console.log(location);
+    console.log(location, token);
     navigate(`/signin`);
   };
   const handleSubmit = async (e) => {

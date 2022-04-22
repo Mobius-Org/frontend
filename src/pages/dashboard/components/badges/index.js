@@ -12,7 +12,7 @@ const Badges = () => {
         <BadgesList>
           {[1, 2, 3, 4, 5, 6, 7, 8].map((badgeIcon) => (
             <Badge>
-              <img src={Badge1} />
+              <img src={Badge1} alt={"badge" + badgeIcon} />
             </Badge>
           ))}
         </BadgesList>

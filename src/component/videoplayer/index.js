@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import styled from "styled-components";
 const VideoPlayer = () => {
-  const [videos, setVideos] = useState([
+  const [videos] = useState([
     "https://www.youtube.com/watch?v=JE-EsLhmlkU",
     "https://www.youtube.com/watch?v=JxKwqZTLufQ",
     "https://www.youtube.com/watch?v=WWoqbIDBDbQ",
@@ -29,7 +29,7 @@ const VideoPlayer = () => {
   };
   useEffect(() => {
     setUrl(videos[curVid]);
-    console.log(curVid, url);
+    console.log(curVid);
   }, [curVid]);
 
   return (
@@ -62,5 +62,4 @@ const VideoPlayerWrapper = styled.div`
 const NextBtn = styled.button``;
 const PrevBtn = styled.button``;
 const CtaWrapper = styled.div``;
-const VideoPlayerWrap = styled.div``;
 const ReactPlayerInner = styled.div``;
