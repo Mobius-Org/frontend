@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import styled from "styled-components";
+
 const VideoPlayer = () => {
   const [videos, setVideos] = useState([
     "https://www.youtube.com/watch?v=JE-EsLhmlkU",
@@ -36,16 +37,16 @@ const VideoPlayer = () => {
     <VideoPlayerWrapper>
       <ReactPlayerInner>
         <ReactPlayer
-          height={"100%"}
+          height="100%"
           width="100%"
           controls
           url={url}
           onProgress={handleProgress}
         />
-        <CtaWrapper>
+        {/* <CtaWrapper>
           <PrevBtn onClick={handlePrev}>prev</PrevBtn>
           <NextBtn onClick={handleNext}>next</NextBtn>
-        </CtaWrapper>
+        </CtaWrapper> */}
       </ReactPlayerInner>
     </VideoPlayerWrapper>
   );
@@ -54,13 +55,16 @@ const VideoPlayer = () => {
 export { VideoPlayer };
 
 const VideoPlayerWrapper = styled.div`
-  width: 50vw;
-  height: 50vh;
-  border: 1px solid red;
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid red; */
   color: red;
 `;
 const NextBtn = styled.button``;
 const PrevBtn = styled.button``;
 const CtaWrapper = styled.div``;
 const VideoPlayerWrap = styled.div``;
-const ReactPlayerInner = styled.div``;
+const ReactPlayerInner = styled.div`
+  width: 100%;
+  height: 100%;
+`;
