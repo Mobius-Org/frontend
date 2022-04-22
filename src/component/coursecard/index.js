@@ -92,7 +92,7 @@ const CoursePriceCta = styled.div`
   justify-content: space-between;
 `;
 const CoursePrice = styled.span`
-  font-weigt: 700;
+  font-weight: 700;
   font-size: 25px;
   font-family: Nunito;
   font-style: Bold;
