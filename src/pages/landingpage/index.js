@@ -7,9 +7,19 @@ import {
   OurInteractiveGames,
   OurPrograms,
 } from "./component";
+import mobiusApp from "../../api/mobiusApp";
 
 const LandingPage = ({ children }) => {
-  console.log(children);
+  const handleGetAllCourse = async () => {
+    try {
+      const res = await mobiusApp.get("/courses/all");
+      const data = res?.data;
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  handleGetAllCourse();
   return (
     <motion.div
       initial={{ opacity: 0 }}

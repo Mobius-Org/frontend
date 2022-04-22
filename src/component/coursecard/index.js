@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { colors } from "../../colors";
 import { Button } from "../button";
 const CourseCard = (course) => {
   const { title, description, price, image } = course;
+  const state = useSelector((state) => state);
+  const { sign_in } = state?.auth;
+  const handleClick = () => {
+    alert(` ${sign_in}clicked`);
+    console.log(state);
+  };
   return (
     <Card>
       <CourseThumbNail>
@@ -14,7 +21,7 @@ const CourseCard = (course) => {
         <CourseDescription>{description}</CourseDescription>
         <CoursePriceCta>
           <CoursePrice>&#8358;{price}</CoursePrice>
-          <CourseCta>
+          <CourseCta onClick={handleClick}>
             <Button text={"Enroll Now"} bgColor={colors.secondary80} />
           </CourseCta>
         </CoursePriceCta>

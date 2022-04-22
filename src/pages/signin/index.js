@@ -25,7 +25,7 @@ const SignIn = () => {
   // const location = useLocation();
   // const from = location.state?.from?.pathname || "/";
 
-  const [setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   // getting input data
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -33,6 +33,7 @@ const SignIn = () => {
   const [passwordError, setPasswordError] = useState(null);
   //fetching data
   const handleLogin = async () => {
+    alert("clalled");
     if (email === "" || password === "") {
       toast.error("Please fill all the fields", {
         position: "top-center",
@@ -176,7 +177,7 @@ const SignIn = () => {
             onClick={() => handleNext(1)}
             style={{ fontWeight: "bold", cursor: "pointer" }}
           >
-            <Link to="/forgot-password"> Forgot Password?</Link>
+            <Link to="/auth/forgot-password"> Forgot Password?</Link>
           </span>
           <span
             onClick={() => handleNext(1)}

@@ -8,12 +8,13 @@ export const GlobalStyles = createGlobalStyle`
         font-size: 16px;
         box-sizing: border-box;
         font-family: 'Nunito', sans-serif;
+        scroll-behavior: smooth;
+
     }
     &::-webkit-scrollbar {
         background-color: ${colors.secondary20};
         
-    }
-    
+    }  
     &::-webkit-scrollbar-thumb {
         background-color: ${colors.secondary_color};
         border-radius: 15px;

@@ -29,7 +29,7 @@ const OurPrograms = () => {
     },
   ];
   return (
-    <Container>
+    <Container id="Courses">
       <OurProgramsWrapper>
         <SecHeading>
           <h2>

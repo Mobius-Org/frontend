@@ -8,7 +8,7 @@ import { dashBoardRoutes } from "../../appRouter/routes";
 import { logo } from "../../assets";
 import { Button } from "../button";
 import { Profile } from "../profile";
-
+import { HashLink } from "react-router-hash-link";
 // create navigatio
 const Nav = () => {
   const location = useLocation();
@@ -20,6 +20,19 @@ const Nav = () => {
   document.addEventListener("scroll", function (e) {
     setScrollPosition(window.scrollY);
   });
+  const [isOpen, setIsOpen] = useState(false);
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+  const scrollWithOffset = (el, offset) => {
+    const elementPos = el.offsetTop - offset;
+    window.scroll({
+      top: elementPos,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
   useEffect(() => {
     if (scrollPosition > 1) {
       setScrolled(true);
@@ -28,10 +41,6 @@ const Nav = () => {
     }
   }, [scrollPosition]);
 
-  const [isOpen, setIsOpen] = useState(false);
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
   return (
     <NavWrapper scrolled={scrolled}>
       <div>
@@ -67,15 +76,23 @@ const Nav = () => {
               </MenuItem>
               <MenuItem>
                 {" "}
-                <Link onClick={handleClick} to="#Courses">
+                <HashLink
+                  scroll={(el) => scrollWithOffset(el, 90)}
+                  onClick={handleClick}
+                  to="/#Courses"
+                >
                   Our Courses
-                </Link>
+                </HashLink>
               </MenuItem>
               <MenuItem>
                 {" "}
-                <Link onClick={handleClick} to={"#Contact-us"}>
+                <HashLink
+                  onClick={handleClick}
+                  scroll={(el) => scrollWithOffset(el, 120)}
+                  to={"/#Contact-us"}
+                >
                   Contact us
-                </Link>
+                </HashLink>
               </MenuItem>
               <MenuItem>
                 {" "}
