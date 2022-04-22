@@ -30,7 +30,7 @@ const VideoPlayer = () => {
   useEffect(() => {
     setUrl(videos[curVid]);
     console.log(curVid);
-  }, [curVid]);
+  }, [curVid, videos]);
 
   return (
     <VideoPlayerWrapper>
