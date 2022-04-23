@@ -41,7 +41,15 @@ const SetNewPassword = () => {
       const response = await mobiusApp.patch(`/auth/reset-password/${token}`, {
         password,
       });
-      toast.success(response?.data.message);
+      toast.success(response?.data.message, {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } catch (err) {}
   };
   return (

@@ -10,8 +10,8 @@ const Badges = () => {
           <h2>Badges</h2>
         </SecHeading>
         <BadgesList>
-          {[1, 2, 3, 4, 5, 6, 7, 8].map((badgeIcon) => (
-            <Badge>
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((badgeIcon, i) => (
+            <Badge key={i}>
               <img src={Badge1} alt={"badge" + badgeIcon} />
             </Badge>
           ))}

@@ -8,7 +8,7 @@ const CourseCard = (course) => {
   const state = useSelector((state) => state);
   const { sign_in } = state?.auth;
   const handleClick = () => {
-    alert(` ${sign_in}clicked`);
+    // sign_in
     console.log(state);
   };
   return (

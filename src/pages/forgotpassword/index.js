@@ -3,36 +3,59 @@ import { colors } from "../../colors";
 import { CtaWrap, HeadingText, InputWrap, Wrap, Wrapper } from "./style.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ErrorMessage, InputWrapDiv } from "../signin/style";
-import { Button, InputField, Modal } from "../../component";
-import { kiddles } from "../../assets";
+import { Button, EmptyState, InputField, Modal } from "../../component";
+import { EmailIcon, kiddles } from "../../assets";
 import { useSelector } from "react-redux";
 import mobiusApp from "../../api/mobiusApp";
 const ForgotPassword = () => {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  // const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/";
 
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(null);
+  const [responseMessage, setResponseMessage] = useState("No text Yet");
+  const [loading, setLoading] = useState(false);
+
   const { auth } = useSelector((state) => state);
   const { token } = auth?.profile;
-
+  const closeModal = () => {
+    setShowModal(!showModal);
+    navigate(from);
+  };
   const handleBack = () => {
     console.log(location, token);
     navigate(`/signin`);
   };
   const handleSubmit = async (e) => {
+    setLoading(true);
     try {
       const response = await mobiusApp.patch("/auth/forgot-password", {
         email,
       });
-      console.log(response);
-    } catch (err) {}
+      setResponseMessage(response?.data.message);
+      setShowModal(true);
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+    }
   };
   return (
     <Wrapper>
-      <Modal showModal={showModal} SetShowModal={setShowModal} />
+      <Modal
+        showModal={showModal}
+        SetShowModal={setShowModal}
+        children={
+          <EmptyState
+            text={responseMessage}
+            src={EmailIcon}
+            alt={"emailicon"}
+            func={closeModal}
+            text2="Close"
+          />
+        }
+      />
       <img src={kiddles} alt="doddle" />
       <Wrap>
         <HeadingText>Forgotten Password</HeadingText>
@@ -67,7 +90,11 @@ const ForgotPassword = () => {
             onClick={handleSubmit}
             style={{ fontWeight: "bold", cursor: "pointer" }}
           >
-            <Button bgColor={colors.secondary_color} text={"Reset Password"} />
+            <Button
+              bgColor={colors.secondary_color}
+              text={"Reset Password"}
+              loadingState={loading}
+            />
           </span>
         </CtaWrap>
       </Wrap>

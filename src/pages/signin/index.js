@@ -25,7 +25,7 @@ const SignIn = () => {
   // const location = useLocation();
   // const from = location.state?.from?.pathname || "/";
 
-  const [setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   // getting input data
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -169,6 +169,7 @@ const SignIn = () => {
               bgColor={colors.secondary_color}
               filled={true}
               text={"Sign in with Google instead"}
+              loadingState={loading}
             />
           </span>
         </CtaWrap>

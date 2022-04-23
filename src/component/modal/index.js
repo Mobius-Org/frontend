@@ -4,10 +4,7 @@ import styled from "styled-components";
 const Modal = ({ children, showModal, SetShowModal }) => {
   return (
     <EditProfileWrap showModal={showModal}>
-      <Container showModal={showModal}>
-        {children}
-        <AButton onClick={() => SetShowModal(false)}>Go Back Home</AButton>
-      </Container>
+      <Container showModal={showModal}>{children}</Container>
     </EditProfileWrap>
   );
 };
@@ -21,8 +18,11 @@ const EditProfileWrap = styled.div`
   display: flex;
   z-index: 1000;
   display: flex;
+  align-items: center;
+  justify-content: center;
   top: 0%;
   left: 0%;
+
   background: rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease-in-out;
   opacity: 1;
@@ -58,13 +58,14 @@ const AButton = styled.button`
 const Container = styled.div`
   width: 40vw;
   border-radius: 10px;
-  height: 95vh;
+  height: fit-content;
   background: #fff;
   margin: auto;
   box-shadow: 0 0 5px #c4c4c4;
   transition: all 0.3s ease-in-out;
   transform: scale(1);
   transition-delay: 0.3s;
+  padding: 2rem 0;
 
   ${({ showModal }) =>
     !showModal &&
@@ -77,6 +78,6 @@ const Container = styled.div`
     `}
   @media (max-width: 768px) {
     width: 90vw;
-    height: 95vh;
+    height: fit-content;
   }
 `;

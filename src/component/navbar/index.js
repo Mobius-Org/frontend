@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { colors } from "../../colors";
 import { NavWrapper, Logo, Hamburger, Menu, MenuItem } from "./style";
 import { FaChevronDown } from "react-icons/fa";
@@ -12,6 +12,7 @@ import { HashLink } from "react-router-hash-link";
 // create navigatio
 const Nav = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const state = useSelector((state) => state);
   const { sign_in } = state.auth ? state.auth : null;
   const currentlocation = location.pathname;
@@ -112,11 +113,21 @@ const Nav = () => {
             {sign_in && currentlocation.includes("/dashboard") ? (
               <Profile />
             ) : (
-              <Button
-                onClick={handleClick}
-                text={"Enroll Now"}
-                bgColor={colors.secondary80}
-              />
+              <span
+                onClick={() => {
+                  if (sign_in) {
+                    navigate("/dashboard");
+                  } else {
+                    navigate("/signup");
+                  }
+                }}
+              >
+                <Button
+                  onClick={handleClick}
+                  text={"Enroll Now"}
+                  bgColor={colors.secondary80}
+                />
+              </span>
             )}
           </MenuItem>
         </Menu>
