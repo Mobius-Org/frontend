@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ErrorMessage, InputWrapDiv } from "../signin/style";
 import { Button, EmptyState, InputField, Modal } from "../../component";
 import { EmailIcon, kiddles } from "../../assets";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import mobiusApp from "../../api/mobiusApp";
 const ForgotPassword = () => {
   const [showModal, setShowModal] = useState(false);
@@ -18,8 +18,8 @@ const ForgotPassword = () => {
   const [responseMessage, setResponseMessage] = useState("No text Yet");
   const [loading, setLoading] = useState(false);
 
-  const { auth } = useSelector((state) => state);
-  const { token } = auth?.profile;
+  // const { auth } = useSelector((state) => state);
+  // const { token } = auth?.profile;
   const closeModal = () => {
     setShowModal(!showModal);
     navigate(from);
