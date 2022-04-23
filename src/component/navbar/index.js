@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { colors } from "../../colors";
 import { NavWrapper, Logo, Hamburger, Menu, MenuItem } from "./style";
 import { FaChevronDown } from "react-icons/fa";

@@ -38,22 +38,22 @@ const EditProfileWrap = styled.div`
   
     `}
 `;
-const AButton = styled.button`
-  background: ${"#000"};
-  padding: 1rem;
-  border-radius: 15px;
-  outline: 0;
-  border: none;
-  font-size: 1.2rem;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
+// const AButton = styled.button`
+//   background: ${"#000"};
+//   padding: 1rem;
+//   border-radius: 15px;
+//   outline: 0;
+//   border: none;
+//   font-size: 1.2rem;
+//   color: #fff;
+//   cursor: pointer;
+//   transition: all 0.3s ease-in-out;
 
-  &:hover {
-    transition: all 0.3s ease-in-out;
-    transform: scale(0.96);
-  }
-`;
+//   &:hover {
+//     transition: all 0.3s ease-in-out;
+//     transform: scale(0.96);
+//   }
+// `;
 
 const Container = styled.div`
   width: 40vw;

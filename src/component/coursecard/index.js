@@ -6,7 +6,7 @@ import { Button } from "../button";
 const CourseCard = (course) => {
   const { title, description, price, image } = course;
   const state = useSelector((state) => state);
-  const { sign_in } = state?.auth;
+  // const { sign_in } = state?.auth;
   const handleClick = () => {
     // sign_in
     console.log(state);
