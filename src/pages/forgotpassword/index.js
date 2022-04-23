@@ -25,7 +25,6 @@ const ForgotPassword = () => {
     navigate(from);
   };
   const handleBack = () => {
-    console.log(location, token);
     navigate(`/signin`);
   };
   const handleSubmit = async (e) => {
