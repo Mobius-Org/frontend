@@ -8,7 +8,7 @@ const CourseCard = ({ title, description, price, image, id, courseId }) => {
   const navigate = useNavigate();
   const state = useSelector((state) => state);
   const { profile } = state?.auth;
-  const { _id } = profile;
+  const _id = profile?._id;
 
   return (
     <Card>
