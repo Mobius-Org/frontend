@@ -14,25 +14,26 @@ const CourseDetails = () => {
   const { id } = useParams();
   const [courseData, setCourseData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const getOneCourse = async () => {
-    // getOneCourse is a function
-    // that will get the course data from the API
-    // and set it to the state
-    setLoading(true);
-    try {
-      const res = await mobiusApp.get(`/courses/${id}`);
-      const data = res?.data;
-      setCourseData(data?.course);
-      setLoading(false);
-    } catch (error) {
-      console.log("error");
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
-    getOneCourse();
-  });
+    let mounted = true;
+    const getOneCourse = async () => {
+      setLoading(true);
+      try {
+        const res = await mobiusApp.get(`/courses/${id}`);
+        const data = res?.data;
+        setCourseData(data?.course);
+        setLoading(false);
+      } catch (error) {
+        console.log("error");
+        setLoading(false);
+      }
+    };
+    if (mounted) {
+      getOneCourse();
+    }
+    return () => (mounted = false);
+  }, [id]);
 
   return (
     <div>
