@@ -151,7 +151,7 @@ const Input = styled.input`
   font-family: "Nunito", sans-serif;
   font-size: 22px;
   padding: 0.8rem 0.5rem;
-  border-radius: 20px;
+  border-radius: 10px;
   width: 100%;
   border: 3px solid rgba(217, 217, 217, 1);
   transition: all 0.3s ease-in-out;

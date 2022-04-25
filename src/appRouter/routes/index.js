@@ -4,6 +4,7 @@ import {
   SignUp,
   LandingPage,
   ForgotPassword,
+  CourseDetails,
 } from "../../pages";
 import {
   Overview,
@@ -25,6 +26,11 @@ const authRoutes = [
     path: "/auth/reset-password/:token",
     element: <SetNewPassword />,
   },
+  {
+    name: "courseDetails",
+    path: "/coursedetails/:id",
+    element: <CourseDetails />,
+  },
 
   { name: "home", path: "/", element: <LandingPage /> },
 ];
@@ -36,7 +42,7 @@ const dashBoardRoutes = [
     element: <Overview />,
   },
   {
-    name: "All Courses",
+    name: "My Courses",
     path: "/dashboard/AllCourses",
     element: <AllCourses />,
   },

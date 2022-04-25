@@ -91,7 +91,8 @@ export const Spinner = keyframes`
 `;
 export const Loading = styled.div`
   width: 100%;
-  height: 2rem;
+  height: fit-content;
+  padding: 0.75rem;
   background: unset;
 
   position: relative;

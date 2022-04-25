@@ -63,7 +63,14 @@ const KidAdvert = () => {
               }
             }}
           >
-            <Button text={"Enroll Now"} bgColor={colors.secondary80} />
+            {sign_in ? (
+              <Button
+                text={"Take Me to Dashboard"}
+                bgColor={colors.secondary80}
+              />
+            ) : (
+              <Button text={"Enroll Now"} bgColor={colors.secondary80} />
+            )}
           </BtnWrap>
         </KidAdvertWrapperInnerText>
       </KidAdvertWrapperInner>

@@ -6,3 +6,4 @@ export * from "./setnewpassword";
 export * from "./pagenotfound";
 export * from "./setnewpassword";
 export * from "./dashboard";
+export * from "./coursedetails";

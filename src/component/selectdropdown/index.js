@@ -22,7 +22,7 @@ const Dropdown = ({ sort, functionName, style }) => {
           <ListboxList>
             <ListboxOption value="5">05 years</ListboxOption>
             <ListboxOption value="6">06 years</ListboxOption>
-            <ListboxOption value="6">07 years</ListboxOption>
+            <ListboxOption value="7">07 years</ListboxOption>
             <ListboxOption value="8">08 years</ListboxOption>
             <ListboxOption value="9">09 years</ListboxOption>
             <ListboxOption value="10">10 years</ListboxOption>

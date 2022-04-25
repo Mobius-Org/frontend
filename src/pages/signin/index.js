@@ -33,7 +33,6 @@ const SignIn = () => {
   const [passwordError, setPasswordError] = useState(null);
   //fetching data
   const handleLogin = async () => {
-    alert("clalled");
     if (email === "" || password === "") {
       toast.error("Please fill all the fields", {
         position: "top-center",
@@ -161,7 +160,11 @@ const SignIn = () => {
         </InputWrap>
         <CtaWrap>
           <span onClick={handleLogin}>
-            <Button bgColor={colors.secondary_color} text={"Sign In"} />
+            <Button
+              bgColor={colors.secondary_color}
+              loadingState={loading}
+              text={"Sign In"}
+            />
           </span>
           <span style={{ alignSelf: "center" }}>
             <Button
@@ -169,7 +172,6 @@ const SignIn = () => {
               bgColor={colors.secondary_color}
               filled={true}
               text={"Sign in with Google instead"}
-              loadingState={loading}
             />
           </span>
         </CtaWrap>

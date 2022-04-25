@@ -33,7 +33,14 @@ const Hero = () => {
               }
             }}
           >
-            <Button text={"Enroll Now"} bgColor={colors.secondary80} />
+            {sign_in ? (
+              <Button
+                text={"Take Me to Dashboard"}
+                bgColor={colors.secondary80}
+              />
+            ) : (
+              <Button text={"Enroll Now"} bgColor={colors.secondary80} />
+            )}
           </BtnWrap>
           <img src={arrHl} alt="arrH" id="arrH" />
           <img src={thinsmooth} alt="star" id="star" />

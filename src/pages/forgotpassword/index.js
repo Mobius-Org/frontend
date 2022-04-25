@@ -7,6 +7,7 @@ import { Button, EmptyState, InputField, Modal } from "../../component";
 import { EmailIcon, kiddles } from "../../assets";
 // import { useSelector } from "react-redux";
 import mobiusApp from "../../api/mobiusApp";
+import { toast } from "react-toastify";
 const ForgotPassword = () => {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ const ForgotPassword = () => {
       setLoading(false);
     } catch (err) {
       setLoading(false);
+      toast.error(err.data.message);
     }
   };
   return (

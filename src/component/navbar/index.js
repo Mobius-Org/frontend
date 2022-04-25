@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { colors } from "../../colors";
-import { NavWrapper, Logo, Hamburger, Menu, MenuItem } from "./style";
+import {
+  NavWrapper,
+  Logo,
+  Hamburger,
+  Menu,
+  MenuItem,
+  LinkDropDown,
+} from "./style";
 import { FaChevronDown } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { dashBoardRoutes } from "../../appRouter/routes";
@@ -18,12 +25,14 @@ const Nav = () => {
   const currentlocation = location.pathname;
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("Home");
   document.addEventListener("scroll", function (e) {
     setScrollPosition(window.scrollY);
   });
   const [isOpen, setIsOpen] = useState(false);
-  const handleClick = () => {
+  const handleClick = (e) => {
     setIsOpen(!isOpen);
+    setActive(e.target.textContent);
   };
   const scrollWithOffset = (el, offset) => {
     const elementPos = el.offsetTop - offset;
@@ -41,9 +50,19 @@ const Nav = () => {
       setScrolled(false);
     }
   }, [scrollPosition]);
+  useEffect(() => {
+    const Links = document.querySelectorAll(".link");
+    Links.forEach((link) => {
+      if (link.textContent === active) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  }, [active]);
 
   return (
-    <NavWrapper scrolled={scrolled}>
+    <NavWrapper scrolled={scrolled} id="topNav">
       <div>
         <Logo>
           <Link to="/">
@@ -61,7 +80,7 @@ const Nav = () => {
               {dashBoardRoutes.map(({ name, icon, path, displayName }, i) => (
                 <MenuItem>
                   {" "}
-                  <Link onClick={handleClick} to={path}>
+                  <Link onClick={handleClick} className="link" to={path}>
                     {name}
                   </Link>
                 </MenuItem>
@@ -71,13 +90,14 @@ const Nav = () => {
             <span>
               <MenuItem>
                 {" "}
-                <Link onClick={handleClick} to={"/"}>
+                <HashLink className="link" onClick={handleClick} to={"/"}>
                   Home
-                </Link>
+                </HashLink>
               </MenuItem>
               <MenuItem>
                 {" "}
                 <HashLink
+                  className="link"
                   scroll={(el) => scrollWithOffset(el, 90)}
                   onClick={handleClick}
                   to="/#Courses"
@@ -88,6 +108,7 @@ const Nav = () => {
               <MenuItem>
                 {" "}
                 <HashLink
+                  className="link"
                   onClick={handleClick}
                   scroll={(el) => scrollWithOffset(el, 120)}
                   to={"/#Contact-us"}
@@ -97,15 +118,19 @@ const Nav = () => {
               </MenuItem>
               <MenuItem>
                 {" "}
-                <Link onClick={handleClick} to={""}>
+                <Link className="link" onClick={handleClick} to={""}>
                   Parent Page
                 </Link>
               </MenuItem>
-              <MenuItem>
+              <MenuItem className="drp">
                 {" "}
-                <Link onClick={handleClick} to="/signup">
+                <Link onClick={handleClick} to="#">
                   Account {"  "} <FaChevronDown />
                 </Link>
+                <LinkDropDown className="dropdown">
+                  <Link to={"/signup"}>SignUp</Link>
+                  <Link to={"/signin"}>SignIn</Link>
+                </LinkDropDown>
               </MenuItem>
             </span>
           )}
@@ -122,11 +147,19 @@ const Nav = () => {
                   }
                 }}
               >
-                <Button
-                  onClick={handleClick}
-                  text={"Enroll Now"}
-                  bgColor={colors.secondary80}
-                />
+                {sign_in ? (
+                  <Button
+                    onClick={handleClick}
+                    text={"Take Me to Dashboard"}
+                    bgColor={colors.secondary80}
+                  />
+                ) : (
+                  <Button
+                    onClick={handleClick}
+                    text={"Enroll Now"}
+                    bgColor={colors.secondary80}
+                  />
+                )}
               </span>
             )}
           </MenuItem>

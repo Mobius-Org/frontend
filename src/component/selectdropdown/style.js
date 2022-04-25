@@ -33,7 +33,7 @@ export const MenuList = styled(ListboxButton)`
   font-family: "Nunito", sans-serif;
   font-size: 22px;
   border: 3px solid rgba(217, 217, 217, 1) !important;
-  border-radius: 15px;
+  border-radius: 10px;
   color: grey;
   @media (max-width: 768px) {
     font-size: 1rem;

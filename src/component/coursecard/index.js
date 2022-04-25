@@ -1,16 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../../colors";
 import { Button } from "../button";
-const CourseCard = (course) => {
-  const { title, description, price, image } = course;
+const CourseCard = ({ title, description, price, image, id, courseId }) => {
+  const navigate = useNavigate();
   const state = useSelector((state) => state);
-  // const { sign_in } = state?.auth;
-  const handleClick = () => {
-    // sign_in
-    console.log(state);
-  };
+  const { profile } = state?.auth;
+  const { _id } = profile;
+
   return (
     <Card>
       <CourseThumbNail>
@@ -21,8 +20,25 @@ const CourseCard = (course) => {
         <CourseDescription>{description}</CourseDescription>
         <CoursePriceCta>
           <CoursePrice>&#8358;{price}</CoursePrice>
-          <CourseCta onClick={handleClick}>
-            <Button text={"Enroll Now"} bgColor={colors.secondary80} />
+          <CourseCta>
+            {id?.includes(_id) ? (
+              <span
+                onClick={() => {
+                  navigate("/dashboard/AllCourses");
+                }}
+              >
+                <Button text={`View Course`} bgColor={colors.secondary80} />
+              </span>
+            ) : (
+              <span
+                onClick={() => {
+                  navigate(`/courseDetails/${courseId}`);
+                  localStorage.setItem("courseId", courseId);
+                }}
+              >
+                <Button text={"Enroll Now"} bgColor={colors.secondary80} />
+              </span>
+            )}
           </CourseCta>
         </CoursePriceCta>
       </CourseInfo>
@@ -97,6 +113,9 @@ const CoursePrice = styled.span`
   font-family: Nunito;
   font-style: Bold;
   line-height: 19px;
+  @media screen and (max-width: 768px) {
+  }
+  font-size: 16px;
 `;
 
 const CourseCta = styled.div`
