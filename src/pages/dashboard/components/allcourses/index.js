@@ -7,6 +7,7 @@ import OurCourses from "../ourcourses";
 
 const AllCourses = () => {
   const state = useSelector((state) => state);
+  console.log(state);
   const enrolledCourses = state?.auth?.profile?.enrolledCourse;
   return (
     <Container>

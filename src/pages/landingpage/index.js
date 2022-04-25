@@ -32,26 +32,26 @@ const LandingPage = ({ children }) => {
   }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      exit={{ opacity: 0 }}
-    >
+    <>
       {loading ? (
         <LoaderWrapper>
           <Puff color={colors.secondary80} width="150px" height={"150px"} />
         </LoaderWrapper>
       ) : (
-        <>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          exit={{ opacity: 0 }}
+        >
           <Hero />
           <OurPrograms data={data?.data} />
           <KidAdvert />
           <OurInteractiveGames />
           <Newsletter />
-        </>
+        </motion.div>
       )}
-    </motion.div>
+    </>
   );
 };
 

@@ -9,11 +9,39 @@ import { MdWest, MdVerified, MdAccessTime } from "react-icons/md";
 import { BiBookOpen } from "react-icons/bi";
 import { IoLanguage } from "react-icons/io5";
 import { FaUserAlt } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const CourseDetails = () => {
+  const state = useSelector((state) => state);
+  const { auth } = state;
+  const { profile } = auth;
+  const token = profile?.token;
   const { id } = useParams();
   const [courseData, setCourseData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const EnrollCourse = async () => {
+    if (token) {
+      try {
+        const res = await mobiusApp.patch(
+          `/courses/enroll/${id}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const data = res?.data;
+        toast.success("enrollment success");
+      } catch (error) {
+        toast.error("Course enrollment failed");
+      }
+    } else {
+      toast("Please register or login to enroll");
+      return;
+    }
+  };
 
   useEffect(() => {
     let mounted = true;
@@ -76,9 +104,13 @@ const CourseDetails = () => {
                   </CourseDescription>
                   <CoursePriceBtn>
                     <CoursePrice>
-                      &#8358;{courseData?.description?.price}
+                      {courseData?.description?.price === "Free" ? (
+                        courseData?.description?.price
+                      ) : (
+                        <span>&#8358;{courseData?.description?.price}</span>
+                      )}
                     </CoursePrice>
-                    <Btnwrap>
+                    <Btnwrap onClick={EnrollCourse}>
                       <Button
                         bgColor={colors.secondary_color}
                         text={"Enroll"}

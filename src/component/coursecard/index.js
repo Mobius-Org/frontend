@@ -19,7 +19,9 @@ const CourseCard = ({ title, description, price, image, id, courseId }) => {
         <CourseTitle>{title}</CourseTitle>
         <CourseDescription>{description}</CourseDescription>
         <CoursePriceCta>
-          <CoursePrice>&#8358;{price}</CoursePrice>
+          <CoursePrice>
+            {price === "Free" ? price : <span>&#8358;{price}</span>}
+          </CoursePrice>
           <CourseCta>
             {id?.includes(_id) ? (
               <span
