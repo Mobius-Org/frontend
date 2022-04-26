@@ -72,6 +72,9 @@ const EnrollImgWrapper = styled.div`
   }
   & > h3 {
     font-size: 18px;
+    align-items: center;
+    text-align: center;
+    margin: auto;
     @media (max-width: 768px) {
       font-size: 16px;
       padding: 1rem 0;

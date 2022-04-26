@@ -12,6 +12,7 @@ import {
   MyContents,
   Badges,
 } from "../../pages/dashboard";
+import { RequireAuth } from "./RequireAuth";
 
 const authRoutes = [
   { name: "signUp", path: "/signup", element: <SignUp /> },
@@ -57,4 +58,4 @@ const dashBoardRoutes = [
     element: <MyContents />,
   },
 ];
-export { authRoutes, dashBoardRoutes };
+export { authRoutes, dashBoardRoutes, RequireAuth };

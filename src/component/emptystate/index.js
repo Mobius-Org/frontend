@@ -61,9 +61,9 @@ const EnrollImgWrapper = styled.div`
   }
 
   & > img {
-    height: 10rem;
+    height: 20%;
     aspect-ratio: 1;
-    flex-grow: 1;
+    /* flex-grow: 1/2; */
     @media (max-width: 768px) {
       height: 10rem;
       flex-grow: unset;

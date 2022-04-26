@@ -26,8 +26,10 @@ import kiddles3 from "./kidsdoodle3.svg";
 import girlCanva from "./girlCanva.png";
 import Badge1 from "./badge1.png";
 import EmailIcon from "./emailIcon.svg";
+import rafiki from "./rafiki.svg";
 export {
   girlCanva,
+  rafiki,
   EmailIcon,
   Badge1,
   bannerImg,

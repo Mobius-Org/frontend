@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthLayout, DashBoardLayout } from "../layout";
-import { authRoutes, dashBoardRoutes } from "./routes";
+import { authRoutes, dashBoardRoutes, RequireAuth } from "./routes";
 import { AnimatePresence } from "framer-motion";
+import { NotFound } from "../pages";
+// import { NotFound } from "../pages";
 
 export const AppRouter = ({ showModal, setShowModal }) => {
   return (
@@ -21,32 +23,27 @@ export const AppRouter = ({ showModal, setShowModal }) => {
               }
             />
           ))}
-        </Routes>
-      </AnimatePresence>
-      {/* dashBaord Routes */}
-      <AnimatePresence exitBeforeEnter>
-        <Routes>
+
           {dashBoardRoutes.map((route) => (
             <Route
               exact
               key={route.name}
               {...route}
               element={
-                <DashBoardLayout
-                  showModal={showModal}
-                  SetShowModal={setShowModal}
-                >
-                  {route.element}
-                </DashBoardLayout>
+                <RequireAuth>
+                  <DashBoardLayout
+                    showModal={showModal}
+                    SetShowModal={setShowModal}
+                  >
+                    {route.element}
+                  </DashBoardLayout>
+                </RequireAuth>
               }
             />
           ))}
+          <Route path="*" exact element={<NotFound />} />
         </Routes>
       </AnimatePresence>
-      <Routes>
-        {/* 404 */}
-        {/* <Route path="*" exact element={<NotFound />} /> */}
-      </Routes>
     </Router>
   );
 };

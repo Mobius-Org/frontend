@@ -28,24 +28,6 @@ const OurPrograms = ({ data }) => {
             return (
               <>
                 <CourseCard
-                  key={index}
-                  title={title}
-                  description={description}
-                  price={price}
-                  image={image}
-                  id={studentEnrolled}
-                  courseId={courseId}
-                />
-                <CourseCard
-                  key={index + 1}
-                  title={title}
-                  description={description}
-                  price={price}
-                  image={image}
-                  id={studentEnrolled}
-                  courseId={courseId}
-                />{" "}
-                <CourseCard
                   key={index + 2}
                   title={title}
                   description={description}

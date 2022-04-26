@@ -80,7 +80,6 @@ const OverviewWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-]
 `;
 
 const Banner = styled.div`
