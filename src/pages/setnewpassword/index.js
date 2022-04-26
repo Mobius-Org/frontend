@@ -50,7 +50,9 @@ const SetNewPassword = () => {
         draggable: true,
         progress: undefined,
       });
-    } catch (err) {}
+    } catch (err) {
+      toast.error(err?.response?.data?.message);
+    }
   };
   return (
     <Wrapper>

@@ -15,7 +15,6 @@ import { colors } from "../../colors";
 const LandingPage = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
-
   useEffect(() => {
     const handleGetAllCourse = async () => {
       setLoading(true);

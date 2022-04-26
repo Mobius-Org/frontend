@@ -115,6 +115,7 @@ const CourseDetails = () => {
                       <Button
                         bgColor={colors.secondary_color}
                         text={"Enroll"}
+                        loadingState={loading}
                       />
                     </Btnwrap>
                   </CoursePriceBtn>
