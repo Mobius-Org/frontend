@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../colors";
+
 export const FooterWrapper = styled.footer`
   background: ${colors.white};
   padding: 0;
@@ -9,6 +10,7 @@ export const FooterWrapper = styled.footer`
     height: 80px;
   }
 `;
+
 export const FooterContainer = styled.div`
   transition: all 0.3s ease-in-out;
   background: inherit;
@@ -33,6 +35,7 @@ export const FooterContainer = styled.div`
     }
   }
 `;
+
 export const IconsWrapper = styled.ul`
   display: flex;
   gap: 1rem;

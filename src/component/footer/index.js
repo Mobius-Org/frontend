@@ -24,7 +24,7 @@ const Footer = () => {
             </Link>
           </li>
           <li>
-            <Link to={""}>
+            <Link to={"twitter.com"}>
               <ImTwitter size={20} />
             </Link>
           </li>

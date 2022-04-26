@@ -1,5 +1,5 @@
 import { ToastContainer } from "react-toastify";
-import "./App.css";
+// import "./App.css";
 import { AppRouter } from "./appRouter";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
