@@ -33,6 +33,7 @@ const CourseDetails = () => {
           }
         );
         const data = res?.data;
+        console.log(data);
         toast.success("enrollment success");
       } catch (error) {
         toast.error("Course enrollment failed");

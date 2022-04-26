@@ -26,7 +26,6 @@ const Dropdown = ({ sort, functionName, style }) => {
             <ListboxOption value="8">08 years</ListboxOption>
             <ListboxOption value="9">09 years</ListboxOption>
             <ListboxOption value="10">10 years</ListboxOption>
-            <ListboxOption value="above">10+ years</ListboxOption>
           </ListboxList>
         </PopOver>
       </ListboxInput>
