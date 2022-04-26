@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { girlCanva } from "../../../../assets";
-import { EmptyState } from "../../../../component";
+import { EmptyItem } from "../../../../component";
 import OurCourses from "../ourcourses/index";
 
 const MyContents = () => {
@@ -14,10 +14,11 @@ const MyContents = () => {
         {enrolledCourses?.length > 0 ? (
           <OurCourses text={"My Contents"} />
         ) : (
-          <EmptyState
+          <EmptyItem
             src={girlCanva}
             text={"You have not uploaded any content yet."}
             alt={"Upload Now"}
+            text2={"Create Content"}
           />
         )}
       </MyContentInner>

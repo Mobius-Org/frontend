@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button } from "../../component";
 import { colors } from "../../colors";
 import { VideoPlayer } from "../../component";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 import data from "./data";
 const Video = () => {
   const [currVal, setCurrVal] = useState(0);
@@ -19,9 +20,10 @@ const Video = () => {
   return (
     <VideoContainer>
       <VideoWrapper>
-        <div>
+        <TopicWrapper>
+          <AiOutlineArrowLeft className="arrowLeft" />
           <h3>{Topic}</h3>
-        </div>
+        </TopicWrapper>
         <VideoSpace>
           {" "}
           <VideoPlayer />
@@ -74,6 +76,18 @@ const VideoWrapper = styled.div`
   flex-direction: column;
   gap: 1rem;
 `;
+
+const TopicWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+ 
+
+  & .arrowLeft {
+    font-size: 22px;
+    margin-right: 10px;
+  }
+`;
+
 const FinLit = styled.div`
   width: 100%;
   /* border: 2px solid blue; */
@@ -103,11 +117,10 @@ const ModuleCon = styled.div`
   gap: 1rem;
   width: 80%;
 
-    @media (max-width: 768px) {
-      width: 90%;
-      text-align: justify;
-    }
-  
+  @media (max-width: 768px) {
+    width: 90%;
+    text-align: justify;
+  }
 `;
 
 const DownloadWrapper = styled.div`

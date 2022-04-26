@@ -25,7 +25,7 @@ const SignIn = () => {
   // const location = useLocation();
   // const from = location.state?.from?.pathname || "/";
 
-  const [setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   // getting input data
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -160,7 +160,11 @@ const SignIn = () => {
         </InputWrap>
         <CtaWrap>
           <span onClick={handleLogin}>
-            <Button bgColor={colors.secondary_color} text={"Sign In"} />
+            <Button
+              bgColor={colors.secondary_color}
+              loadingState={loading}
+              text={"Sign In"}
+            />
           </span>
           <span style={{ alignSelf: "center" }}>
             <Button
@@ -176,7 +180,7 @@ const SignIn = () => {
             onClick={() => handleNext(1)}
             style={{ fontWeight: "bold", cursor: "pointer" }}
           >
-            <Link to="/forgot-password"> Forgot Password?</Link>
+            <Link to="/auth/forgot-password"> Forgot Password?</Link>
           </span>
           <span
             onClick={() => handleNext(1)}

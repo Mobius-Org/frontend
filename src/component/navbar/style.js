@@ -26,7 +26,7 @@ export const NavWrapper = styled.header`
   transition: all 0.3s ease-in-out;
   position: sticky;
   top: 0;
-  z-index: 999;`}}
+  z-index: 999;`}
   }
   & > div {
     position: relative;
@@ -119,7 +119,7 @@ export const Hamburger = styled.div`
 `;
 export const Menu = styled.ul`
   @media (min-width: 768px) {
-    postion: unset;
+    position: unset;
     z-index: 100;
     width: 72%;
     display: flex;
@@ -138,9 +138,10 @@ export const Menu = styled.ul`
       gap: 2.5rem;
     }
   }
-  width: 100%;
-  postion: absolute;
+  width: calc(100% + 3rem);
+  position: absolute;
   top: 80px;
+  left: 0;
   height: ${({ isOpen }) => (isOpen ? "90vh" : "0")};
   padding: ${({ isOpen }) => (isOpen ? "0" : "0")};
   width: 100vw;
@@ -154,8 +155,10 @@ export const Menu = styled.ul`
   font-size: 24px !important;
   font-weight: 800;
   transition: all 0.3s ease-in-out;
-  overflow: hidden;
+  background-color: #fff;
+
   @media (max-width: 768px) {
+    overflow: hidden;
     & > span {
       display: flex;
       flex-direction: column;
@@ -168,6 +171,7 @@ export const Menu = styled.ul`
 export const MenuItem = styled.li`
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  position: relative;
   a {
     text-decoration: none;
     color: #707070;
@@ -184,6 +188,11 @@ export const MenuItem = styled.li`
     -webkit-transition: all 0.5s ease;
 
     :hover {
+      color: ${colors.secondary_color};
+      transition: all 0.3s ease;
+      -webkit-transition: all 1s ease;
+    }
+    &.active {
       color: ${colors.secondary_color};
       transition: all 0.3s ease;
       -webkit-transition: all 1s ease;
@@ -217,5 +226,67 @@ export const MenuItem = styled.li`
       width: 100%;
       border-radius: 0.5px;
     }
+    &.active:before {
+      background: ${colors.secondary_color};
+      width: 100%;
+      transition: width 0.3s cubic-bezier((0.22, 0.61, 0.36, 1));
+      border-radius: 0.5px;
+    }
+    &.active:after {
+      background: transparent;
+      width: 100%;
+      border-radius: 0.5px;
+    }
+  }
+  &:hover .dropdown {
+    transform: translateX(25%) translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.3s ease-in-out;
+  }
+  &.drp {
+    &:hover:before {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-0.2rem);
+      width: 0px;
+      height: 0px;
+
+      border: 10px solid transparent;
+      border-bottom: 10px solid #333;
+    }
+  }
+`;
+export const LinkDropDown = styled.div`
+  position: absolute;
+  width: max-content;
+  max-width: 280px;
+  top: calc(100% + 1rem);
+
+  pointer-events: none;
+  opacity: 0;
+  background-color: #fff;
+  padding: 0.75rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  right: 0%;
+  transform: translateX(-100%) translateY(10px);
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  & > a {
+    padding: 0.5rem 2rem;
+    border-radius: 5px;
+    display: flex;
+    text-align: center !important;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  }
+  @media (max-width: 768px) {
+    position: unset;
+    opacity: 1;
+    transform: unset;
   }
 `;

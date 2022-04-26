@@ -3,7 +3,7 @@ import ReactPlayer from "react-player";
 import styled from "styled-components";
 
 const VideoPlayer = () => {
-  const [videos, setVideos] = useState([
+  const [videos] = useState([
     "https://www.youtube.com/watch?v=JE-EsLhmlkU",
     "https://www.youtube.com/watch?v=JxKwqZTLufQ",
     "https://www.youtube.com/watch?v=WWoqbIDBDbQ",
@@ -30,8 +30,8 @@ const VideoPlayer = () => {
   };
   useEffect(() => {
     setUrl(videos[curVid]);
-    console.log(curVid, url);
-  }, [curVid]);
+    console.log(curVid);
+  }, [curVid, videos]);
 
   return (
     <VideoPlayerWrapper>
@@ -64,6 +64,7 @@ const NextBtn = styled.button``;
 const PrevBtn = styled.button``;
 const CtaWrapper = styled.div``;
 const VideoPlayerWrap = styled.div``;
+
 const ReactPlayerInner = styled.div`
   width: 100%;
   height: 100%;

@@ -33,7 +33,7 @@ export const SignUpWrapper = styled(motion.div)`
   }
   @media (max-width: 768px) {
     padding: 0;
-    height: 70vh;
+    height: max-content;
   }
 `;
 
@@ -54,15 +54,15 @@ export const FirstWrap = styled.div`
   flex-wrap: wrap !important;
   padding: 30px 20px;
   border-radius: 20px;
-  position:unset
+  position: unset;
   transition: all 0.3s ease-in-out;
   opacity: 1;
   @media (max-width: 768px) {
     transition: all 0.3s ease-in-out;
-    height: 70vh;
+    height: max-content;
+    padding: 1rem 0;
     width: 100%;
     border-radius: 0px;
-
   }
   ${({ next }) =>
     next !== 0 &&
@@ -100,9 +100,10 @@ export const SecondWrap = styled.div`
   opacity: 1;
   @media (max-width: 768px) {
     transition: all 0.3s ease-in-out;
-    height: 70vh;
+    height: max-content;
     width: 100%;
     border-radius: 0px;
+    padding: 1rem 0;
   }
   ${({ next }) =>
     next !== 1 &&
@@ -153,17 +154,16 @@ export const SuccessScreen = styled.div`
     `}
 `;
 export const HeadingText = styled.h1`
-Font-family: Nunito;
-Font-style:extra-bold;
-Font size: 16px;
-color:rgba(12, 18, 28, 0.75);
-align-self: center;
- transition: all 0.3s ease-in-out;
+  font-family: Nunito;
+  font-style: extra-bold;
+  color: rgba(12, 18, 28, 0.75);
+  align-self: center;
+  transition: all 0.3s ease-in-out;
 
- @media (max-width: 768px) {
-      transition: all 0.3s ease-in-out;
-      font-size: 1.5rem;
-    }
+  @media (max-width: 768px) {
+    transition: all 0.3s ease-in-out;
+    font-size: 1.5rem;
+  }
 `;
 export const InputWrap = styled.div`
   display: flex;
@@ -227,6 +227,7 @@ export const CtaWrap = styled.div`
     }
   }
   span.first {
+    min-width: 150px;
     @media (max-width: 768px) {
       width: 100%;
       & > div {

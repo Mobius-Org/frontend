@@ -7,3 +7,4 @@ export * from "./pagenotfound";
 export * from "./setnewpassword";
 export * from "./dashboard";
 export * from './videopage';
+export * from "./coursedetails";

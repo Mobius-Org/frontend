@@ -4,8 +4,13 @@ import { keyframes } from "styled-components";
 import { colors } from "../../../../colors";
 import { arrHl, heroBg, thinsmooth } from "../../../../assets";
 import { Button } from "../../../../component";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Hero = () => {
+  const state = useSelector((state) => state);
+  const { sign_in } = state.auth ? state.auth : null;
+  const navigate = useNavigate();
   return (
     <Container>
       <HeroWrapper>
@@ -19,8 +24,23 @@ const Hero = () => {
             adipiscing nullam dapibus justo ac lectus eros facilisi. Arcu nisl,
             nisl venenatis ut velit habitasse mi placerat.
           </Paragraph>
-          <BtnWrap>
-            <Button text={"Enroll Now"} bgColor={colors.secondary80} />
+          <BtnWrap
+            onClick={() => {
+              if (sign_in) {
+                navigate("/dashboard");
+              } else {
+                navigate("/signup");
+              }
+            }}
+          >
+            {sign_in ? (
+              <Button
+                text={"Take Me to Dashboard"}
+                bgColor={colors.secondary80}
+              />
+            ) : (
+              <Button text={"Enroll Now"} bgColor={colors.secondary80} />
+            )}
           </BtnWrap>
           <img src={arrHl} alt="arrH" id="arrH" />
           <img src={thinsmooth} alt="star" id="star" />

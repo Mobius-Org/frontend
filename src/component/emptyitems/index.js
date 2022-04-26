@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { colors } from "../../colors";
 import { Button } from "../button";
 
-const EmptyState = ({ text, src, alt, func, text2 }) => {
+const EmptyItem = ({ text, src, alt, func, text2 }) => {
   const handleClick = () => {
     func();
   };
@@ -27,16 +27,16 @@ const EmptyState = ({ text, src, alt, func, text2 }) => {
   );
 };
 
-export { EmptyState };
+export { EmptyItem };
 
 const EnrollCoursesWrapper = styled.div`
   width: 100%;
-  height: fit-content;
+  height: 80vh;
   margin: auto;
 `;
 const EnrollWrapper = styled.div`
   width: 80%;
-  height: fit-content;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,13 +51,14 @@ const EnrollWrapper = styled.div`
   }
 `;
 const EnrollImgWrapper = styled.div`
-  width: 100%;
-  height: fit-content;
+  width: 50%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   @media (max-width: 768px) {
-    height: 80%;
+    height: 90%;
+    width: 100%;
   }
 
   & > img {
@@ -65,7 +66,7 @@ const EnrollImgWrapper = styled.div`
     aspect-ratio: 1;
     flex-grow: 1;
     @media (max-width: 768px) {
-      height: 10rem;
+      height: 70%;
       flex-grow: unset;
     }
   }

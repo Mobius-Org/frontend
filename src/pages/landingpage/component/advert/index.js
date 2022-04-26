@@ -12,7 +12,12 @@ import {
   sTk,
 } from "../../../../assets";
 import { Button } from "../../../../component";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const KidAdvert = () => {
+  const navigate = useNavigate();
+  const state = useSelector((state) => state);
+  const { sign_in } = state.auth ? state.auth : null;
   return (
     <KidAdvertWrapper
       as={motion.div}
@@ -49,8 +54,23 @@ const KidAdvert = () => {
             adipiscing nullam dapibus justo ac lectus eros facilisi. Arcu nisl,
             nisl venenatis ut velit habitasse mi placerat.
           </Paragraph>
-          <BtnWrap>
-            <Button text={"Enroll Now"} bgColor={colors.secondary80} />
+          <BtnWrap
+            onClick={() => {
+              if (sign_in) {
+                navigate("/dashboard");
+              } else {
+                navigate("/signup");
+              }
+            }}
+          >
+            {sign_in ? (
+              <Button
+                text={"Take Me to Dashboard"}
+                bgColor={colors.secondary80}
+              />
+            ) : (
+              <Button text={"Enroll Now"} bgColor={colors.secondary80} />
+            )}
           </BtnWrap>
         </KidAdvertWrapperInnerText>
       </KidAdvertWrapperInner>

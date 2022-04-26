@@ -4,27 +4,34 @@ import {
   SignUp,
   LandingPage,
   ForgotPassword,
+  CourseDetails,
 } from "../../pages";
-import { Overview, AllCourses, MyContents } from "../../pages/dashboard";
+import {
+  Overview,
+  AllCourses,
+  MyContents,
+  Badges,
+} from "../../pages/dashboard";
 
 const authRoutes = [
   { name: "signUp", path: "/signup", element: <SignUp /> },
   { name: "signIn", path: "/signin", element: <SignIn /> },
   {
     name: "forgotPassword",
-    path: "/forgot-password",
+    path: "/auth/forgot-password",
     element: <ForgotPassword />,
   },
   {
     name: "resetPassword",
-    path: "/reset-password",
+    path: "/auth/reset-password/:token",
     element: <SetNewPassword />,
   },
-  //   {
-  //   name: "tictactoe",
-  //   path: "/tictactoe",
-  //   element: <SetNewPassword />,
-  // },
+  {
+    name: "courseDetails",
+    path: "/coursedetails/:id",
+    element: <CourseDetails />,
+  },
+
   { name: "home", path: "/", element: <LandingPage /> },
 ];
 
@@ -35,14 +42,14 @@ const dashBoardRoutes = [
     element: <Overview />,
   },
   {
-    name: "All Courses",
+    name: "My Courses",
     path: "/dashboard/AllCourses",
     element: <AllCourses />,
   },
   {
     name: "Badges",
     path: "/dashboard/Badges",
-    element: <div>Badges</div>,
+    element: <Badges />,
   },
   {
     name: "My Contents",

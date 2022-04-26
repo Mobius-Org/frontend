@@ -1,9 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../../colors";
 import { Button } from "../button";
-const CourseCard = (course) => {
-  const { title, description, price, image } = course;
+const CourseCard = ({ title, description, price, image, id, courseId }) => {
+  const navigate = useNavigate();
+  const state = useSelector((state) => state);
+  const { profile } = state?.auth;
+  const _id = profile?._id;
+
   return (
     <Card>
       <CourseThumbNail>
@@ -13,9 +19,28 @@ const CourseCard = (course) => {
         <CourseTitle>{title}</CourseTitle>
         <CourseDescription>{description}</CourseDescription>
         <CoursePriceCta>
-          <CoursePrice>&#8358;{price}</CoursePrice>
+          <CoursePrice>
+            {price === "Free" ? price : <span>&#8358;{price}</span>}
+          </CoursePrice>
           <CourseCta>
-            <Button text={"Enroll Now"} bgColor={colors.secondary80} />
+            {id?.includes(_id) ? (
+              <span
+                onClick={() => {
+                  navigate("/dashboard/AllCourses");
+                }}
+              >
+                <Button text={`View Course`} bgColor={colors.secondary80} />
+              </span>
+            ) : (
+              <span
+                onClick={() => {
+                  navigate(`/courseDetails/${courseId}`);
+                  localStorage.setItem("courseId", courseId);
+                }}
+              >
+                <Button text={"Enroll Now"} bgColor={colors.secondary80} />
+              </span>
+            )}
           </CourseCta>
         </CoursePriceCta>
       </CourseInfo>
@@ -85,11 +110,14 @@ const CoursePriceCta = styled.div`
   justify-content: space-between;
 `;
 const CoursePrice = styled.span`
-  font-weigt: 700;
+  font-weight: 700;
   font-size: 25px;
   font-family: Nunito;
   font-style: Bold;
   line-height: 19px;
+  @media screen and (max-width: 768px) {
+  }
+  font-size: 16px;
 `;
 
 const CourseCta = styled.div`

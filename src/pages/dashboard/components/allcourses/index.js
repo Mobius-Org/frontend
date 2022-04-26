@@ -2,11 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { broCanva } from "../../../../assets";
-import { EmptyState } from "../../../../component";
+import { EmptyItem } from "../../../../component";
 import OurCourses from "../ourcourses";
 
 const AllCourses = () => {
   const state = useSelector((state) => state);
+  console.log(state);
   const enrolledCourses = state?.auth?.profile?.enrolledCourse;
   return (
     <Container>
@@ -14,10 +15,11 @@ const AllCourses = () => {
         {enrolledCourses?.length > 0 ? (
           <OurCourses text={"Enrolled Courses"} />
         ) : (
-          <EmptyState
+          <EmptyItem
             src={broCanva}
             text={"You have not enrolled for any course yet"}
             alt={"emptyCourse"}
+            text2={"Enroll"}
           />
         )}
       </AllCoursesInner>

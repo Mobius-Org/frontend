@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import mobiusApp from "../../api/mobiusApp";
 import { kiddles } from "../../assets";
 import { colors } from "../../colors";
 import { Button, InputField, Modal } from "../../component";
@@ -19,6 +22,36 @@ const SetNewPassword = () => {
   const [passwordError, setPasswordError] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState(null);
+  const { token } = useParams();
+  // alert(token);
+
+  const handleSubmit = async (e) => {
+    if (password !== confirmPassword) {
+      toast.error("password must Match", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+    try {
+      const response = await mobiusApp.patch(`/auth/reset-password/${token}`, {
+        password,
+      });
+      toast.success(response?.data.message, {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch (err) {}
+  };
   return (
     <Wrapper>
       <Modal
@@ -73,7 +106,7 @@ const SetNewPassword = () => {
           </InputWrapDiv>
         </InputWrap>
         <CtaWrap>
-          <span onClick={() => SetShowModal(!showModal)}>
+          <span onClick={handleSubmit}>
             <Button bgColor={colors.secondary_color} text={"Reset Password"} />
           </span>
         </CtaWrap>
