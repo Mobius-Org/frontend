@@ -144,7 +144,7 @@ const TextContainer = styled.div`
   & > p {
     width: 90%;
     color: #fff;
-    fomt-size: 24px;
+    font-size: 24px;
     font-weight: 600;
     @media (max-width: 768px) {
       font-size: 13px;
