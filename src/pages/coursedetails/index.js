@@ -20,10 +20,12 @@ const CourseDetails = () => {
   const { id } = useParams();
   const [courseData, setCourseData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadingBtn, setLoadingBtn] = useState(false);
   const EnrollCourse = async () => {
+    setLoadingBtn(true);
     if (token) {
       try {
-        const res = await mobiusApp.patch(
+        const res = await mobiusApp.post(
           `/courses/enroll/${id}`,
           {},
           {
@@ -35,11 +37,14 @@ const CourseDetails = () => {
         const data = res?.data;
         console.log(data);
         toast.success("enrollment success");
+        setLoadingBtn(false);
       } catch (error) {
         toast.error("Course enrollment failed");
+        setLoadingBtn(false);
       }
     } else {
       toast("Please register or login to enroll");
+      setLoadingBtn(false);
       return;
     }
   };
@@ -49,7 +54,7 @@ const CourseDetails = () => {
     const getOneCourse = async () => {
       setLoading(true);
       try {
-        const res = await mobiusApp.get(`/courses/${id}`);
+        const res = await mobiusApp.get(`/courses/getOne/${id}`);
         const data = res?.data;
         setCourseData(data?.course);
         setLoading(false);
@@ -115,7 +120,7 @@ const CourseDetails = () => {
                       <Button
                         bgColor={colors.secondary_color}
                         text={"Enroll"}
-                        loadingState={loading}
+                        loadingState={loadingBtn}
                       />
                     </Btnwrap>
                   </CoursePriceBtn>
@@ -169,42 +174,19 @@ const CourseDetails = () => {
             <Row3>
               <h1>Student Testimonials</h1>
               <div>
-                <TesRow>
-                  <PImg src={courseData?.description?.image} alt="name" />
-                  <TesDesc>
-                    <TesName>Bell Endee</TesName>
-                    <TesDescText>
-                      <p>"I enjoyed the lessons even the games, thank you."</p>
-                    </TesDescText>
-                  </TesDesc>
-                </TesRow>
-                <TesRow>
-                  <PImg src={courseData?.description?.image} alt="name" />
-                  <TesDesc>
-                    <TesName>Bell Endee</TesName>
-                    <TesDescText>
-                      <p>"I enjoyed the lessons even the games, thank you."</p>
-                    </TesDescText>
-                  </TesDesc>
-                </TesRow>
-                <TesRow>
-                  <PImg src={courseData?.description?.image} alt="name" />
-                  <TesDesc>
-                    <TesName>Bell Endee</TesName>
-                    <TesDescText>
-                      <p>"I enjoyed the lessons even the games, thank you."</p>
-                    </TesDescText>
-                  </TesDesc>
-                </TesRow>
-                <TesRow>
-                  <PImg src={courseData?.description?.image} alt="name" />
-                  <TesDesc>
-                    <TesName>Bell Endee</TesName>
-                    <TesDescText>
-                      <p>"I enjoyed the lessons even the games, thank you."</p>
-                    </TesDescText>
-                  </TesDesc>
-                </TesRow>
+                {[1, 2, 3, 4].map((item) => (
+                  <TesRow>
+                    <PImg src={courseData?.description?.image} alt="name" />
+                    <TesDesc>
+                      <TesName>Bell Endee</TesName>
+                      <TesDescText>
+                        <p>
+                          "I enjoyed the lessons even the games, thank you."
+                        </p>
+                      </TesDescText>
+                    </TesDesc>
+                  </TesRow>
+                ))}
               </div>
             </Row3>
           </CourseDetailWrapperInner>

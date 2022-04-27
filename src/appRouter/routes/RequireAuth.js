@@ -16,7 +16,9 @@ const RequireAuth = ({ children }) => {
     return (
       <>
         <Navigate to="/signin" state={{ from: location }} replace />
-        {toast("You must be logged in to Access your Dashboad")}
+        {toast("You must be logged in to Access your Dashboad", {
+          position: "top-center",
+        })}
       </>
     );
   }

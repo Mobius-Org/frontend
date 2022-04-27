@@ -1,40 +1,74 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
 import { useSelector } from "react-redux";
 import { bannerKids } from "../../../../assets";
 import OurCourses from "../ourcourses";
+import { Puff } from "react-loader-spinner";
+import mobiusApp from "../../../../api/mobiusApp";
 const Overview = () => {
   const state = useSelector((state) => state);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const handleGetAllCourse = async () => {
+      setLoading(true);
+      try {
+        const res = await mobiusApp.get("/courses/all");
+        const data = res?.data;
+        setData(data?.data);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
+    };
+    handleGetAllCourse();
+  }, []);
 
   return (
-    <OverviewWrap>
-      <BannerWrapper>
-        <SecHeading>
-          <h2>Hi {state?.auth?.profile?.name},</h2>
-        </SecHeading>
-        <Banner>
-          <ImgTextContainer>
-            <ImgContainer>
-              {" "}
-              <img src={bannerKids} alt="" />
-            </ImgContainer>
-            <TextContainer>
-              <h2>Welcome to Mobius!</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac nec
-                in porttitor libero nunc dignissim mollis.
-              </p>
-            </TextContainer>
-          </ImgTextContainer>
-        </Banner>
-      </BannerWrapper>
-      <OurCourses text={"Available Courses"} />
-    </OverviewWrap>
+    <>
+      {loading ? (
+        <LoaderWrapper>
+          <Puff color={colors.secondary80} width="150px" height={"150px"} />
+        </LoaderWrapper>
+      ) : (
+        <OverviewWrap>
+          <BannerWrapper>
+            <SecHeading>
+              <h2>Hi {state?.auth?.profile?.name},</h2>
+            </SecHeading>
+            <Banner>
+              <ImgTextContainer>
+                <ImgContainer>
+                  {" "}
+                  <img src={bannerKids} alt="" />
+                </ImgContainer>
+                <TextContainer>
+                  <h2>Welcome to Mobius!</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac
+                    nec in porttitor libero nunc dignissim mollis.
+                  </p>
+                </TextContainer>
+              </ImgTextContainer>
+            </Banner>
+          </BannerWrapper>
+          <OurCourses data={data} text={"Available Courses"} />
+        </OverviewWrap>
+      )}
+    </>
   );
 };
 
 export { Overview };
+const LoaderWrapper = styled.div`
+  margin: auto;
+  width: 100%;
+  height: 78vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 const SecHeading = styled.div`
   display: flex;
   // flex-direction: column;

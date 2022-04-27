@@ -1,26 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { broCanva } from "../../../../assets";
 import { EmptyItem } from "../../../../component";
 import OurCourses from "../ourcourses";
+import mobiusApp from "../../../../api/mobiusApp";
+import { Puff } from "react-loader-spinner";
+import { colors } from "../../../../colors";
+import { Video } from "../../../videopage";
 
 const AllCourses = () => {
   const state = useSelector((state) => state);
-  console.log(state);
-  const enrolledCourses = state?.auth?.profile?.enrolledCourse;
+  const { auth } = state;
+  const { profile } = auth;
+  const token = profile?.token;
+  const [loading, setLoading] = useState(false);
+  const [takeCourse, setTakeCourse] = useState(false);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const handleGetAllMyCourse = async () => {
+      setLoading(true);
+      try {
+        const res = await mobiusApp.get("/courses/dashboard/myCourses", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = res?.data;
+        setData(data?.result);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
+    };
+    handleGetAllMyCourse();
+  }, [token]);
   return (
     <Container>
       <AllCoursesInner>
-        {enrolledCourses?.length > 0 ? (
-          <OurCourses text={"Enrolled Courses"} />
+        {loading ? (
+          <LoaderWrapper>
+            <Puff color={colors.secondary80} width="150px" height={"150px"} />
+          </LoaderWrapper>
+        ) : takeCourse ? (
+          <Video func={() => setTakeCourse(false)} />
         ) : (
-          <EmptyItem
-            src={broCanva}
-            text={"You have not enrolled for any course yet"}
-            alt={"emptyCourse"}
-            text2={"Enroll"}
-          />
+          <>
+            {data?.length > 0 ? (
+              <OurCourses
+                func={() => setTakeCourse(true)}
+                data={data}
+                text={"Enrolled Courses"}
+              />
+            ) : (
+              <EmptyItem
+                src={broCanva}
+                text={"You have not enrolled for any course yet"}
+                alt={"emptyCourse"}
+                text2={"Enroll"}
+              />
+            )}
+          </>
         )}
       </AllCoursesInner>
     </Container>
@@ -28,6 +68,14 @@ const AllCourses = () => {
 };
 
 export { AllCourses };
+const LoaderWrapper = styled.div`
+  margin: auto;
+  width: 100%;
+  height: 78vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const Container = styled.div`
   width: 100%;

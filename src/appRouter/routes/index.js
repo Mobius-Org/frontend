@@ -44,7 +44,7 @@ const dashBoardRoutes = [
   },
   {
     name: "My Courses",
-    path: "/dashboard/AllCourses",
+    path: "/dashboard/myCourses",
     element: <AllCourses />,
   },
   {

@@ -5,7 +5,7 @@ import { colors } from "../../colors";
 import { VideoPlayer } from "../../component";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import data from "./data";
-const Video = () => {
+const Video = ({ func }) => {
   const [currVal, setCurrVal] = useState(0);
 
   const handleDecrease = () => {
@@ -20,7 +20,7 @@ const Video = () => {
   return (
     <VideoContainer>
       <VideoWrapper>
-        <TopicWrapper>
+        <TopicWrapper onClick={() => func()}>
           <AiOutlineArrowLeft className="arrowLeft" />
           <h3>{Topic}</h3>
         </TopicWrapper>
@@ -65,23 +65,25 @@ const Video = () => {
 export { Video };
 
 const VideoContainer = styled.div`
-  /* border: 2px solid red; */
+  border: 2px solid red;
   width: 100%;
-  height: 100vh;
+  height: fit-content;
   padding-top: 20px;
 `;
 const VideoWrapper = styled.div`
-  padding-left: 25px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
+  border: 1px solid red;
+  margin: auto;
+  max-width: 1400px;
+  width: fit-content;
 `;
 
 const TopicWrapper = styled.div`
   display: flex;
   flex-direction: row;
- 
-
+  background-color: ${colors.secondary80};
   & .arrowLeft {
     font-size: 22px;
     margin-right: 10px;
@@ -90,7 +92,7 @@ const TopicWrapper = styled.div`
 
 const FinLit = styled.div`
   width: 100%;
-  /* border: 2px solid blue; */
+  border: 2px solid blue;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -107,15 +109,15 @@ const FinLit = styled.div`
 `;
 const VideoSpace = styled.div`
   /* border: 2px solid green; */
-  width: 90%;
-  height: 50vh;
+  width: 100%;
+  height: 60vh;
 `;
 
 const ModuleCon = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 80%;
+  width: 100%;
 
   @media (max-width: 768px) {
     width: 90%;

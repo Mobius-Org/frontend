@@ -4,7 +4,15 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../../colors";
 import { Button } from "../button";
-const CourseCard = ({ title, description, price, image, id, courseId }) => {
+const CourseCard = ({
+  title,
+  description,
+  price,
+  image,
+  id,
+  courseId,
+  func,
+}) => {
   const navigate = useNavigate();
   const state = useSelector((state) => state);
   const { profile } = state?.auth;
@@ -26,7 +34,7 @@ const CourseCard = ({ title, description, price, image, id, courseId }) => {
             {id?.includes(_id) ? (
               <span
                 onClick={() => {
-                  navigate("/dashboard/AllCourses");
+                  func();
                 }}
               >
                 <Button text={`View Course`} bgColor={colors.secondary80} />
