@@ -23,13 +23,13 @@ const Overview = () => {
               <h2>Welcome to Mobius!</h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac nec
-                in porttitor libero nunc dignissim mollis.
+                in porttitor libero nunc dignissim mollis...
               </p>
             </TextContainer>
           </ImgTextContainer>
         </Banner>
+        <OurCourses text={"Available Courses"} className="course" />
       </BannerWrapper>
-      <OurCourses text={"Available Courses"} />
     </OverviewWrap>
   );
 };
@@ -158,4 +158,7 @@ const BannerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  @media (min-width: 1200px) and (max-width: 1400px) {
+    margin: 3rem;
+  }
 `;
