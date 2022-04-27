@@ -108,11 +108,20 @@ const Breathing2 = keyframes`
 `;
 const Container = styled.div`
   width: 100%;
+  max-width: 100%;
   height: fit-content;
   padding: 2rem;
   background: ${"#FaFcfe"};
+  @media (max-width: 1024px) {
+    max-width: 100%;
+    width: 80%;
+  }
   @media (max-width: 768px) {
     padding: 1.5rem 0;
+  }
+  @media (max-width: 480px) {
+    padding: 1.5rem 0;
+    max-width: 100%;
   }
 `;
 const HeroWrapper = styled.div`
@@ -140,12 +149,19 @@ const HeroText = styled.div`
   flex-direction: column;
   position: relative;
   gap: 2rem;
+
   & > img#arrH {
     width: 66%;
     position: absolute;
     top: 54%;
     left: 20%;
     animation: ${Breathing} 5s ease-out infinite normal;
+
+    @media (min-width: 1200px) and (max-width: 1400px) {
+      width: 75%;
+      top: 60%;
+      height: 60%;
+    }
   }
   & > img#star {
     // width: 80%;
@@ -179,7 +195,16 @@ const Heading = styled.div`
   width: 90%;
   color: rgba(77, 80, 79, 1);
   text-align: start;
+  @media (min-width: 1200px) and (max-width: 1400px) {
+    font-size: 39px;
+    margin-bottom: -20px;
+  }
   @media (max-width: 768px) {
+    width: 100%;
+    font-size: 24px;
+    line-height: 33px;
+  }
+  @media (max-width: 1200px) {
     width: 100%;
     font-size: 24px;
     line-height: 33px;
