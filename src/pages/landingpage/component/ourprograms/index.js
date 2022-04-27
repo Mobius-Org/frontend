@@ -46,11 +46,16 @@ const OurPrograms = ({ data }) => {
 };
 
 export { OurPrograms };
+
 const Container = styled.div`
   width: 100%;
   height: fit-content;
   padding: 2rem;
   background: ${"#FaFcfe"};
+
+  @media (min-width: 1200px) and (max-width: 1400px) {
+    padding-top: 70px;
+  }
   @media (max-width: 768px) {
     padding: 1.5rem 0;
   }
@@ -64,6 +69,10 @@ const OurProgramsWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
+  @media (min-width: 1200px) and (max-width: 1400px) {
+    margin-bottom: 2rem;
+    padding-bottom: 50px;
+  }
   @media (max-width: 768px) {
     width: 90%;
     height: fit-content;
@@ -133,6 +142,7 @@ const CoursesList = styled.div`
   margin: 0 auto;
   gap: 2rem;
   justify-content: space-between;
+
   @media (min-width: 768px) {
     width: 90%;
     flex-direction: row;
