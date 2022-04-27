@@ -112,6 +112,7 @@ const Container = styled.div`
   height: fit-content;
   padding: 2rem;
   background: ${"#FaFcfe"};
+
   @media (max-width: 1024px) {
     max-width: 100%;
     width: 80%;
@@ -119,9 +120,8 @@ const Container = styled.div`
   @media (max-width: 768px) {
     padding: 1.5rem 0;
   }
-  @media (max-width: 480px) {
-    padding: 1.5rem 0;
-    max-width: 100%;
+  @media (min-width: 300px) and (max-width: 500px) {
+    width: 100%;
   }
 `;
 const HeroWrapper = styled.div`

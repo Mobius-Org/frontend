@@ -130,6 +130,7 @@ const KidAdvertWrapper = styled(motion.div)`
   height: fit-content;
   padding: 2rem;
   background: ${colors.secondary20};
+  
   @media (max-width: 768px) {
     padding: 1rem 0;
   }
@@ -143,6 +144,10 @@ const KidAdvertWrapperInner = styled.div`
   flex-direction: row;
   justify-content: space-between;
   position: relative;
+
+  @media (min-width: 1200px) and (max-width: 1400px) {
+    margin-bottom: 4rem;
+  }
 
   @media (max-width: 768px) {
     flex-direction: column;
