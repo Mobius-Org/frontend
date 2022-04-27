@@ -95,7 +95,7 @@ const NewsletterInput = styled.div`
   width: 50%;
   height: fit-content;
   padding: 1rem;
-  background: #d6e8e7;
+  background: #fff;
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
