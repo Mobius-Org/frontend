@@ -130,7 +130,7 @@ const KidAdvertWrapper = styled(motion.div)`
   height: fit-content;
   padding: 2rem;
   background: ${colors.secondary20};
-  
+
   @media (max-width: 768px) {
     padding: 1rem 0;
   }
@@ -154,6 +154,15 @@ const KidAdvertWrapperInner = styled.div`
     height: auto;
     width: 90%;
   }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    padding: 1rem 0;
+    height: 100%;
+    // justify-content: center;
+    align-items: center;
+  }
 `;
 
 const KidAdvertWrapperInnerText = styled.div`
@@ -164,10 +173,13 @@ const KidAdvertWrapperInnerText = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  @media (max-width: 768px) {
+  @media (min-width: 480px) and (max-width: 768px) {
     width: 100%;
     gap: 1rem;
     padding: 1rem 0;
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 100%;
   }
 `;
 const KidAdvertWrapperInnerImage = styled.div`
@@ -183,6 +195,9 @@ const KidAdvertWrapperInnerImage = styled.div`
     width: 100%;
     height: 50vh;
     // border: 1px solid red;
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 70%;
   }
 `;
 const ImageWrapper = styled.div`
@@ -208,6 +223,10 @@ const Heading = styled.div`
     width: 100%;
     font-size: 24px;
     line-height: 33px;
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 100%;
+    font-size: 38px;
   }
 `;
 const Paragraph = styled.div`

@@ -112,13 +112,15 @@ const Container = styled.div`
   height: fit-content;
   padding: 2rem;
   background: ${"#FaFcfe"};
-
-  @media (max-width: 1024px) {
+  // Added the min width
+  @media (min-width: 769px) and (max-width: 1024px) {
     max-width: 100%;
-    width: 80%;
+    width: 100%;
   }
-  @media (max-width: 768px) {
+  //Added the min-width
+  @media (min-width: 480px) and (max-width: 768px) {
     padding: 1.5rem 0;
+    width: 100%;
   }
   @media (min-width: 300px) and (max-width: 500px) {
     width: 100%;
@@ -134,7 +136,7 @@ const HeroWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding: 0 1rem;
-  @media (max-width: 768px) {
+  @media (min-width: 300px) and (max-width: 768px) {
     width: 90%;
     height: fit-content;
     flex-direction: column;
@@ -158,6 +160,11 @@ const HeroText = styled.div`
     animation: ${Breathing} 5s ease-out infinite normal;
 
     @media (min-width: 1200px) and (max-width: 1400px) {
+      width: 75%;
+      top: 60%;
+      height: 60%;
+    }
+    @media (min-width: 480px) and (max-width: 900px) {
       width: 75%;
       top: 60%;
       height: 60%;

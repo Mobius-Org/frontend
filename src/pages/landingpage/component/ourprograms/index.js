@@ -56,7 +56,8 @@ const Container = styled.div`
   @media (min-width: 1200px) and (max-width: 1400px) {
     padding-top: 70px;
   }
-  @media (max-width: 768px) {
+  /* Added the min-width */
+  @media (min-width: 480px)and(max-width: 768px) {
     padding: 1.5rem 0;
   }
 `;
@@ -73,7 +74,7 @@ const OurProgramsWrapper = styled.div`
     margin-bottom: 2rem;
     padding-bottom: 50px;
   }
-  @media (max-width: 768px) {
+  @media (min-width: 400px) and (max-width: 768px) {
     width: 90%;
     height: fit-content;
     flex-direction: column;

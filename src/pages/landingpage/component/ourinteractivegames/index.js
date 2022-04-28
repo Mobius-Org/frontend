@@ -28,7 +28,7 @@ const OurInteractiveGames = () => {
   );
 };
 
-export {OurInteractiveGames};
+export { OurInteractiveGames };
 const Breathing = keyframes` 
   0% {
     -webkit-transform: scale(0.9);
@@ -77,6 +77,10 @@ const OurInteractiveGamesWrapper = styled.div`
     height: auto;
     width: 90%;
   }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 
 const SecHeading = styled.div`
@@ -91,6 +95,9 @@ const SecHeading = styled.div`
     width: 100%;
     margin: 0 auto;
   }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 100%;
+  }
   & > img#arrowG {
     position: absolute;
     top: 100%;
@@ -99,6 +106,9 @@ const SecHeading = styled.div`
     height: 50vh;
     animation: ${Breathing} 5s ease-out infinite normal;
     @media (max-width: 768px) {
+      display: none;
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
       display: none;
     }
   }
@@ -144,6 +154,9 @@ const OurGame = styled.div`
   height: 100%;
   width: 60%;
   @media (max-width: 768px) {
+    width: 100%;
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
     width: 100%;
   }
 `;
