@@ -125,7 +125,7 @@ const SignIn = () => {
             <InputField
               type={"email"}
               labelId={"email"}
-              label={"What is your email address?"}
+              label={"What is your email address"}
               placeholder={"Enter your email address here ..."}
               functionName={setEmail}
               cValue={email}
