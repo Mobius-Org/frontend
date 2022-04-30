@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { colors } from "../../colors";
-import { useNavigate } from "react-router-dom";
+
 import styled from "styled-components";
 
 const ResetSuccessModal = ({ src, text, text2, alt, heading, func }) => {
