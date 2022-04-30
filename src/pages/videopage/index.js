@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { Button } from "../../component";
 import { colors } from "../../colors";
 import {
   AiOutlineArrowLeft,
@@ -16,7 +15,7 @@ const Video = ({ func }) => {
   const { id } = useParams();
   const [CompletedCount, setCompletedCount] = useState(0);
   const [courseData, setCourseData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [setLoading] = useState(false);
   const [currVal, setCurrVal] = useState(0);
   const [watchComplete, setWatchComplete] = useState(false);
   const { sections } = courseData;
@@ -32,7 +31,7 @@ const Video = ({ func }) => {
     currVal < Course.length - 1 && setCurrVal(currVal + 1);
     setWatchComplete(false);
   };
-  const handleProgress = ({ played, playedSeconds, loaded }) => {
+  const handleProgress = ({ played }) => {
     if (played >= 0.8 && !watchComplete) {
       setWatchComplete(true);
       setCompletedCount(CompletedCount + 1);

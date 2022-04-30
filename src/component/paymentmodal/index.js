@@ -1,6 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
 import { colors } from "../../colors";
 import styled from "styled-components";
 
@@ -13,9 +12,6 @@ const PaymentModal = ({
   title,
   shortSummary,
 }) => {
-  const navigate = useNavigate();
-  const { profile } = useSelector((state) => state.auth);
-
   return (
     <EditProfileWrap showModal={showModal}>
       <Container showModal={showModal}>

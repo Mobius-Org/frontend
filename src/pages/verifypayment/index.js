@@ -21,7 +21,7 @@ const VerifyApp = () => {
       <Wrap next={next}>
         <InfoWrap>
           <div className="imgWrap">
-            <img src={status === "success" ? ps : pe} />
+            <img src={status === "success" ? ps : pe} alt="status icon" />
           </div>
           {status === "success" ? (
             <h1>Enrollment Successful</h1>
