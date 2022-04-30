@@ -31,7 +31,6 @@ const OurCourses = ({ text, data, func }) => {
                   courseId={courseId}
                   func={func}
                 />
-                ;
               </>
             );
           })}
