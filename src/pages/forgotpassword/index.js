@@ -3,13 +3,7 @@ import { colors } from "../../colors";
 import { CtaWrap, HeadingText, InputWrap, Wrap, Wrapper } from "./style.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ErrorMessage, InputWrapDiv } from "../signin/style";
-import {
-  Button,
-  EmptyState,
-  InputField,
-  Modal,
-  ResetSuccessModal,
-} from "../../component";
+import { Button, InputField, Modal, ResetSuccessModal } from "../../component";
 import { EmailIcon, kiddles } from "../../assets";
 // import { useSelector } from "react-redux";
 import mobiusApp from "../../api/mobiusApp";

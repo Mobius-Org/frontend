@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const ResetSuccessModal = ({ src, text, text2, alt, heading, func }) => {
-  const navigate = useNavigate();
-  const [next] = useState(true);
   return (
     <InfoWrap>
       <div className="imgWrap">
