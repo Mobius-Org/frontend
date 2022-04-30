@@ -130,13 +130,14 @@ const KidAdvertWrapper = styled(motion.div)`
   height: fit-content;
   padding: 2rem;
   background: ${colors.secondary20};
+  /* border: 2px solid yellow; */
 
   @media (max-width: 768px) {
     padding: 1rem 0;
   }
 `;
 const KidAdvertWrapperInner = styled.div`
-  height: 70vh;
+  height: fit-content;
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
@@ -144,9 +145,14 @@ const KidAdvertWrapperInner = styled.div`
   flex-direction: row;
   justify-content: space-between;
   position: relative;
+  /* border: 2px solid orange; */
 
   @media (min-width: 1200px) and (max-width: 1400px) {
     margin-bottom: 4rem;
+  }
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    display: flex;
+    gap: 17%;
   }
 
   @media (max-width: 768px) {
@@ -160,8 +166,11 @@ const KidAdvertWrapperInner = styled.div`
     gap: 1rem;
     padding: 1rem 0;
     height: 100%;
-    // justify-content: center;
     align-items: center;
+  }
+  @media (min-width: 480px) and(max-width: 767px) {
+    max-width: 90%;
+    margin: auto;
   }
 `;
 
@@ -169,10 +178,12 @@ const KidAdvertWrapperInnerText = styled.div`
   width: 60%;
   height: 70%;
   margin: auto 0;
-
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+  }
   @media (min-width: 480px) and (max-width: 768px) {
     width: 100%;
     gap: 1rem;
@@ -190,6 +201,7 @@ const KidAdvertWrapperInnerImage = styled.div`
   grid-template-columns: repeat(2, auto);
   position: relative;
   gap: 1rem;
+  /* border: 2px solid red; */
   @media (max-width: 768px) {
     display: flex;
     width: 100%;
@@ -199,6 +211,10 @@ const KidAdvertWrapperInnerImage = styled.div`
   @media (min-width: 769px) and (max-width: 1024px) {
     width: 70%;
   }
+  @media (min-width: 1024px) and (max-width: 1400px) {
+    /* width: 20%; */
+    /* height: 50%; */
+  }
 `;
 const ImageWrapper = styled.div`
   width: 100%;
@@ -207,6 +223,8 @@ const ImageWrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: contain;
+    @media (min-width: 1024px) and (max-width: 1400px) {
+    }
   }
   @media (min-width: 768px) {
     display: none;
@@ -219,6 +237,13 @@ const Heading = styled.div`
   line-height: 65px;
   width: 68%;
   text-align: start;
+  @media (min-width: 320px) and (max-width: 480px) {
+    font-size: 22px;
+    width: 100%;
+  }
+  @media (min-width: 480px) and (max-width: 768px) {
+    font-size: 30px;
+  }
   @media (max-width: 768px) {
     width: 100%;
     font-size: 24px;
@@ -226,7 +251,12 @@ const Heading = styled.div`
   }
   @media (min-width: 769px) and (max-width: 1024px) {
     width: 100%;
-    font-size: 38px;
+    font-size: 36px;
+  }
+  @media (min-width: 1024px) and (max-width: 1400px) {
+    font-size: 30px;
+    line-height: 40px;
+    width: 100%;
   }
 `;
 const Paragraph = styled.div`
@@ -241,12 +271,16 @@ const Paragraph = styled.div`
     width: 100%;
     font-size: 14px;
   }
+  @media (min-width: 320px) and (max-width: 480px) {
+    line-height: 30px;
+  }
 `;
 const BtnWrap = styled.div`
   width: fit-content;
 `;
 
 const ImageWrapper1 = styled.div`
+  /* border: 4px solid blue; */
   width: 236px;
   height: 236px;
   border-radius: 40px;
@@ -275,8 +309,11 @@ const ImageWrapper1 = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
+  @media (min-width: 1024px) and (max-width: 1400px) {
+  }
 `;
 const ImageWrapper2 = styled.div`
+  /* border: 4px solid blue; */
   width: 236px;
   height: 236px;
   border-radius: 100px 0 100px 0;
@@ -308,6 +345,7 @@ const ImageWrapper2 = styled.div`
   }
 `;
 const ImageWrapper3 = styled.div`
+  /* border: 4px solid blue; */
   width: 236px;
   height: 236px;
   border-radius: 100px 0 100px 0;
@@ -316,6 +354,7 @@ const ImageWrapper3 = styled.div`
   margin: auto;
   transition: all 0.3s ease-in-out;
   overflow: hidden;
+
   & img {
     width: 80%;
     height: 80%;
@@ -341,6 +380,7 @@ const ImageWrapper3 = styled.div`
   }
 `;
 const ImageWrapper4 = styled.div`
+  /* border: 4px solid blue; */
   width: 236px;
   height: 236px;
   border-radius: 40px;
@@ -373,6 +413,7 @@ const ImageWrapper4 = styled.div`
 `;
 
 const ImageWrapper5 = styled.div`
+  /* border: 4px solid blue; */
   position: absolute;
   top: 50%;
   left: 50%;

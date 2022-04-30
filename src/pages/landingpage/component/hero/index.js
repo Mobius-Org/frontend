@@ -112,23 +112,28 @@ const Container = styled.div`
   height: fit-content;
   padding: 2rem;
   background: ${"#FaFcfe"};
+  /* border: 2px solid red; */
   // Added the min width
   @media (min-width: 769px) and (max-width: 1024px) {
     max-width: 100%;
     width: 100%;
   }
   //Added the min-width
-  @media (min-width: 480px) and (max-width: 768px) {
+  @media (min-width: 480px) and (max-width: 769px) {
     padding: 1.5rem 0;
     width: 100%;
+    max-width: 100%;
   }
-  @media (min-width: 300px) and (max-width: 500px) {
+  @media (min-width: 300px) and (max-width: 480px) {
     width: 100%;
+    padding: 1rem;
+    max-width: 100%;
   }
 `;
 const HeroWrapper = styled.div`
   max-width: 1400px;
   width: calc(100% - 2rem);
+  /* border: 2px solid blue; */
   height: 82vh;
   margin: 0 auto;
   display: flex;
@@ -141,12 +146,18 @@ const HeroWrapper = styled.div`
     height: fit-content;
     flex-direction: column;
     gap: 2rem;
+    padding: 0;
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    max-width: 100%;
+    width: 100%;
   }
 `;
 const HeroText = styled.div`
   width: 55%;
   height: 100%;
   margin: auto 0;
+  /* border: 2px solid green; */
   display: flex;
   flex-direction: column;
   position: relative;
@@ -164,10 +175,17 @@ const HeroText = styled.div`
       top: 60%;
       height: 60%;
     }
-    @media (min-width: 480px) and (max-width: 900px) {
+    @media (min-width: 480px) and (max-width: 769px) {
       width: 75%;
       top: 60%;
       height: 60%;
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      top: 75%;
+      height: 45%;
+    }
+    @media (min-width: 1024px) and (max-width: 1400px) {
+      top: 65%;
     }
   }
   & > img#star {
@@ -177,6 +195,13 @@ const HeroText = styled.div`
     left: 90%;
     z-index: 1;
     animation: ${Breathing2} 5s ease-out infinite normal;
+    @media (min-width: 769px) and (max-width: 1024px) {
+      left: 80%;
+      width: 10%;
+      top: 92%;
+    }
+    @media (min-width: 1024px) and (max-width: 1024px) {
+    }
   }
   @media (max-width: 768px) {
     width: 100%;
@@ -186,6 +211,11 @@ const HeroText = styled.div`
     & > img {
       display: none;
     }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    max-width: 100%;
+    width: fit-content;
+    display: flex;
   }
 `;
 const AdText = styled.p`
@@ -260,11 +290,15 @@ const ImageWrapper = styled.div`
   img {
     width: 100%;
     height: 80%;
+    /* border: 2px solid coral; */
     object-fit: contain;
     left: 0;
     top: 10%;
     position: absolute;
     z-index: 3;
+    @media (min-width: 769px) and (max-width: 1024px) {
+      top: 5%;
+    }
   }
 
   &::before {
@@ -276,6 +310,12 @@ const ImageWrapper = styled.div`
     height: 100%;
     background: #f1e34d;
     z-index: 1;
+    @media (min-width: 769px) and (max-width: 1024px) {
+      width: 80%;
+      height: 70%;
+      left: 10%;
+      margin-top: 30px;
+    }
   }
   &::after {
     content: "";
@@ -286,5 +326,11 @@ const ImageWrapper = styled.div`
     height: 80%;
     background: #599dff;
     z-index: 2;
+    @media (min-width: 769px) and (max-width: 1024px) {
+      width: 85%;
+      left: 8.5%;
+      height: 60%;
+      margin-top: 10px;
+    }
   }
 `;

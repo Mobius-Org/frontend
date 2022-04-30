@@ -54,10 +54,25 @@ const Card = styled.div`
   width: 415px;
   height: 443px;
   border-radius: 11.38px;
+  /* border: 2px solid black; */
   background: ${colors.white};
   box-shadow: 0px 1px 5px ${colors.secondary20};
   @media (max-width: 768px) {
     width: 100%;
+    /* max-width: 90%;
+    margin: auto; */
+  }
+  @media (min-width: 480px) and(max-width: 769px) {
+    max-width: 90%;
+    margin: auto;
+  }
+  @media (min-width: 300px) and (max-width: 480px) {
+    max-width: 100%;
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    max-width: 100%;
+    width: 100%;
+    /* height: 300px; */
   }
 `;
 const CourseThumbNail = styled.div`
@@ -69,6 +84,12 @@ const CourseThumbNail = styled.div`
     width: 100%;
     height: 100%;
     border-radius: inherit;
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      /* max-width: 100%;
+      width: 100%; */
+      /* height: px; */
+    }
   }
 `;
 const CourseInfo = styled.div`
@@ -79,11 +100,17 @@ const CourseInfo = styled.div`
   flex-direction: column;
   gap: 1rem;
   padding: 1rem 0;
+  @media (min-width: 769px) and (max-width: 1024px) {
+    height: auto;
+  }
 `;
 const CourseTitle = styled.h3`
   width: 90%;
   margin: 0 auto;
   text-align: start;
+  @media (min-width: 769px) and (max-width: 1024px) {
+    font-size: 18px;
+  }
 `;
 const CourseDescription = styled.p`
   font-family: Nunito;
@@ -122,4 +149,8 @@ const CoursePrice = styled.span`
 
 const CourseCta = styled.div`
   width: fit-content;
+  @media (min-width: 769px) and (max-width: 900px) {
+    width: 70%;
+    height: 50%;
+  }
 `;

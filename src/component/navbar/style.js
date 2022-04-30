@@ -8,6 +8,7 @@ export const NavWrapper = styled.header`
   position: sticky;
   top: 0;
   z-index: 999;
+  overflow: hidden;
   box-shadow: ${({ scrolled }) =>
     scrolled ? `0px 2px 4px ${colors.secondary60}` : "none"};
   @media (max-width: 768px) {

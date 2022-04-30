@@ -20,7 +20,7 @@ const OurInteractiveGames = () => {
         <OurGame>
           <ImageWrapper>
             <img src={ctaPlay} alt="" id="play" />
-            <img src={ticTacImage} alt="tictacimg" />
+            <img src={ticTacImage} alt="tictacimg" id="tictac" />
           </ImageWrapper>
         </OurGame>
       </OurInteractiveGamesWrapper>
@@ -194,6 +194,9 @@ const ImageWrapper = styled.div`
     border-radius: 10px;
     @media (max-width: 768px) {
       border-radius: 30px;
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      height: 70vh;
     }
   }
 `;

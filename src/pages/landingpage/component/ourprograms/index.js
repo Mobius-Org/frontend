@@ -52,20 +52,24 @@ const Container = styled.div`
   height: fit-content;
   padding: 2rem;
   background: ${"#FaFcfe"};
-
+  /* border: 2px solid blue; */
   @media (min-width: 1200px) and (max-width: 1400px) {
     padding-top: 70px;
   }
   /* Added the min-width */
-  @media (min-width: 480px)and(max-width: 768px) {
+  @media (min-width: 480px) and(max-width: 768px) {
     padding: 1.5rem 0;
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    padding: 0;
   }
 `;
 const OurProgramsWrapper = styled.div`
   max-width: 1400px;
   width: 100%;
-  height: 82vh;
+  height: fit-content;
   margin: 0 auto;
+  /* border: 1px solid red; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -74,11 +78,14 @@ const OurProgramsWrapper = styled.div`
     margin-bottom: 2rem;
     padding-bottom: 50px;
   }
-  @media (min-width: 400px) and (max-width: 768px) {
-    width: 90%;
+  @media (min-width: 480px) and (max-width: 768px) {
+    width: 100%;
     height: fit-content;
     flex-direction: column;
     gap: 2rem;
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    padding-bottom: 20px;
   }
 `;
 const SecHeading = styled.div`
@@ -104,6 +111,9 @@ const SecHeading = styled.div`
     @media (max-width: 768px) {
       text-align: start;
     }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      font-size: 30px;
+    }
     span {
       align-items: center;
       font-family: Nunito;
@@ -113,6 +123,9 @@ const SecHeading = styled.div`
       border-bottom: 4px solid ${colors.secondary80};
       @media (max-width: 768px) {
         font-size: 24px;
+      }
+      @media (min-width: 769px) and (max-width: 1024px) {
+        font-size: 30px;
       }
     }
     @media (max-width: 768px) {
@@ -134,6 +147,9 @@ const SecHeading = styled.div`
       width: 100%;
       text-align: start;
     }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      font-size: 18px;
+    }
   }
 `;
 const CoursesList = styled.div`
@@ -147,5 +163,12 @@ const CoursesList = styled.div`
   @media (min-width: 768px) {
     width: 90%;
     flex-direction: row;
+    /* max-width: 90%; */
+  }
+  @media (min-width: 300px) and (max-width: 480px) {
+    height: auto;
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    height: auto;
   }
 `;
