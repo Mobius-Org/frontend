@@ -27,8 +27,12 @@ import girlCanva from "./girlCanva.png";
 import Badge1 from "./badge1.png";
 import EmailIcon from "./emailIcon.svg";
 import rafiki from "./rafiki.svg";
+import ps from "./pS.svg";
+import pe from "./pe.svg";
 export {
   girlCanva,
+  ps,
+  pe,
   rafiki,
   EmailIcon,
   Badge1,

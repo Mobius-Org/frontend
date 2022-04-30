@@ -9,3 +9,4 @@ export * from "./profile";
 export * from "./selectdropdown";
 export * from "./videoplayer";
 export * from "./emptyitems";
+export * from "./paymentmodal";

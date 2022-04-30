@@ -41,6 +41,7 @@ const VideoPlayer = () => {
           width="100%"
           controls
           url={url}
+          light={true}
           onProgress={handleProgress}
           style={{ borderRadius: "15px" }}
         />

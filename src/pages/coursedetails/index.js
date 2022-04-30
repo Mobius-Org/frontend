@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Puff } from "react-loader-spinner";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import mobiusApp from "../../api/mobiusApp";
 import { colors } from "../../colors";
-import { Button } from "../../component";
+import { Button, PaymentModal } from "../../component";
 import { MdWest, MdVerified, MdAccessTime } from "react-icons/md";
 import { BiBookOpen } from "react-icons/bi";
 import { IoLanguage } from "react-icons/io5";
@@ -18,9 +18,13 @@ const CourseDetails = () => {
   const { profile } = auth;
   const token = profile?.token;
   const { id } = useParams();
+  const _id = profile?._id;
   const [courseData, setCourseData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingBtn, setLoadingBtn] = useState(false);
+  const [payStackUrl, setPayStackUrl] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
   const EnrollCourse = async () => {
     setLoadingBtn(true);
     if (token) {
@@ -38,17 +42,52 @@ const CourseDetails = () => {
         console.log(data);
         toast.success("enrollment success");
         setLoadingBtn(false);
+        navigate("/dashboard/myCourses");
       } catch (error) {
         toast.error("Course enrollment failed");
         setLoadingBtn(false);
       }
     } else {
-      toast("Please register or login to enroll");
+      toast("Please register or login to enroll", {
+        position: "top-center",
+        autoClose: false,
+      });
       setLoadingBtn(false);
       return;
     }
   };
+  const EnrollPayment = async () => {
+    setLoadingBtn(true);
+    if (token) {
+      try {
+        const res = await mobiusApp.post(
+          `/courses/enroll/${id}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const data = res?.data;
 
+        setPayStackUrl(data.redirectUrl);
+        setShowModal(true);
+        setLoadingBtn(false);
+      } catch (error) {
+        toast.error("Course enrollment failed");
+        setLoadingBtn(false);
+      }
+    } else {
+      toast.error("Please register or login to enroll", {
+        position: "top-center",
+        autoClose: false,
+      });
+      setLoadingBtn(false);
+
+      return;
+    }
+  };
   useEffect(() => {
     let mounted = true;
     const getOneCourse = async () => {
@@ -56,6 +95,7 @@ const CourseDetails = () => {
       try {
         const res = await mobiusApp.get(`/courses/getOne/${id}`);
         const data = res?.data;
+        console.log(data);
         setCourseData(data?.course);
         setLoading(false);
       } catch (error) {
@@ -78,6 +118,15 @@ const CourseDetails = () => {
       ) : (
         <CourseDetailWrapper>
           <CourseDetailWrapperInner>
+            <PaymentModal
+              src={payStackUrl} // paystack url
+              showModal={showModal}
+              setShowModal={setShowModal}
+              image={courseData?.description?.image}
+              price={courseData?.description?.price}
+              title={courseData.courseName}
+              shortSummary={courseData.description?.shortSummary}
+            />
             <Row1>
               <BackContainer onClick={() => window.history.back()}>
                 <span>
@@ -116,12 +165,35 @@ const CourseDetails = () => {
                         <span>&#8358;{courseData?.description?.price}</span>
                       )}
                     </CoursePrice>
-                    <Btnwrap onClick={EnrollCourse}>
-                      <Button
-                        bgColor={colors.secondary_color}
-                        text={"Enroll"}
-                        loadingState={loadingBtn}
-                      />
+                    <Btnwrap>
+                      {courseData?.description?.studentsEnrolled?.includes(
+                        _id
+                      ) ? (
+                        <span
+                          onClick={() => {
+                            navigate(`/dashboard`);
+                          }}
+                        >
+                          <Button
+                            text={`View Course`}
+                            bgColor={colors.secondary80}
+                          />
+                        </span>
+                      ) : (
+                        <span
+                          onClick={
+                            courseData?.description?.price === "Free"
+                              ? EnrollCourse
+                              : EnrollPayment
+                          }
+                        >
+                          <Button
+                            bgColor={colors.secondary_color}
+                            text={"Enroll"}
+                            loadingState={loadingBtn}
+                          />
+                        </span>
+                      )}
                     </Btnwrap>
                   </CoursePriceBtn>
                 </CourseDetail>
@@ -166,7 +238,7 @@ const CourseDetails = () => {
                   <span>
                     <IoLanguage />
                   </span>
-                  <span>Language: English </span>
+                  <span>Language: </span>
                 </ColRow>
                 <Text>English Language</Text>
               </Col>

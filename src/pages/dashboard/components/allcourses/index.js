@@ -7,7 +7,6 @@ import OurCourses from "../ourcourses";
 import mobiusApp from "../../../../api/mobiusApp";
 import { Puff } from "react-loader-spinner";
 import { colors } from "../../../../colors";
-import { Video } from "../../../videopage";
 
 const AllCourses = () => {
   const state = useSelector((state) => state);
@@ -15,7 +14,6 @@ const AllCourses = () => {
   const { profile } = auth;
   const token = profile?.token;
   const [loading, setLoading] = useState(false);
-  const [takeCourse, setTakeCourse] = useState(false);
   const [data, setData] = useState([]);
   useEffect(() => {
     const handleGetAllMyCourse = async () => {
@@ -34,7 +32,7 @@ const AllCourses = () => {
       }
     };
     handleGetAllMyCourse();
-  }, [token]);
+  }, []);
   return (
     <Container>
       <AllCoursesInner>
@@ -42,16 +40,10 @@ const AllCourses = () => {
           <LoaderWrapper>
             <Puff color={colors.secondary80} width="150px" height={"150px"} />
           </LoaderWrapper>
-        ) : takeCourse ? (
-          <Video func={() => setTakeCourse(false)} />
         ) : (
           <>
             {data?.length > 0 ? (
-              <OurCourses
-                func={() => setTakeCourse(true)}
-                data={data}
-                text={"Enrolled Courses"}
-              />
+              <OurCourses data={data} text={"Enrolled Courses"} />
             ) : (
               <EmptyItem
                 src={broCanva}
