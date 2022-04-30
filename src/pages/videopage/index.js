@@ -76,7 +76,7 @@ const Video = ({ func }) => {
       getOneCourse();
     }
     return () => (mounted = false);
-  }, [id]);
+  }, [id, setLoading]);
 
   return (
     <VideoContainer>

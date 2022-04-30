@@ -32,7 +32,7 @@ const AllCourses = () => {
       }
     };
     handleGetAllMyCourse();
-  }, []);
+  }, [token]);
   return (
     <Container>
       <AllCoursesInner>
