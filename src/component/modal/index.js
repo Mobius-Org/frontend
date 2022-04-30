@@ -1,7 +1,7 @@
 import React from "react";
 
 import styled from "styled-components";
-const Modal = ({ children, showModal, SetShowModal }) => {
+const Modal = ({ children, showModal, setShowModal }) => {
   return (
     <EditProfileWrap showModal={showModal}>
       <Container showModal={showModal}>{children}</Container>
@@ -56,7 +56,7 @@ const EditProfileWrap = styled.div`
 // `;
 
 const Container = styled.div`
-  width: 40vw;
+  width: 45vw;
   border-radius: 10px;
   height: fit-content;
   background: #fff;

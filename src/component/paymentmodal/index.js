@@ -68,7 +68,6 @@ const EditProfileWrap = styled.div`
   justify-content: center;
   top: 0%;
   left: 0%;
-
   background: rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease-in-out;
   opacity: 1;
@@ -96,6 +95,7 @@ const Container = styled.div`
   transform: scale(1);
   transition-delay: 0.3s;
   padding: 0;
+  padding-bottom: 0.5rem;
 
   ${({ showModal }) =>
     !showModal &&
@@ -128,7 +128,7 @@ const Container = styled.div`
     }
     & div {
       aside.firsta {
-        padding: 1rem 1rem;
+        padding: 1rem 2rem;
         & > h2 {
           font-size: 1.5rem;
           color: ${colors.secondary80};
@@ -139,7 +139,7 @@ const Container = styled.div`
         }
       }
       aside.seconda {
-        padding: 0.5rem 1rem;
+        padding: 1rem 2rem;
         display: flex;
         background: ${colors.secondary20};
         flex-flow: column wrap;
@@ -149,7 +149,7 @@ const Container = styled.div`
         }
       }
       aside.third {
-        padding: 1rem;
+        padding: 1rem 2rem;
         display: flex;
         justify-content: space-between;
       }

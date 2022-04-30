@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import mobiusApp from "../../api/mobiusApp";
 import { kiddles } from "../../assets";
 import { colors } from "../../colors";
-import { Button, InputField, Modal } from "../../component";
+import { Button, InputField, Modal, ResetSuccessModal } from "../../component";
 
 import {
   CtaWrap,
@@ -17,11 +17,13 @@ import {
 import { ErrorMessage, InputWrapDiv } from "../signin/style";
 
 const SetNewPassword = () => {
-  const [showModal, SetShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState(null);
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
   const { token } = useParams();
   // alert(token);
 
@@ -41,25 +43,30 @@ const SetNewPassword = () => {
       const response = await mobiusApp.patch(`/auth/reset-password/${token}`, {
         password,
       });
-      toast.success(response?.data.message, {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      setMessage(response?.data.message);
+      setShowModal(true);
     } catch (err) {
       toast.error(err?.response?.data?.message);
+      setShowModal(false);
     }
   };
   return (
     <Wrapper>
       <Modal
         showModal={showModal}
-        SetShowModal={SetShowModal}
-        children={<div>Hellow</div>}
+        setShowModal={setShowModal}
+        children={
+          <ResetSuccessModal
+            text={message}
+            text2={"Close"}
+            heading={"Password Reset Successful"}
+            func={() => {
+              setShowModal(false);
+              setMessage("");
+              navigate("/signin");
+            }}
+          />
+        }
       />
       <img src={kiddles} alt="doddle" />
 

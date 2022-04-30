@@ -3,7 +3,13 @@ import { colors } from "../../colors";
 import { CtaWrap, HeadingText, InputWrap, Wrap, Wrapper } from "./style.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ErrorMessage, InputWrapDiv } from "../signin/style";
-import { Button, EmptyState, InputField, Modal } from "../../component";
+import {
+  Button,
+  EmptyState,
+  InputField,
+  Modal,
+  ResetSuccessModal,
+} from "../../component";
 import { EmailIcon, kiddles } from "../../assets";
 // import { useSelector } from "react-redux";
 import mobiusApp from "../../api/mobiusApp";
@@ -48,10 +54,11 @@ const ForgotPassword = () => {
         showModal={showModal}
         SetShowModal={setShowModal}
         children={
-          <EmptyState
+          <ResetSuccessModal
             text={responseMessage}
             src={EmailIcon}
             alt={"emailicon"}
+            heading={"Check Your Email"}
             func={closeModal}
             text2="Close"
           />
