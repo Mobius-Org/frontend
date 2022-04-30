@@ -5,6 +5,8 @@ import {
   LandingPage,
   ForgotPassword,
   CourseDetails,
+  Video,
+  VerifyApp,
 } from "../../pages";
 import {
   Overview,
@@ -32,6 +34,11 @@ const authRoutes = [
     path: "/coursedetails/:id",
     element: <CourseDetails />,
   },
+  {
+    name: "verifyPayment",
+    path: "/courses/verify-payment/:status",
+    element: <VerifyApp />,
+  },
 
   { name: "home", path: "/", element: <LandingPage /> },
 ];
@@ -44,8 +51,14 @@ const dashBoardRoutes = [
   },
   {
     name: "My Courses",
-    path: "/dashboard/AllCourses",
+    path: "/dashboard/myCourses",
     element: <AllCourses />,
+  },
+
+  {
+    name: "View Course",
+    path: "/dashboard/myCourses/viewCourse/:id",
+    element: <Video />,
   },
   {
     name: "Badges",

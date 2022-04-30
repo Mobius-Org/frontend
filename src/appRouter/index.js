@@ -3,7 +3,6 @@ import { AuthLayout, DashBoardLayout } from "../layout";
 import { authRoutes, dashBoardRoutes, RequireAuth } from "./routes";
 import { AnimatePresence } from "framer-motion";
 import { NotFound } from "../pages";
-// import { NotFound } from "../pages";
 
 export const AppRouter = ({ showModal, setShowModal }) => {
   return (
@@ -41,6 +40,7 @@ export const AppRouter = ({ showModal, setShowModal }) => {
               }
             />
           ))}
+
           <Route path="*" exact element={<NotFound />} />
         </Routes>
       </AnimatePresence>

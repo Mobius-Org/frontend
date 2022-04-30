@@ -35,13 +35,15 @@ const VideoPlayer = () => {
 
   return (
     <VideoPlayerWrapper>
-      <ReactPlayerInner>
+      <ReactPlayerInner className="playerWrapper">
         <ReactPlayer
           height="100%"
           width="100%"
           controls
           url={url}
+          light={true}
           onProgress={handleProgress}
+          style={{ borderRadius: "15px" }}
         />
         {/* <CtaWrapper>
           <PrevBtn onClick={handlePrev}>prev</PrevBtn>
@@ -67,5 +69,13 @@ const VideoPlayerWrapper = styled.div`
 
 const ReactPlayerInner = styled.div`
   width: 100%;
-  height: 100%;
+  height: 50vh;
+  &.playerWrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  }
 `;

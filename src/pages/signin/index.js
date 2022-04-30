@@ -22,9 +22,6 @@ import { Button, InputField } from "../../component";
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const location = useLocation();
-  // const from = location.state?.from?.pathname || "/";
-
   const [loading, setLoading] = useState(false);
   // getting input data
   const [email, setEmail] = useState("");

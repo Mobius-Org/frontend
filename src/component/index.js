@@ -9,6 +9,4 @@ export * from "./profile";
 export * from "./selectdropdown";
 export * from "./videoplayer";
 export * from "./emptyitems";
-export * from "./adminpage";
-export * from "./adminvideo";
-export * from "./confirmdetails";
+export * from "./paymentmodal";

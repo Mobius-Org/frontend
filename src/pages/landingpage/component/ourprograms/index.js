@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-// import { asset4, colorPaint, moneyP } from "../../../../assets";
 import { colors } from "../../../../colors";
 import { CourseCard } from "../../../../component";
 

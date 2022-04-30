@@ -77,14 +77,16 @@ const Nav = () => {
         <Menu isOpen={isOpen}>
           {currentlocation.includes("/dashboard") ? (
             <span>
-              {dashBoardRoutes.map(({ name, icon, path, displayName }, i) => (
-                <MenuItem>
-                  {" "}
-                  <Link onClick={handleClick} className="link" to={path}>
-                    {name}
-                  </Link>
-                </MenuItem>
-              ))}
+              {dashBoardRoutes
+                .filter((routeObject) => routeObject.name !== "View Course")
+                .map(({ name, icon, path, displayName }, i) => (
+                  <MenuItem key={i}>
+                    {" "}
+                    <Link onClick={handleClick} className="link" to={path}>
+                      {name}
+                    </Link>
+                  </MenuItem>
+                ))}
             </span>
           ) : (
             <span>

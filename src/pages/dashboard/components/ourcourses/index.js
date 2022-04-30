@@ -1,33 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { asset4, colorPaint, moneyP } from "../../../../assets";
 import { colors } from "../../../../colors";
 import { CourseCard } from "../../../../component";
 
-const OurCourses = ({ text }) => {
-  const courses = [
-    {
-      title: "Arithmetic",
-      description:
-        "Learn Basic operations of math, which are addition, subtraction, multiplication and division.  ",
-      price: 3000,
-      image: asset4,
-    },
-    {
-      title: "Know Your Colors",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt  .",
-      price: 1000,
-      image: colorPaint,
-    },
-    {
-      title: "Learn Money",
-      description:
-        "Join us to learn the history of money, the value and how to properly use money.",
-      price: 2000,
-      image: moneyP,
-    },
-  ];
+const OurCourses = ({ text, data, func }) => {
+  const courses = data;
   return (
     <Container>
       <OurProgramsWrapper>
@@ -35,9 +12,28 @@ const OurCourses = ({ text }) => {
           <h2>{text}</h2>
         </SecHeading>
         <CoursesList>
-          {courses.map((course, index) => (
-            <CourseCard key={index} {...course} />
-          ))}
+          {courses?.map((course, index) => {
+            const title = course?.courseName;
+            const description = course?.description?.shortSummary;
+            const price = course?.description?.price;
+            const image = course?.description?.image;
+            const studentEnrolled = course?.description?.studentEnrolled;
+            const courseId = course?.courseId;
+            return (
+              <>
+                <CourseCard
+                  key={index++}
+                  title={title}
+                  description={description}
+                  price={price}
+                  image={image}
+                  id={studentEnrolled}
+                  courseId={courseId}
+                  func={func}
+                />
+              </>
+            );
+          })}
         </CoursesList>
       </OurProgramsWrapper>
     </Container>

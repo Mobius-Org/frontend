@@ -26,7 +26,8 @@ const CourseCard = ({ title, description, price, image, id, courseId }) => {
             {id?.includes(_id) ? (
               <span
                 onClick={() => {
-                  navigate("/dashboard/AllCourses");
+                  navigate(`/dashboard/myCourses/viewCourse/${courseId}`);
+                  localStorage.setItem("courseId", courseId);
                 }}
               >
                 <Button text={`View Course`} bgColor={colors.secondary80} />
