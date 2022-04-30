@@ -10,12 +10,13 @@ import { useParams } from "react-router-dom";
 import mobiusApp from "../../api/mobiusApp";
 import ReactPlayer from "react-player";
 import { toast } from "react-toastify";
+import { Puff } from "react-loader-spinner";
 const Video = ({ func }) => {
   const playerRef = useRef();
   const { id } = useParams();
   const [CompletedCount, setCompletedCount] = useState(0);
   const [courseData, setCourseData] = useState([]);
-  const [setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [currVal, setCurrVal] = useState(0);
   const [watchComplete, setWatchComplete] = useState(false);
   const { sections } = courseData;
@@ -81,78 +82,93 @@ const Video = ({ func }) => {
   return (
     <VideoContainer>
       <VideoWrapper>
-        <Row>
-          <Title>{courseData?.courseName}</Title>
-          <TopicWrapper onClick={() => window.history.back()}>
-            <span>
-              <AiOutlineArrowLeft className="arrowLeft" />
-            </span>
-            <span>Back to Courses</span>
-          </TopicWrapper>
-        </Row>
-        <VideoSpace>
-          <ReactPlayerInner className="playerWrapper">
-            <ReactPlayer
-              height="100%"
-              width="100%"
-              className="player"
-              controls
-              playerRef={playerRef}
-              url={Course[currVal]?.video}
-              onProgress={handleProgress}
-              style={{ borderRadius: "15px" }}
-            />
-          </ReactPlayerInner>
-        </VideoSpace>
-        <DownloadWrapper>
-          <BtnWrapper onClick={handleDownload}>
-            <span>Download</span>
-            <span>
-              <AiOutlineArrowDown />
-            </span>
-          </BtnWrapper>
+        {loading ? (
+          <LoaderWrapper>
+            <Puff color={colors.secondary80} width="150px" height={"150px"} />
+          </LoaderWrapper>
+        ) : (
+          <>
+            <Row>
+              <Title>{courseData?.courseName}</Title>
+              <TopicWrapper onClick={() => window.history.back()}>
+                <span>
+                  <AiOutlineArrowLeft className="arrowLeft" />
+                </span>
+                <span>Back to Courses</span>
+              </TopicWrapper>
+            </Row>
+            <VideoSpace>
+              <ReactPlayerInner className="playerWrapper">
+                <ReactPlayer
+                  height="100%"
+                  width="100%"
+                  className="player"
+                  controls
+                  playerRef={playerRef}
+                  url={Course[currVal]?.video}
+                  onProgress={handleProgress}
+                  style={{ borderRadius: "15px" }}
+                />
+              </ReactPlayerInner>
+            </VideoSpace>
+            <DownloadWrapper>
+              <BtnWrapper onClick={handleDownload}>
+                <span>Download</span>
+                <span>
+                  <AiOutlineArrowDown />
+                </span>
+              </BtnWrapper>
 
-          <ProgressBar>
-            <span>
-              <span>Completed:</span>
-              <span>
-                {CompletedCount} / {Course.length}
-              </span>
-            </span>
-            <span>{(CompletedCount / Course.length) * 100}%</span>
-          </ProgressBar>
-        </DownloadWrapper>
-        <ModuleCon>
-          <h3> {Course[currVal]?.title} </h3>
-          <p>{Course[currVal]?.text || Course[currVal]?.description}</p>
-          <FinLit>
-            {/* =========================================================== */}
-            <div>
-              {(currVal > 0 || currVal === Course.length - 1) && (
-                <BtnWrapper onClick={() => handleDecrease()}>
+              <ProgressBar>
+                <span>
+                  <span>Completed:</span>
                   <span>
-                    <AiOutlineArrowLeft className="arrowLeft" />
+                    {CompletedCount} / {Course.length}
                   </span>
-                  <span>Previous</span>
-                </BtnWrapper>
-              )}
-            </div>
+                </span>
+                <span>{(CompletedCount / Course.length) * 100}%</span>
+              </ProgressBar>
+            </DownloadWrapper>
+            <ModuleCon>
+              <h3> {Course[currVal]?.title} </h3>
+              <p>{Course[currVal]?.text || Course[currVal]?.description}</p>
+              <FinLit>
+                {/* =========================================================== */}
+                <div>
+                  {(currVal > 0 || currVal === Course.length - 1) && (
+                    <BtnWrapper onClick={() => handleDecrease()}>
+                      <span>
+                        <AiOutlineArrowLeft className="arrowLeft" />
+                      </span>
+                      <span>Previous</span>
+                    </BtnWrapper>
+                  )}
+                </div>
 
-            <BtnWrapper onClick={() => handleIncrease()}>
-              <span>Next</span>
-              <span>
-                <AiOutlineArrowRight className="arrowRight" />
-              </span>
-            </BtnWrapper>
-          </FinLit>
-        </ModuleCon>
+                <BtnWrapper onClick={() => handleIncrease()}>
+                  <span>Next</span>
+                  <span>
+                    <AiOutlineArrowRight className="arrowRight" />
+                  </span>
+                </BtnWrapper>
+              </FinLit>
+            </ModuleCon>
+          </>
+        )}
       </VideoWrapper>
     </VideoContainer>
   );
 };
 
 export { Video };
-
+const LoaderWrapper = styled.div`
+  margin: auto;
+  width: 100%;
+  height: 78vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 const VideoContainer = styled.div`
   width: 100%;
   height: fit-content;
