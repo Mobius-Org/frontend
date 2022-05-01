@@ -4,9 +4,6 @@ import { AppRouter } from "./appRouter";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { Modal } from "./component";
-// import { Admin } from "./component";
-// import {Adminvideo} from "./component"
-// import { ConfirmDetails } from "./component";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -15,9 +12,6 @@ function App() {
       <ToastContainer />
       <Modal showModal={showModal} SetShowModal={setShowModal} />
       <AppRouter showModal={showModal} SetShowModal={setShowModal} />
-      {/* <Admin /> */}
-      {/* <Adminvideo /> */}
-      {/* <ConfirmDetails /> */}
     </div>
   );
 }
