@@ -78,7 +78,11 @@ const Nav = () => {
           {currentlocation.includes("/dashboard") ? (
             <span>
               {dashBoardRoutes
-                .filter((routeObject) => routeObject.name !== "View Course")
+                .filter(
+                  (routeObject) =>
+                    routeObject.name !== "View Course" &&
+                    routeObject.name !== "Course Exercise"
+                )
                 .map(({ name, icon, path, displayName }, i) => (
                   <MenuItem key={i}>
                     {" "}

@@ -9,3 +9,4 @@ export * from "./dashboard";
 export * from "./videopage";
 export * from "./coursedetails";
 export * from "./verifypayment";
+export * from "./exercise";

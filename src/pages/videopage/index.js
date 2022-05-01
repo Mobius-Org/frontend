@@ -6,7 +6,7 @@ import {
   AiOutlineArrowRight,
   AiOutlineArrowDown,
 } from "react-icons/ai";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import mobiusApp from "../../api/mobiusApp";
 import ReactPlayer from "react-player";
 import { toast } from "react-toastify";
@@ -14,28 +14,69 @@ import { Puff } from "react-loader-spinner";
 const Video = ({ func }) => {
   const playerRef = useRef();
   const { id } = useParams();
-  const [CompletedCount, setCompletedCount] = useState(0);
-  const [courseData, setCourseData] = useState([]);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [currVal, setCurrVal] = useState(0);
-  const [watchComplete, setWatchComplete] = useState(false);
+  const [courseData, setCourseData] = useState([]);
   const { sections } = courseData;
   const introduction = sections?.introduction;
   const contents = sections?.contents.length > 0 ? [...sections?.contents] : [];
   const Course = [introduction, ...contents];
-  console.log(Course);
+  const [watchComplete, setWatchComplete] = useState(false);
+  const [currVal, setCurrVal] = useState(0);
+  const currentCourse = Course[currVal];
+  const courseCount = Course.length;
+  const [watchedCourses, setWatchedCourses] = useState([]);
+
   const handleDecrease = () => {
     return currVal > 0 && setCurrVal(currVal - 1);
   };
   const handleIncrease = () => {
-    if (!watchComplete) return;
-    currVal < Course.length - 1 && setCurrVal(currVal + 1);
-    setWatchComplete(false);
+    if (watchedCourses.length === courseCount && currVal === courseCount - 1) {
+      return;
+    } else {
+      let courseHasBeenWatched = (element) =>
+        Object.values(element).indexOf(currentCourse.title) > -1;
+      let courseWatchedValidity = watchedCourses.some(courseHasBeenWatched);
+      if (currVal <= courseCount - 1 && watchedCourses.length !== 0) {
+        if (courseWatchedValidity) {
+          setCurrVal(currVal + 1);
+        } else if (!courseWatchedValidity && watchComplete) {
+          if (currVal + 1 === courseCount) {
+            return setWatchedCourses([...watchedCourses, currentCourse]);
+          } else if (currVal + 1 < courseCount) {
+            setWatchedCourses([...watchedCourses, currentCourse]);
+            setCurrVal(currVal + 1);
+          }
+        } else {
+          return toast("Please watch the course for atleast 80%", {
+            position: "top-center",
+            autoClose: 5000,
+          });
+        }
+      } else if (
+        currVal < courseCount - 1 &&
+        watchedCourses.length === 0 &&
+        watchComplete
+      ) {
+        setCurrVal(currVal + 1);
+        setWatchedCourses([...watchedCourses, currentCourse]);
+      } else if (watchedCourses.length === courseCount) {
+        alert("run");
+        return;
+      } else {
+        return toast("Please watch the course for atleast 80%", {
+          position: "top-center",
+          autoClose: 5000,
+        });
+      }
+    }
   };
   const handleProgress = ({ played }) => {
-    if (played >= 0.8 && !watchComplete) {
+    if (played >= 0.8) {
       setWatchComplete(true);
-      setCompletedCount(CompletedCount + 1);
+    }
+    if (played >= 1) {
+      handleIncrease();
     }
   };
   const handleDownload = async (e) => {
@@ -55,7 +96,7 @@ const Video = ({ func }) => {
       toast.success("Downloaded Successfully");
     };
     xhr.onerror = (err) => {
-      toast.error("Failed to download picture");
+      toast.error("Failed to download video");
     };
     xhr.send();
   };
@@ -104,6 +145,7 @@ const Video = ({ func }) => {
                   width="100%"
                   className="player"
                   controls
+                  light={false}
                   playerRef={playerRef}
                   url={Course[currVal]?.video}
                   onProgress={handleProgress}
@@ -123,19 +165,19 @@ const Video = ({ func }) => {
                 <span>
                   <span>Completed:</span>
                   <span>
-                    {CompletedCount} / {Course.length}
+                    {watchedCourses.length} / {Course.length}
                   </span>
                 </span>
-                <span>{(CompletedCount / Course.length) * 100}%</span>
+                <span>{(watchedCourses.length / Course.length) * 100}%</span>
               </ProgressBar>
             </DownloadWrapper>
             <ModuleCon>
-              <h3> {Course[currVal]?.title} </h3>
-              <p>{Course[currVal]?.text || Course[currVal]?.description}</p>
+              <h3> {currentCourse?.title} </h3>
+              <p>{currentCourse?.text || currentCourse?.description}</p>
               <FinLit>
                 {/* =========================================================== */}
                 <div>
-                  {(currVal > 0 || currVal === Course.length - 1) && (
+                  {(currVal > 0 || currVal === courseCount - 1) && (
                     <BtnWrapper onClick={() => handleDecrease()}>
                       <span>
                         <AiOutlineArrowLeft className="arrowLeft" />
@@ -144,13 +186,26 @@ const Video = ({ func }) => {
                     </BtnWrapper>
                   )}
                 </div>
-
-                <BtnWrapper onClick={() => handleIncrease()}>
-                  <span>Next</span>
-                  <span>
-                    <AiOutlineArrowRight className="arrowRight" />
-                  </span>
-                </BtnWrapper>
+                {watchedCourses.length === courseCount &&
+                currVal === courseCount - 1 ? (
+                  <BtnWrapper
+                    onClick={() =>
+                      navigate("/dashboard/myCourses/exercise/tictactoe")
+                    }
+                  >
+                    <span>Take Me To Exercise</span>
+                    <span>
+                      <AiOutlineArrowRight className="arrowRight" />
+                    </span>
+                  </BtnWrapper>
+                ) : (
+                  <BtnWrapper onClick={() => handleIncrease()}>
+                    <span>Next</span>
+                    <span>
+                      <AiOutlineArrowRight className="arrowRight" />
+                    </span>
+                  </BtnWrapper>
+                )}
               </FinLit>
             </ModuleCon>
           </>

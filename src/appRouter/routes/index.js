@@ -7,6 +7,7 @@ import {
   CourseDetails,
   Video,
   VerifyApp,
+  ExercisePage,
 } from "../../pages";
 import {
   Overview,
@@ -53,6 +54,11 @@ const dashBoardRoutes = [
     name: "My Courses",
     path: "/dashboard/myCourses",
     element: <AllCourses />,
+  },
+  {
+    name: "Course Exercise",
+    path: "/dashboard/myCourses/exercise/:exerciseId",
+    element: <ExercisePage />,
   },
 
   {

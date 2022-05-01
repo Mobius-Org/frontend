@@ -75,7 +75,6 @@ const SignUp = () => {
 
       dispatch(handleSignUp(response?.data.user));
       setLoading(false);
-      console.log(response.data);
 
       toast.success(response?.data?.message, {
         position: "top-center",
