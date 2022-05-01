@@ -2,16 +2,21 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../colors";
 import { HiEye, HiEyeOff } from "react-icons/hi";
-const InputField = ({ type, placeholder, label, labelId }) => {
-  const email_REGEX = new RegExp(
-    "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
-  );
-  const PWD_REGEX = new RegExp(
-    "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
-  );
+const InputField = ({
+  cValue,
+  type,
+  placeholder,
+  label,
+  labelId,
+  functionName,
+  Validator,
+}) => {
+  const email_REGEX = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/;
+
+  const PWD_REGEX = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})");
+  const text_Regex = new RegExp("^(?=.*[a-zA-Z])(?=.{3,})");
 
   const inputRef = useRef();
-  const errRef = useRef();
 
   const [value, setValue] = useState("");
   const [valid, setValid] = useState(null);
@@ -19,16 +24,20 @@ const InputField = ({ type, placeholder, label, labelId }) => {
 
   const [hidden, setHidden] = useState(false);
 
-  const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
-
   const handleChange = (e) => {
     setValue(e.target.value);
+    functionName(e.target.value);
     if (type === "password") {
       setValid(PWD_REGEX.test(e.target.value));
+      Validator(PWD_REGEX.test(e.target.value));
     }
     if (type === "email") {
       setValid(email_REGEX.test(e.target.value));
+      Validator(email_REGEX.test(e.target.value));
+    }
+    if (type === "text") {
+      setValid(text_Regex.test(e.target.value));
+      Validator(text_Regex.test(e.target.value));
     }
   };
   useEffect(() => {
@@ -58,6 +67,7 @@ const InputField = ({ type, placeholder, label, labelId }) => {
           onBlur={() => {
             if (value === "") {
               setValid(null);
+              Validator(null);
             }
             setUserFocus(false);
           }}
@@ -81,15 +91,36 @@ const InputField = ({ type, placeholder, label, labelId }) => {
             onBlur={() => {
               if (value === "") {
                 setValid(null);
+                Validator(null);
               }
               setUserFocus(false);
             }}
           />
           <span>
             {hidden ? (
-              <HiEyeOff size={25} onClick={() => setHidden(!hidden)} />
+              <HiEye
+                size={25}
+                onClick={() => setHidden(!hidden)}
+                color={
+                  valid === null
+                    ? null
+                    : valid === true
+                    ? colors.sucess_color
+                    : colors.error_color
+                }
+              />
             ) : (
-              <HiEye size={25} onClick={() => setHidden(!hidden)} />
+              <HiEyeOff
+                size={25}
+                onClick={() => setHidden(!hidden)}
+                color={
+                  valid === null
+                    ? null
+                    : valid === true
+                    ? colors.sucess_color
+                    : colors.error_color
+                }
+              />
             )}
           </span>
         </Pwrap>
@@ -98,7 +129,7 @@ const InputField = ({ type, placeholder, label, labelId }) => {
   );
 };
 
-export default InputField;
+export { InputField };
 
 const InputFieldWrapper = styled.div`
   display: flex;
@@ -120,7 +151,7 @@ const Input = styled.input`
   font-family: "Nunito", sans-serif;
   font-size: 22px;
   padding: 0.8rem 0.5rem;
-  border-radius: 20px;
+  border-radius: 10px;
   width: 100%;
   border: 3px solid rgba(217, 217, 217, 1);
   transition: all 0.3s ease-in-out;
@@ -155,7 +186,7 @@ const Pwrap = styled.div`
     position: absolute;
     right: 2%;
     font-size: 20px;
-    bottom: 25%;
+    bottom: 20%;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
     color: #c4c4c4;

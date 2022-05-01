@@ -1,1 +1,0 @@
-export const CONNECT_MODAL = "CONNECT_MODAL";

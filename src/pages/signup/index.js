@@ -1,63 +1,233 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { colors } from "../../colors";
-import Button from "../../component/button";
-import InputField from "../../component/inputfield";
-import Dropdown from "../../component/selectDropDown";
+
 import { ImGoogle } from "react-icons/im";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import mobiusApp from "../../api/mobiusApp";
+import { toast } from "react-toastify";
+import { handleSignUp } from "../../store/action";
+import {
+  SignUpWrapper,
+  FirstWrap,
+  HeadingText,
+  InputWrap,
+  CtaWrap,
+  SecondWrap,
+  SuccessScreen,
+  ErrorMessage,
+  InputWrapDiv,
+} from "./style";
+import { motion } from "framer-motion";
+import { kiddles, kiddles3 } from "../../assets";
+import { Button, InputField } from "../../component";
+import Dropdown from "../../component/selectdropdown";
+
 const SignUp = () => {
+  //
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  // const location = useLocation();
+  // const from = location.state?.from?.pathname || "/";
+  const [loading, setLoading] = useState(false);
+
+  // getting form inputs
+  const [name, setName] = useState("");
+  const [nameError, setNameError] = useState(false);
+  const [age, setAge] = useState(null);
+  const [favColor, setFavColor] = useState("");
+  const [favColorError, setFavColorError] = useState(false);
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(null);
+  // making a request
+  const handlesignup = async () => {
+    if (
+      name === "" ||
+      age === null ||
+      favColor === "" ||
+      email === "" ||
+      password === ""
+    ) {
+      toast.error("Please fill all the fields", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      name === "" ? setNameError(true) : setNameError(false);
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await mobiusApp.post("/auth/signUp", {
+        name,
+        age,
+        favColor,
+        email,
+        password,
+      });
+
+      dispatch(handleSignUp(response?.data.user));
+      setLoading(false);
+      console.log(response.data);
+
+      toast.success(response?.data?.message, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      handleNext(1);
+      // navigate(from, { replace: true });
+    } catch (err) {
+      // console.log(err?.response);
+      if (err.response?.status === 400) {
+        toast.error(err?.response?.data?.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setLoading(false);
+      } else if (err.response?.status === 401) {
+        toast.error("Unauthorized", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setLoading(false);
+      } else {
+        toast.error(err?.response?.data?.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setLoading(false);
+      }
+    }
+  };
+
+  //slider
   const [next, setNext] = useState(0);
   const handleNext = (num) => {
     setNext(num + next);
   };
   return (
-    <SignUpWrapper next={next}>
-      <img src="images/kiddieDoddles.svg" alt="doddle" />
+    <SignUpWrapper
+      as={motion.div}
+      initial={{ opacity: 0.5, x: 200 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.2 }}
+      exit={{ opacity: 0, x: 200 }}
+      next={next}
+    >
+      <img src={kiddles} alt="doddle" />
       <FirstWrap next={next}>
         <HeadingText>Sign up</HeadingText>
         <InputWrap>
-          <InputField
-            type="text"
-            label={"What is your name?"}
-            placeholder={"Enter your name here ..."}
-            labelId={"name"}
-          />
-          <div>
-            <Dropdown />
-          </div>
-          <InputField
-            type="text"
-            label={"What is your favourite color?"}
-            placeholder={"Enter your favourite color here ..."}
-          />
+          <InputWrapDiv>
+            <InputField
+              type="text"
+              label={"What is your name"}
+              placeholder={"Enter your name here ..."}
+              labelId={"name"}
+              functionName={setName}
+              Validator={setNameError}
+            />
+            {nameError === false && (
+              <ErrorMessage>
+                Please enter a valid name : john Nweke
+              </ErrorMessage>
+            )}
+          </InputWrapDiv>
+          <InputWrapDiv>
+            <Dropdown functionName={setAge} />
+          </InputWrapDiv>
+          <InputWrapDiv>
+            <InputField
+              type="text"
+              label={"What is your favourite color"}
+              placeholder={"Enter your favourite color here ..."}
+              functionName={setFavColor}
+              cValue={favColor}
+              Validator={setFavColorError}
+            />
+            {favColorError === false && (
+              <ErrorMessage>Please enter a your favourite : green</ErrorMessage>
+            )}
+          </InputWrapDiv>
         </InputWrap>
         <CtaWrap>
-          <span onClick={() => handleNext(1)}>
+          <span className="first" onClick={() => handleNext(1)}>
             <Button text={"Next"} bgColor={colors.secondary_color} />
           </span>
           <p>
-            Already have an account? <span>Login here</span>
+            Already have an account? <Link to="/signin">Login here</Link>
           </p>
         </CtaWrap>
       </FirstWrap>
       <SecondWrap next={next}>
         <HeadingText>Finish setting up</HeadingText>
         <InputWrap>
-          <InputField
-            type={"email"}
-            labelId={"email"}
-            label={"What is your email address?"}
-            placeholder={"Enter your email address here ..."}
-          />
-          <InputField
-            type={"password"}
-            labelId={"password"}
-            label={"Create a new password"}
-            placeholder={"Enter your password here ..."}
-          />
+          <InputWrapDiv>
+            <InputField
+              type={"email"}
+              labelId={"email"}
+              label={"What is your email address?"}
+              placeholder={"Enter your email address here ..."}
+              functionName={setEmail}
+              cValue={email}
+              Validator={setEmailError}
+            />
+            {emailError === false && (
+              <ErrorMessage>
+                Please enter a valid email: something@gmail.com
+              </ErrorMessage>
+            )}
+          </InputWrapDiv>
+          <InputWrapDiv>
+            <InputField
+              type={"password"}
+              labelId={"password"}
+              label={"Create password"}
+              placeholder={"Enter your password here ..."}
+              functionName={setPassword}
+              cValue={password}
+              Validator={setPasswordError}
+            />
+            {passwordError === false && (
+              <ErrorMessage errFor={"passWord"}>
+                <p>Please enter a valid password:</p>
+                <p>
+                  password must contain atleast 1 uppercase, 1 lowercase and
+                  must be 6 character long .
+                </p>
+              </ErrorMessage>
+            )}
+          </InputWrapDiv>
         </InputWrap>
         <CtaWrap>
-          <span onClick={() => handleNext(-1)}>
+          <span className="first" onClick={() => handleNext(-1)}>
             <Button
               bgColor={colors.secondary_color}
               dir={"left"}
@@ -65,12 +235,16 @@ const SignUp = () => {
               filled={true}
             />
           </span>
-          <span onClick={() => handleNext(1)}>
-            <Button bgColor={colors.secondary_color} text={"Sign up"} />
+          <span className="first" onClick={handlesignup}>
+            <Button
+              loadingState={loading}
+              bgColor={colors.secondary_color}
+              text={"Sign up"}
+            />
           </span>
         </CtaWrap>
         <CtaWrap>
-          <span>
+          <span className="last">
             <Button
               src={ImGoogle}
               bgColor={colors.secondary_color}
@@ -82,223 +256,21 @@ const SignUp = () => {
       </SecondWrap>
       <SuccessScreen next={next}>
         <InputWrap next={next}>
-          <img src="images/kidsdoodle3.svg" />
+          <img src={kiddles3} alt={"kiddoodles"} />
           <HeadingText>Congratulations!</HeadingText>
           <p>Hello, I’m Mickey and I am happy to welcome you to Mobius.</p>
-          <Button
-            text={`Take me to Dashboard`}
-            bgColor={colors.secondary_color}
-          />
         </InputWrap>
+        <CtaWrap>
+          <span className="success" onClick={() => navigate("/dashboard")}>
+            <Button
+              text={`Take me to Dashboard`}
+              bgColor={colors.secondary_color}
+            />
+          </span>
+        </CtaWrap>
       </SuccessScreen>
     </SignUpWrapper>
   );
 };
 
-export default SignUp;
-
-const SignUpWrapper = styled.div`
-  background-image: url("images/patternLogin.svg");
-  background-size: contain;
-  padding: 0;
-  transition: all 0.3s ease-in-out;
-  height: calc(100vh - 166px);
-  padding: 1.5rem 1rem;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  & > img {
-    position: absolute;
-    height: 30rem;
-    left: 15.5%;
-    bottom: -10%;
-    z-index: 10;
-    transition: all 0.3s ease-in-out;
-    @media (max-width: 1150px) {
-      transition: all 0.3s ease-in-out;
-      bottom: -100%;
-    }
-    ${({ next }) =>
-      next === 2 &&
-      `
-      transition: all 0.3s ease-in-out;
-      bottom: -100%;
-    `}
-  }
-`;
-
-const FirstWrap = styled.div`
-  transition: all 0.3s ease-in-out;
-  background-color: ${colors.white};
-  box-shadow: 0px 2.6501548290252686px 53.00309753417969px 0px
-    rgba(0, 0, 0, 0.37);
-  max-width: 1200px;
-  width: 50%;
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 1.5rem;
-  flex-wrap: wrap !important;
-  padding: 30px 20px;
-  border-radius: 20px;
-
-  transition: all 0.3s ease-in-out;
-  opacity: 1;
-  @media (max-width: 768px) {
-    transition: all 0.3s ease-in-out;
-    height: 70vh;
-    width: 100%;
-  }
-  ${({ next }) =>
-    next !== 0 &&
-    `
-  transition: all 0.3s ease-in-out;
-  height: 0;
-  opacity: 0;
-  padding: 0;
-  overflow: hidden;
-  @media (max-width: 768px) {
-    height: 0;
-  }
-  `}
-`;
-const SecondWrap = styled.div`
-  transition: all 0.3s ease-in-out;
-  background-color: ${colors.white};
-  box-shadow: 0px 2.6501548290252686px 53.00309753417969px 0px
-    rgba(0, 0, 0, 0.37);
-  max-width: 1200px;
-  width: 50%;
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 1.5rem;
-  flex-wrap: wrap !important;
-  padding: 30px 20px;
-  border-radius: 20px;
-
-  opacity: 1;
-  @media (max-width: 768px) {
-    transition: all 0.3s ease-in-out;
-    height: 70vh;
-    width: 100%;
-  }
-  ${({ next }) =>
-    next !== 1 &&
-    `
-  transition: all 0.3s ease-in-out;
-  height: 0 !important;
-  overflow: hidden;
-  padding: 0;
-  opacity: 0;`}
-`;
-const SuccessScreen = styled.div`
-  transition: all 0.3s ease-in-out;
-  background-color: ${colors.white};
-  box-shadow: 0px 2.6501548290252686px 53.00309753417969px 0px
-    rgba(0, 0, 0, 0.37);
-  max-width: 1200px;
-  width: 50%;
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 1.5rem;
-  flex-wrap: wrap !important;
-  padding: 30px 20px;
-  border-radius: 20px;
-  opacity: 1;
-  @media (max-width: 768px) {
-    transition: all 0.3s ease-in-out;
-    height: 70vh;
-    width: 100%;
-  }
-  ${({ next }) =>
-    next !== 2 &&
-    `
-    padding: 0;
-      transition: all 0.3s ease-in-out;
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
-    `}
-`;
-const HeadingText = styled.h1`
-Font-family: Nunito;
-Font-style:extra-bold;
-Font size: 16px;
-color:rgba(12, 18, 28, 0.75);
-align-self: center;
- transition: all 0.3s ease-in-out;
-
- @media (max-width: 768px) {
-      transition: all 0.3s ease-in-out;
-      font-size: 1.5rem;
-    }
-`;
-const InputWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 90%;
-  gap: 1rem;
-  ${({ next }) =>
-    next === 2 &&
-    `  
-    
-    & > img {
-    width: 70%;
-    height: 40%;
-    margin: auto;
-  }
-  & > p {
-    font-size: 20px;
-    font-weight: 700;
-  }
-  & > div {
-    margin: auto;
-  }`}
-`;
-const CtaWrap = styled.div`
-  width: 90%;
-  align-self: start !important;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-
-  justify-content: space-between;
-  @media (max-width: 768px) {
-    justify-content: start;
-    align-items: start;
-    flex-direction: column;
-  }
-  & > p {
-    font-family: Nunito;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 20px;
-    @media (max-width: 768px) {
-      font-size: 1rem;
-    }
-    color: ${colors.chinese_black};
-    & > span {
-      font-family: Nunito;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 20px;
-      @media (max-width: 768px) {
-        font-size: 1rem;
-      }
-      color: ${colors.secondary_color};
-    }
-  }
-`;
+export { SignUp };
