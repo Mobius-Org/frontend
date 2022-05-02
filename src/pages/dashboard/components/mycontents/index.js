@@ -8,6 +8,7 @@ import OurCourses from "../ourcourses/index";
 const MyContents = () => {
   const state = useSelector((state) => state);
   const enrolledCourses = state?.auth?.profile?.enrolledCourse;
+
   return (
     <Container>
       <MyContentInner>

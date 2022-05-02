@@ -1,18 +1,24 @@
 import React from "react";
 
 import styled from "styled-components";
+import { colors } from "../../../../colors";
 
-const ScoreBoard = ({ scores, xPlaying }) => {
-  const { xScore, oScore } = scores;
+const ScoreBoard = ({
+  scores,
+  xPlaying,
+  wonPlayer,
+  handlePlayAgain,
+  Finish,
+}) => {
+  // const { xScore, oScore } = scores;
 
   return (
     <ScoreboardWraap>
-      <span className={`score x-score ${!xPlaying && "inactive"}`}>
-        X - {xScore}
-      </span>
-      <span className={`score o-score ${xPlaying && "inactive"}`}>
-        O - {oScore}
-      </span>
+      <h1>{wonPlayer} Takes This Round</h1>
+      <BtnWraps>
+        <Btn onClick={handlePlayAgain}>Play Again</Btn>
+        <Btn onClick={Finish}>Finish</Btn>
+      </BtnWraps>
     </ScoreboardWraap>
   );
 };
@@ -20,36 +26,45 @@ export { ScoreBoard };
 
 const ScoreboardWraap = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  width: 20rem;
+  width: 60%;
   font-size: 1.5rem;
   background-color: white;
-  margin: 3rem auto;
-  box-shadow: 0px 0px 8px #888888;
+  margin: 0.5rem auto;
   border-radius: 0.5rem;
   font-weight: bold;
-
-  &.score {
-    width: 100%;
-    text-align: center;
-    padding: 1rem 0rem;
+`;
+const BtnWraps = styled.div`
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  gap: 1rem;
+  @media (max-width: 768px) {
+    flex-direction: column;
   }
-
-  &.x-score {
-    color: rgb(255, 70, 37);
-    border-bottom: 5px solid rgb(255, 70, 37);
-    border-radius: 0.5rem 0rem 0rem 0.5rem;
+`;
+const Btn = styled.button`
+  width: 200px;
+  padding: 0.8rem 0;
+  font-weight: bold;
+  color: #fff;
+  background-color: ${colors.accent};
+  border: none;
+  outline: 0;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    background: rgba(0, 0, 0, 0.7);
   }
-
-  &.o-score {
-    color: rgb(44, 135, 255);
-    border-bottom: 5px solid rgb(44, 135, 255);
-    border-radius: 0rem 0.5rem 0.5rem 0rem;
-  }
-
-  &.inactive {
-    border-bottom: 5px solid transparent;
+  &:last-of-type {
+    background-color: ${colors.chinese_black};
+    &:hover {
+      transition: all 0.3s ease-in-out;
+      background: rgba(0, 0, 0, 0.7);
+    }
   }
 `;

@@ -29,8 +29,10 @@ import EmailIcon from "./emailIcon.svg";
 import rafiki from "./rafiki.svg";
 import ps from "./pS.svg";
 import pe from "./pe.svg";
+import gameBg from "./gameBg.svg";
 export {
   girlCanva,
+  gameBg,
   ps,
   pe,
   rafiki,

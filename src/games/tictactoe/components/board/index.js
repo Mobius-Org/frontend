@@ -18,7 +18,8 @@ export { Board };
 
 const BoardWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 6rem);
+  grid-template-columns: repeat(3, auto);
   place-items: center;
   justify-content: center;
+  margin: 10px auto;
 `;
