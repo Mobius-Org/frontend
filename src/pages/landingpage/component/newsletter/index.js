@@ -19,7 +19,11 @@ const Newsletter = () => {
         </div>
         <NewsletterInput>
           <input type="text" placeholder="Type in your email address here" />
-          <Button bgColor={colors.secondary80} text={"Subscribe"} />
+          <Button
+            bgColor={colors.secondary80}
+            text={"Subscribe"}
+            className="button"
+          />
         </NewsletterInput>
       </NewLetterWraper>
     </Container>
@@ -88,6 +92,9 @@ const NewLetterWraper = styled.div`
         width: 70%;
         margin: 0 auto;
       }
+      @media (min-width: 769px) and (max-width: 1024px) {
+        width: 100%;
+      }
     }
   }
 `;
@@ -95,7 +102,7 @@ const NewsletterInput = styled.div`
   width: 50%;
   height: fit-content;
   padding: 1rem;
-  background: #d6e8e7;
+  background: #fff;
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
@@ -118,5 +125,8 @@ const NewsletterInput = styled.div`
   }
   @media (max-width: 768px) {
     width: 90%;
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 85%;
   }
 `;

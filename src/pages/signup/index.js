@@ -147,7 +147,7 @@ const SignUp = () => {
           <InputWrapDiv>
             <InputField
               type="text"
-              label={"What is your name?"}
+              label={"What is your name"}
               placeholder={"Enter your name here ..."}
               labelId={"name"}
               functionName={setName}
@@ -165,7 +165,7 @@ const SignUp = () => {
           <InputWrapDiv>
             <InputField
               type="text"
-              label={"What is your favourite color?"}
+              label={"What is your favourite color"}
               placeholder={"Enter your favourite color here ..."}
               functionName={setFavColor}
               cValue={favColor}

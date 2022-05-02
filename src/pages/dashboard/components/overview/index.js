@@ -192,4 +192,7 @@ const BannerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  @media (min-width: 1200px) and (max-width: 1400px) {
+    margin: 3rem;
+  }
 `;

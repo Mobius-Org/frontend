@@ -8,6 +8,7 @@ export const NavWrapper = styled.header`
   position: sticky;
   top: 0;
   z-index: 999;
+  overflow: hidden;
   box-shadow: ${({ scrolled }) =>
     scrolled ? `0px 2px 4px ${colors.secondary60}` : "none"};
   @media (max-width: 768px) {
@@ -79,6 +80,7 @@ export const Hamburger = styled.div`
   width: fit-content;
   padding: 10px;
   border-radius: 5px;
+  /* border: 2px solid red; */
   & > span {
     background: ${colors.secondary80};
     width: 30px;
@@ -94,15 +96,16 @@ export const Hamburger = styled.div`
 
         transition: all 0.3s ease-in-out;
         transform:translateY(10px) rotate(45deg);
-        width: 40px;
+        width: 35px;
+        
       }
       & > span:nth-child(2){
         opacity: 0;
       }
       & > span:nth-child(3){
-         transform:translateY(-5px) rotate(-45deg);
+         transform:translateY(-10px) rotate(-45deg);
         transition: all 0.3s ease-in-out;
-        width: 35px;
+        width: 34px;
       }
       `
       : `
