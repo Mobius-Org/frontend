@@ -7,7 +7,11 @@ const Board = ({ board, onClick }) => {
     <BoardWrapper>
       {board.map((value, idx) => {
         return (
-          <Box value={value} onClick={() => value === null && onClick(idx)} />
+          <Box
+            value={value}
+            key={idx}
+            onClick={() => value === null && onClick(idx)}
+          />
         );
       })}
     </BoardWrapper>
