@@ -145,7 +145,6 @@ const KidAdvertWrapperInner = styled.div`
   flex-direction: row;
   justify-content: space-between;
   position: relative;
-  /* border: 2px solid orange; */
 
   @media (min-width: 1200px) and (max-width: 1400px) {
     margin-bottom: 4rem;
@@ -181,7 +180,7 @@ const KidAdvertWrapperInnerText = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  @media (min-width: 320px) and (max-width: 480px) {
+  @media (min-width: 0px) and (max-width: 480px) {
     width: 100%;
   }
   @media (min-width: 480px) and (max-width: 768px) {
@@ -192,6 +191,9 @@ const KidAdvertWrapperInnerText = styled.div`
   @media (min-width: 769px) and (max-width: 1024px) {
     width: 100%;
   }
+  @media (min-width: 1201px) and (max-width: 1329px) {
+    width: 50%;
+  }
 `;
 const KidAdvertWrapperInnerImage = styled.div`
   width: 35%;
@@ -201,7 +203,6 @@ const KidAdvertWrapperInnerImage = styled.div`
   grid-template-columns: repeat(2, auto);
   position: relative;
   gap: 1rem;
-  /* border: 2px solid red; */
   @media (max-width: 768px) {
     display: flex;
     width: 100%;
@@ -210,10 +211,7 @@ const KidAdvertWrapperInnerImage = styled.div`
   }
   @media (min-width: 769px) and (max-width: 1024px) {
     width: 70%;
-  }
-  @media (min-width: 1024px) and (max-width: 1400px) {
-    /* width: 20%; */
-    /* height: 50%; */
+    grid-template-columns: repeat(2, 0.5fr);
   }
 `;
 const ImageWrapper = styled.div`
@@ -223,8 +221,6 @@ const ImageWrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: contain;
-    @media (min-width: 1024px) and (max-width: 1400px) {
-    }
   }
   @media (min-width: 768px) {
     display: none;
@@ -234,7 +230,7 @@ const Heading = styled.div`
   font-family: Nunito;
   font-weight: Bold;
   font-size: 48px;
-  line-height: 65px;
+  /* line-height: 65px; */
   width: 68%;
   text-align: start;
   @media (min-width: 320px) and (max-width: 480px) {
@@ -271,7 +267,7 @@ const Paragraph = styled.div`
     width: 100%;
     font-size: 14px;
   }
-  @media (min-width: 320px) and (max-width: 480px) {
+  @media (min-width: 0px) and (max-width: 480px) {
     line-height: 30px;
   }
 `;
@@ -309,7 +305,9 @@ const ImageWrapper1 = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
-  @media (min-width: 1024px) and (max-width: 1400px) {
+  @media (min-width: 900px) and (max-width: 1000px) {
+    width: 300px;
+    height: 300px;
   }
 `;
 const ImageWrapper2 = styled.div`
@@ -342,6 +340,10 @@ const ImageWrapper2 = styled.div`
   }
   @media (max-width: 768px) {
     display: none;
+  }
+  @media (min-width: 900px) and (max-width: 1005px) {
+    width: 300px;
+    height: 300px;
   }
 `;
 const ImageWrapper3 = styled.div`
@@ -378,6 +380,10 @@ const ImageWrapper3 = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
+  @media (min-width: 900px) and (max-width: 1005px) {
+    width: 300px;
+    height: 300px;
+  }
 `;
 const ImageWrapper4 = styled.div`
   /* border: 4px solid blue; */
@@ -410,6 +416,10 @@ const ImageWrapper4 = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
+  @media (min-width: 900px) and (max-width: 1005px) {
+    width: 300px;
+    height: 300px;
+  }
 `;
 
 const ImageWrapper5 = styled.div`
@@ -441,5 +451,9 @@ const ImageWrapper5 = styled.div`
   }
   @media (max-width: 768px) {
     display: none;
+  }
+  @media (min-width: 900px) and (max-width: 1005px) {
+    width: 300px;
+    height: 300px;
   }
 `;

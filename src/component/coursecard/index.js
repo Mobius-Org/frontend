@@ -55,25 +55,30 @@ const Card = styled.div`
   width: 415px;
   height: 443px;
   border-radius: 11.38px;
-  /* border: 2px solid black; */
   background: ${colors.white};
   box-shadow: 0px 1px 5px ${colors.secondary20};
+  @media (min-width: 250px) and (max-width: 480px) {
+    max-width: 100%;
+  }
   @media (max-width: 768px) {
     width: 100%;
-    /* max-width: 90%;
-    margin: auto; */
   }
-  @media (min-width: 480px) and(max-width: 769px) {
-    max-width: 90%;
+  @media (min-width: 480px) and (max-width: 600px) {
+    max-width: 80%;
     margin: auto;
   }
-  @media (min-width: 300px) and (max-width: 480px) {
-    max-width: 100%;
+  @media (min-width: 601px) and (max-width: 650px) {
+    max-width: 80%;
+    margin: auto;
   }
-  @media (min-width: 769px) and (max-width: 1024px) {
-    max-width: 100%;
-    width: 100%;
-    /* height: 300px; */
+
+  @media (min-width: 651px) and (max-width: 750px) {
+    max-width: 70%;
+    width: 70%;
+    margin: auto;
+  }
+  @media (min-width: 751px) and (max-width: 899px) {
+    max-width: 45%;
   }
 `;
 const CourseThumbNail = styled.div`

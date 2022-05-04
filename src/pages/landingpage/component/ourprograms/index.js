@@ -51,7 +51,6 @@ const Container = styled.div`
   height: fit-content;
   padding: 2rem;
   background: ${"#FaFcfe"};
-  /* border: 2px solid blue; */
   @media (min-width: 1200px) and (max-width: 1400px) {
     padding-top: 70px;
   }
@@ -158,11 +157,14 @@ const CoursesList = styled.div`
   margin: 0 auto;
   gap: 2rem;
   justify-content: space-between;
-
-  @media (min-width: 768px) {
-    width: 90%;
+  @media (min-width: 659px) and (max-width: 899px) {
+    flex-flow: row wrap;
+    width: 95%;
+  }
+  @media (min-width: 900px) {
+    width: 95%;
     flex-direction: row;
-    /* max-width: 90%; */
+    justify-items: flex-start;
   }
   @media (min-width: 300px) and (max-width: 480px) {
     height: auto;

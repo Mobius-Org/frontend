@@ -30,6 +30,7 @@ const Wrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin: 0 auto;
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -42,6 +43,13 @@ const Main = styled.main`
   gap: 1rem;
   padding: 2rem 0;
   @media (max-width: 768px) {
+    max-width: 95%;
+    margin: 0 auto;
+  }
+  @media (min-width: 769px) and (max-width: 1200px) {
+    max-width: 90%;
+    border: 1px solid green;
+    margin: 0 auto;
   }
 `;
 

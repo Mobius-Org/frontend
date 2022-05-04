@@ -287,6 +287,7 @@ const CourseDetailWrapper = styled.div`
 `;
 const CourseDetailWrapperInner = styled.div`
   width: 90%;
+  max-width: 1400px;
   height: fit-content;
   margin: 0 auto;
   display: flex;
@@ -349,6 +350,9 @@ const ImageWrap = styled.img`
   }
   @media (max-width: 768px) {
     width: 100%;
+  }
+  @media (min-width: 769px) and (max-width: 1150px) {
+    width: 50%;
   }
 `;
 const CourseDetail = styled.div`
@@ -448,7 +452,9 @@ const ColRow = styled.div`
     display: flex;
   }
 `;
-const Text = styled.h4``;
+const Text = styled.h4`
+  margin: auto;
+`;
 const Row3 = styled.div`
   width: 100%;
   display: flex;
@@ -468,14 +474,31 @@ const Row3 = styled.div`
       flex-direction: column;
       gap: 2rem;
     }
+    @media (min-width: 769px) and (max-width: 1000px) {
+      justify-content: start;
+      flex-flow: row wrap;
+    }
+    @media (min-width: 1001px) and (max-width: 1382px) {
+      gap: 1rem;
+      justify-content: start;
+      flex-flow: row wrap;
+    }
   }
 `;
 const TesRow = styled.div`
   display: flex;
+  flex-flow: row wrap;
   gap: 0.5rem;
+  width: max-content;
   padding: 0.5rem 1rem;
   border-radius: 10px;
   box-shadow: 0 0 3px #dcdcdc;
+  @media (min-width: 500px) and (max-width: 1000px) {
+    margin: 1rem auto;
+  }
+  @media (min-width: 0px) and (max-width: 499px) {
+    margin: 0.5rem auto;
+  }
 `;
 const TesDesc = styled.figure`
   width: 200px;

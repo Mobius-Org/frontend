@@ -43,15 +43,17 @@ const Video = ({ func }) => {
         } else if (!courseWatchedValidity && watchComplete) {
           if (currVal + 1 === courseCount) {
             return setWatchedCourses([...watchedCourses, currentCourse]);
-          } else if (currVal + 1 < courseCount) {
+          } else if (currVal + 1 < courseCount && watchComplete) {
             setWatchedCourses([...watchedCourses, currentCourse]);
             setCurrVal(currVal + 1);
+            setWatchComplete(!watchComplete);
           }
-        } else {
-          return toast("Please watch the course for atleast 80%", {
+        } else if (!watchComplete) {
+          toast("Please watch the course for atleast 80%", {
             position: "top-center",
             autoClose: 5000,
           });
+          return;
         }
       } else if (
         currVal < courseCount - 1 &&
@@ -60,8 +62,8 @@ const Video = ({ func }) => {
       ) {
         setCurrVal(currVal + 1);
         setWatchedCourses([...watchedCourses, currentCourse]);
+        setWatchComplete(!watchComplete);
       } else if (watchedCourses.length === courseCount) {
-        alert("run");
         return;
       } else {
         return toast("Please watch the course for atleast 80%", {
@@ -235,6 +237,9 @@ const VideoWrapper = styled.div`
   margin: auto;
   max-width: 1400px;
   width: 80%;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `;
 const ProgressBar = styled.div`
   display: flex;
@@ -277,6 +282,10 @@ const Row = styled.div`
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
+  @media (max-width: 510px) {
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
 `;
 const Title = styled.h3``;
 
@@ -285,7 +294,6 @@ const TopicWrapper = styled.div`
   gap: 1rem;
   padding: 0.75rem 1.5rem;
   width: max-content;
-
   color: ${colors.white};
   text-align: center;
   font-size: 1.5rem;
@@ -314,18 +322,26 @@ const FinLit = styled.div`
 
   @media (max-width: 768px) {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    width: 80%;
+    width: 100%;
     gap: 1rem;
     margin: 0 auto;
+
     margin-bottom: 20px;
+  }
+  @media (max-width: 510px) {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-end;
   }
 `;
 const VideoSpace = styled.div`
   /* border: 2px solid green; */
   width: 100%;
   height: 60vh;
+  @media (max-width: 500px) {
+    height: 40vh;
+  }
 `;
 
 const ModuleCon = styled.div`
@@ -337,7 +353,7 @@ const ModuleCon = styled.div`
     color: #333;
   }
   @media (max-width: 768px) {
-    width: 90%;
+    width: 100%;
     text-align: justify;
   }
 `;
@@ -349,7 +365,13 @@ const DownloadWrapper = styled.div`
   align-items: center;
 
   @media (max-width: 768px) {
-    width: 50%;
+    width: 100%;
+  }
+  @media (max-width: 510px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding-left: 0.3rem;
   }
 `;
 

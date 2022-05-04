@@ -59,6 +59,13 @@ export const ButtonWrap = styled.div`
   }
   p {
     align-self: center;
+    @media (min-width: 0px) and (max-width: 480px) {
+      font-size: 10em;
+    }
+  }
+  @media (min-width: 0px) and (max-width: 480px) {
+    font-size: 10px;
+    padding: 10px;
   }
   @media (max-width: 768px) {
     gap: 0.5rem;
@@ -80,6 +87,9 @@ export const IconArrow = styled.div`
   transition: all 0.3s ease-in-out;
   animation: ${Breathing} 3s ease-in-out infinite;
   align-self: center;
+  @media (min-width: 0px) and (max-width: 480px) {
+    font-size: 10em;
+  }
 `;
 export const Spinner = keyframes`
    from {

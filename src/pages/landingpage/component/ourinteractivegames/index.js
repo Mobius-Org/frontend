@@ -66,6 +66,7 @@ const Container = styled.div`
 const OurInteractiveGamesWrapper = styled.div`
   height: 82vh;
   max-width: 1400px;
+  max-height: 50rem;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -104,6 +105,7 @@ const SecHeading = styled.div`
     left: 10%;
     width: 100%;
     height: 50vh;
+    max-height: 30rem;
     animation: ${Breathing} 5s ease-out infinite normal;
     @media (max-width: 768px) {
       display: none;

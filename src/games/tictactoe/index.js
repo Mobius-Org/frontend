@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Board,
   ResetButton,
@@ -10,16 +10,19 @@ import { colors } from "../../colors";
 import { AiFillTrophy } from "react-icons/ai";
 import { Modal } from "../../component/modal";
 const TicTacToe = () => {
-  const WIN_CONDITIONS = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
+  const WIN_CONDITIONS = useMemo(
+    () => [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ],
+    []
+  );
   const [showModal, setShowModal] = useState(false);
   const [xPlaying, setXPlaying] = useState(false);
   const [board, setBoard] = useState(Array(9).fill(null));
@@ -28,6 +31,8 @@ const TicTacToe = () => {
   const [won, setWon] = useState(false);
   const [wonModal, setWonModal] = useState(false);
   const [wonPlayer, setWonPlayer] = useState("");
+  const [attemptedCount, setAttemptedCount] = useState(0);
+  const [solved, setSolved] = useState(0);
   const handleBoxClick = (boxIdx) => {
     if (xPlaying === false) return;
     // Step 1: Update the board
@@ -46,29 +51,32 @@ const TicTacToe = () => {
     setXPlaying(!xPlaying);
   };
 
-  const checkWinner = (board) => {
-    for (let i = 0; i < WIN_CONDITIONS.length; i++) {
-      const [x, y, z] = WIN_CONDITIONS[i];
-      // Iterate through win conditions and check if either player satisfies them
-      if (board[x] && board[x] === board[y] && board[y] === board[z]) {
-        const winner = board[x];
-        setWon(true);
-        if (winner) {
-          if (winner === "O") {
-            let { oScore } = scores;
-            oScore += 1;
-            setScores({ ...scores, oScore });
-            setWonPlayer("O");
-          } else {
-            let { xScore } = scores;
-            xScore += 1;
-            setScores({ ...scores, xScore });
-            setWonPlayer("X");
+  const checkWinner = useCallback(
+    (board) => {
+      for (let i = 0; i < WIN_CONDITIONS.length; i++) {
+        const [x, y, z] = WIN_CONDITIONS[i];
+        // Iterate through win conditions and check if either player satisfies them
+        if (board[x] && board[x] === board[y] && board[y] === board[z]) {
+          const winner = board[x];
+          setWon(true);
+          if (winner) {
+            if (winner === "O") {
+              let { oScore } = scores;
+              oScore += 1;
+              setScores({ ...scores, oScore });
+              setWonPlayer("O");
+            } else {
+              let { xScore } = scores;
+              xScore += 1;
+              setScores({ ...scores, xScore });
+              setWonPlayer("X");
+            }
           }
         }
       }
-    }
-  };
+    },
+    [WIN_CONDITIONS, scores]
+  );
 
   const resetBoard = () => {
     setXPlaying(false);
@@ -78,37 +86,40 @@ const TicTacToe = () => {
     setBoard(Array(9).fill(null));
   };
 
-  function cPlayer(el) {
-    if (won) {
-      return;
-    } else {
-      if (el.length === 0) return;
-      const randChoice = Math.floor(Math.random() * el.length);
-      if (el[randChoice] === null) {
-        el[randChoice] = "O";
-        setBoard([...el]);
-        checkWinner(el);
-        setXPlaying(!xPlaying);
-        setTimeout(() => {
-          setShowModal(true);
-        }, 1000);
+  const cPlayer = useCallback(
+    (el) => {
+      if (won) {
+        return;
       } else {
-        cPlayer(board);
+        if (el.length === 0) return;
+        const randChoice = Math.floor(Math.random() * el.length);
+        if (el[randChoice] === null) {
+          el[randChoice] = "O";
+          setBoard([...el]);
+          checkWinner(el);
+          setXPlaying(true);
+          setTimeout(() => {
+            setShowModal(true);
+          }, 1000);
+        } else {
+          cPlayer(el);
+        }
       }
-    }
-  }
+    },
+    [won, checkWinner]
+  );
   useEffect(() => {
+    console.log("running");
     if (xPlaying === false && won === false) {
       setTimeout(() => {
+        console.log("started");
         cPlayer(board);
       }, 1500);
     }
     if (won) {
       setWonModal(true);
     }
-
-    return;
-  }, [xPlaying]);
+  }, [xPlaying, won, cPlayer, board]);
 
   return (
     <TicTacToeWrapper>
@@ -117,6 +128,10 @@ const TicTacToe = () => {
           <TicTacToeQuestion
             setShowModal={setShowModal}
             showModal={showModal}
+            solved={solved}
+            setSolved={setSolved}
+            attemptedCount={attemptedCount}
+            setAttemptedCount={setAttemptedCount}
           />
         }
         setShowModal={setShowModal}
@@ -144,7 +159,12 @@ const TicTacToe = () => {
           <span>
             <AiFillTrophy />
           </span>
-          <span>100%</span>
+          <span>
+            {solved === 0 && attemptedCount === 0
+              ? 0
+              : (solved / attemptedCount) * 100}
+            %
+          </span>
         </span>
       </TopItems>
       <Board board={board} onClick={gameOver ? resetBoard : handleBoxClick} />

@@ -27,11 +27,15 @@ export const FooterContainer = styled.div`
     flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
+    padding: 20px 10px;
+    width: 100%;
   }
   & > div:last-of-type {
     color: grey;
     @media (max-width: 768px) {
       width: 100%;
+      text-align: center;
+      margin: auto;
     }
   }
 `;
@@ -40,6 +44,7 @@ export const IconsWrapper = styled.ul`
   display: flex;
   gap: 1rem;
   list-style: none;
+
   li {
     height: 50px;
     width: 50px;
@@ -70,6 +75,16 @@ export const IconsWrapper = styled.ul`
       height: 30px;
     }
   }
+  @media (min-width: 0px) and (max-width: 554px) {
+    width: max-content;
+    margin: auto;
+    height: fit-content;
+    align-items: center;
+    li {
+      padding: 5px 5px;
+      font-size: unset;
+    }
+  }
 `;
 
 export const Logo = styled.a`
@@ -80,6 +95,9 @@ export const Logo = styled.a`
     width: 100px;
     height: 50px;
     transition: all 0.3s ease-in-out;
+  }
+  @media (min-width: 0px) and (max-width: 554px) {
+    width: 100%;
   }
   & > a > img {
     width: 100%;

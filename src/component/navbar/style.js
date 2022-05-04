@@ -8,7 +8,6 @@ export const NavWrapper = styled.header`
   position: sticky;
   top: 0;
   z-index: 999;
-  overflow: hidden;
   box-shadow: ${({ scrolled }) =>
     scrolled ? `0px 2px 4px ${colors.secondary60}` : "none"};
   @media (max-width: 768px) {
@@ -68,7 +67,7 @@ export const Logo = styled.a`
   }
 `;
 export const Hamburger = styled.div`
-  @media (min-width: 768px) {
+  @media (min-width: 1098px) {
     display: none;
   }
 
@@ -80,7 +79,7 @@ export const Hamburger = styled.div`
   width: fit-content;
   padding: 10px;
   border-radius: 5px;
-  /* border: 2px solid red; */
+
   & > span {
     background: ${colors.secondary80};
     width: 30px;
@@ -121,7 +120,7 @@ export const Hamburger = styled.div`
   }`}
 `;
 export const Menu = styled.ul`
-  @media (min-width: 768px) {
+  @media (min-width: 1098px) {
     position: unset;
     z-index: 100;
     width: 72%;
@@ -139,6 +138,10 @@ export const Menu = styled.ul`
     & > span {
       display: flex;
       gap: 2.5rem;
+    }
+    @media (min-width: 769px) and (max-width: 1270px) {
+      width: calc(100% - 180px);
+      gap: 1.5rem;
     }
   }
   width: calc(100% + 3rem);
@@ -160,7 +163,7 @@ export const Menu = styled.ul`
   transition: all 0.3s ease-in-out;
   background-color: #fff;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1098px) {
     overflow: hidden;
     & > span {
       display: flex;
@@ -241,25 +244,24 @@ export const MenuItem = styled.li`
       border-radius: 0.5px;
     }
   }
-  &:hover .dropdown {
+  &.active .dropdown {
     transform: translateX(25%) translateY(0);
     opacity: 1;
     pointer-events: auto;
     transition: all 0.3s ease-in-out;
   }
-  &.drp {
-    &:hover:before {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-0.2rem);
-      width: 0px;
-      height: 0px;
 
-      border: 10px solid transparent;
-      border-bottom: 10px solid #333;
-    }
+  &.active &:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-0.2rem);
+    width: 0px;
+    height: 0px;
+
+    border: 10px solid transparent;
+    border-bottom: 10px solid #333;
   }
 `;
 export const LinkDropDown = styled.div`

@@ -57,9 +57,10 @@ const OurProgramsWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
+
   @media (max-width: 768px) {
     margin: 0 auto;
-    width: 90%;
+    width: 95%;
     height: fit-content;
     flex-direction: column;
     gap: 2rem;
@@ -109,8 +110,9 @@ const CoursesList = styled.div`
   flex-direction: column;
   width: 100%;
   margin: 0 auto;
-  gap: 2rem;
-  justify-content: space-between;
+  gap: 3rem;
+  justify-content: start;
+
   @media (min-width: 768px) {
     width: 100%;
     flex-direction: row;

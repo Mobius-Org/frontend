@@ -15,6 +15,11 @@ const TicTacToeQuestion = ({ showModal, setShowModal, func }) => {
     }
   };
   const handleSolveAgain = () => setCorrectAnswer(false);
+  const handleKeyUp = (e) => {
+    setTimeout(() => {
+      alert(e.target.value);
+    }, 5000);
+  };
   const handleSolve = ({ target }) => {
     const { value } = target;
     const operator = document.getElementById("operator").textContent;
@@ -23,19 +28,15 @@ const TicTacToeQuestion = ({ showModal, setShowModal, func }) => {
 
     if (operator === "+" && q1 + q2 === Number(value)) {
       setCorrectAnswer(!correctAnswer);
-      func();
     } else if (operator === "-" && q1 - q2 === Number(value)) {
       setCorrectAnswer(!correctAnswer);
-      func();
     } else if (operator === "x" && q1 * q2 === Number(value)) {
       setCorrectAnswer(!correctAnswer);
-      func();
     } else if (
       operator === "÷" &&
       (q1 / q2).toFixed(3) === Number(value).toFixed(3)
     ) {
       setCorrectAnswer(!correctAnswer);
-      func();
     } else {
       return;
     }
@@ -66,7 +67,11 @@ const TicTacToeQuestion = ({ showModal, setShowModal, func }) => {
             </span>
           </div>
           <span className="btn-icon">
-            <input type={"number"} onChange={handleSolve} />
+            <input
+              type={"number"}
+              onKeyUp={handleKeyUp}
+              onChange={handleSolve}
+            />
             <Btn>Solve</Btn>
           </span>
         </QWrap>

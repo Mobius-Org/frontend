@@ -128,12 +128,36 @@ const Nav = () => {
                   Parent Page
                 </Link>
               </MenuItem>
-              <MenuItem className="drp">
+              <MenuItem
+                className="drp"
+                // onClick={(e) => {
+                //   alert(e.target.classList[0]);
+                //   if (e.target.classList.includes("active")) {
+                //     e.target.classList.remove("active");
+                //     return;
+                //   }
+                //   e.target.classList.add("active");
+                // }}
+              >
                 {" "}
-                <Link onClick={handleClick} to="#">
+                <Link
+                  className="link"
+                  onClick={(e) => {
+                    e.target.parentElement.classList.toggle("active");
+                    handleClick(e);
+                  }}
+                  to="#"
+                >
                   Account {"  "} <FaChevronDown />
                 </Link>
-                <LinkDropDown className="dropdown">
+                <LinkDropDown
+                  className="dropdown"
+                  onClick={(e) => {
+                    e.target.parentElement.parentElement.classList.remove(
+                      "active"
+                    );
+                  }}
+                >
                   <Link to={"/signup"}>SignUp</Link>
                   <Link to={"/signin"}>SignIn</Link>
                 </LinkDropDown>

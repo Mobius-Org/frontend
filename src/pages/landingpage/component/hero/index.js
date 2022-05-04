@@ -110,47 +110,66 @@ const Container = styled.div`
   width: 100%;
   max-width: 100%;
   height: fit-content;
+  max-height: 48rem;
   padding: 2rem;
   background: ${"#FaFcfe"};
-  /* border: 2px solid red; */
+  @media (min-width: 250px) and (max-width: 768px) {
+    max-height: fit-content;
+    height: fit-content;
+    padding: 0;
+  }
   // Added the min width
   @media (min-width: 769px) and (max-width: 1024px) {
     max-width: 100%;
     width: 100%;
   }
+
   //Added the min-width
   @media (min-width: 480px) and (max-width: 769px) {
     padding: 1.5rem 0;
     width: 100%;
     max-width: 100%;
   }
-  @media (min-width: 300px) and (max-width: 480px) {
+  @media (min-width: 0px) and (max-width: 480px) {
     width: 100%;
-    padding: 1rem;
     max-width: 100%;
   }
 `;
 const HeroWrapper = styled.div`
   max-width: 1400px;
   width: calc(100% - 2rem);
-  /* border: 2px solid blue; */
   height: 82vh;
+  max-height: 45rem;
   margin: 0 auto;
   display: flex;
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
   padding: 0 1rem;
-  @media (min-width: 300px) and (max-width: 768px) {
-    width: 90%;
+  @media (min-width: 250px) and (max-width: 768px) {
+    width: 100%;
     height: fit-content;
+    max-height: fit-content;
     flex-direction: column;
     gap: 2rem;
+    /* max-height: 50rem; */
+  }
+  @media (min-width: 250px) and (max-width: 666px) {
+    width: 100%;
+    flex-direction: column;
+    gap: 2rem;
+    height: fit-content;
+    /* max-height: 50rem; */
+  }
+  @media (min-width: 769px) and (max-width: 1200px) {
+    max-height: 55vh;
+    width: 100%;
     padding: 0;
   }
-  @media (min-width: 769px) and (max-width: 1024px) {
-    max-width: 100%;
+  @media (min-width: 1201px) and (max-width: 1403px) {
+    max-height: 65vh;
     width: 100%;
+    padding: 0;
   }
 `;
 const HeroText = styled.div`
@@ -268,6 +287,7 @@ const BtnWrap = styled.div`
 const HeroImage = styled.div`
   width: 45%;
   height: 100%;
+  max-height: 30rem;
   margin: auto 0;
   display: flex;
   flex-direction: column;
@@ -290,7 +310,6 @@ const ImageWrapper = styled.div`
   img {
     width: 100%;
     height: 80%;
-    /* border: 2px solid coral; */
     object-fit: contain;
     left: 0;
     top: 10%;
@@ -298,6 +317,9 @@ const ImageWrapper = styled.div`
     z-index: 3;
     @media (min-width: 769px) and (max-width: 1024px) {
       top: 5%;
+    }
+    @media (min-width: 0px) and (max-width: 375px) {
+      top: 19%;
     }
   }
 
