@@ -254,14 +254,16 @@ export const MenuItem = styled.li`
       display: none;
     }
   }
-  &.active .dropdown {
+  &.active .dropdown,
+  &:hover .dropdown {
     transform: translateX(25%) translateY(0);
     opacity: 1;
-    pointer-events: auto;
+    pointer-events: unset;
     transition: all 0.3s ease-in-out;
   }
 
-  &.active &:before {
+  &.active &:before,
+  &:hover &:before {
     content: "";
     position: absolute;
     top: 100%;

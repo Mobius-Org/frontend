@@ -10,12 +10,13 @@ import {
   LinkDropDown,
 } from "./style";
 import { FaChevronDown } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { dashBoardRoutes } from "../../appRouter/routes";
 import { logo } from "../../assets";
 import { Button } from "../button";
 import { Profile } from "../profile";
 import { HashLink } from "react-router-hash-link";
+import { handleLogout } from "../../store/action";
 // create navigatio
 const Nav = () => {
   const location = useLocation();
@@ -35,6 +36,7 @@ const Nav = () => {
     setIsOpen(!isOpen);
     setActive(e.target.textContent);
   };
+  const dispatch = useDispatch();
   const scrollWithOffset = (el, offset) => {
     const elementPos = el.offsetTop - offset;
     window.scroll({
@@ -151,8 +153,23 @@ const Nav = () => {
                     );
                   }}
                 >
-                  <Link to={"/signup"}>SignUp</Link>
-                  <Link to={"/signin"}>SignIn</Link>
+                  {sign_in ? (
+                    <>
+                      <Link
+                        to={"#"}
+                        onClick={() => {
+                          dispatch(handleLogout());
+                        }}
+                      >
+                        LogOut
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <Link to={"/signup"}>SignUp</Link>
+                      <Link to={"/signin"}>SignIn</Link>
+                    </>
+                  )}
                 </LinkDropDown>
               </MenuItem>
               <MenuItem className="small">
