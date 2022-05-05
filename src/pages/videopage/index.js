@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../colors";
 import {
@@ -11,8 +11,8 @@ import mobiusApp from "../../api/mobiusApp";
 import ReactPlayer from "react-player";
 import { toast } from "react-toastify";
 import { Puff } from "react-loader-spinner";
+import { useSelector } from "react-redux";
 const Video = ({ func }) => {
-  const num = Number(localStorage.getItem("cPCount"));
   const playerRef = useRef();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -24,12 +24,14 @@ const Video = ({ func }) => {
   const Course = [introduction, ...contents];
   const [watchComplete, setWatchComplete] = useState(false);
   const [currVal, setCurrVal] = useState(0);
-  const currentCourse = Course[num ? num : currVal];
+  const currentCourse = Course[currVal];
   const courseCount = Course.length;
   const [watchedCourses, setWatchedCourses] = useState([]);
-  const setWatched = useCallback(() => {
-    setWatchedCourses(Course.slice(0, num + 1));
-  }, [num]);
+
+  const state = useSelector((state) => state);
+  const { auth } = state;
+  const { profile } = auth;
+  const token = profile?.token;
 
   const handleDecrease = () => {
     return currVal > 0 && setCurrVal(currVal - 1);
@@ -106,6 +108,24 @@ const Video = ({ func }) => {
     };
     xhr.send();
   };
+  const handleUpdateProgress = async (idx, percent) => {
+    try {
+      const res = await mobiusApp.patch(
+        `/users/view-course/update-progress/${id}`,
+        {
+          idx,
+          percent,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.log("error");
+    }
+  };
   useEffect(() => {
     let mounted = true;
     const getOneCourse = async () => {
@@ -125,10 +145,6 @@ const Video = ({ func }) => {
     }
     return () => (mounted = false);
   }, [id, setLoading]);
-
-  useEffect(() => {
-    setWatched();
-  }, []);
 
   return (
     <VideoContainer>
@@ -199,9 +215,13 @@ const Video = ({ func }) => {
                 {watchedCourses.length === courseCount &&
                 currVal === courseCount - 1 ? (
                   <BtnWrapper
-                    onClick={() =>
-                      navigate("/dashboard/myCourses/exercise/tictactoe")
-                    }
+                    onClick={() => {
+                      handleUpdateProgress(
+                        watchedCourses.length,
+                        (watchedCourses.length / Course.length) * 100
+                      );
+                      navigate("/dashboard/myCourses/exercise/tictactoe");
+                    }}
                   >
                     <span>Take Me To Exercise</span>
                     <span>

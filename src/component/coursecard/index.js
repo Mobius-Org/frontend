@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../../colors";
 import { Button } from "../button";
@@ -13,11 +13,13 @@ const CourseCard = ({
   courseId,
   courseDetails,
 }) => {
+  const location = useLocation();
   const details = [courseDetails];
   const navigate = useNavigate();
   const state = useSelector((state) => state);
   const { profile } = state?.auth;
   const _id = profile?._id;
+  console.log(location.pathname);
 
   return (
     <Card>
@@ -40,7 +42,14 @@ const CourseCard = ({
                   localStorage.setItem("cPCount", 2);
                 }}
               >
-                <Button text={`View Course`} bgColor={colors.secondary80} />
+                <Button
+                  text={
+                    location.pathname.includes("/dashboard/myCourses")
+                      ? "Start"
+                      : "View Course"
+                  }
+                  bgColor={colors.secondary80}
+                />
               </span>
             ) : (
               <span
