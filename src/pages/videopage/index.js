@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../colors";
 import {
@@ -12,6 +12,7 @@ import ReactPlayer from "react-player";
 import { toast } from "react-toastify";
 import { Puff } from "react-loader-spinner";
 const Video = ({ func }) => {
+  const num = Number(localStorage.getItem("cPCount"));
   const playerRef = useRef();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -20,13 +21,15 @@ const Video = ({ func }) => {
   const { sections } = courseData;
   const introduction = sections?.introduction;
   const contents = sections?.contents.length > 0 ? [...sections?.contents] : [];
-  console.log(contents);
   const Course = [introduction, ...contents];
   const [watchComplete, setWatchComplete] = useState(false);
   const [currVal, setCurrVal] = useState(0);
-  const currentCourse = Course[currVal];
+  const currentCourse = Course[num ? num : currVal];
   const courseCount = Course.length;
   const [watchedCourses, setWatchedCourses] = useState([]);
+  const setWatched = useCallback(() => {
+    setWatchedCourses(Course.slice(0, num + 1));
+  }, [num]);
 
   const handleDecrease = () => {
     return currVal > 0 && setCurrVal(currVal - 1);
@@ -122,6 +125,10 @@ const Video = ({ func }) => {
     }
     return () => (mounted = false);
   }, [id, setLoading]);
+
+  useEffect(() => {
+    setWatched();
+  }, []);
 
   return (
     <VideoContainer>

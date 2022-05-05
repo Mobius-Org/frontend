@@ -15,6 +15,7 @@ const AllCourses = () => {
   const token = profile?.token;
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const [courseDetails, setCourseDetails] = useState([]);
   useEffect(() => {
     const handleGetAllMyCourse = async () => {
       setLoading(true);
@@ -25,7 +26,9 @@ const AllCourses = () => {
           },
         });
         const data = res?.data;
-        setData(data?.result);
+        setData(data?.enrolledCourses);
+        setCourseDetails(data?.enrolledCoursesDetails);
+
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -43,7 +46,11 @@ const AllCourses = () => {
         ) : (
           <>
             {data?.length > 0 ? (
-              <OurCourses data={data} text={"Enrolled Courses"} />
+              <OurCourses
+                data={data}
+                courseDetails={courseDetails}
+                text={"Enrolled Courses"}
+              />
             ) : (
               <EmptyItem
                 src={broCanva}
