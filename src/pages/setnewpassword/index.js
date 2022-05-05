@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import mobiusApp from "../../api/mobiusApp";
-import { kiddles } from "../../assets";
+import { kiddles, ps } from "../../assets";
 import { colors } from "../../colors";
 import { Button, InputField, Modal, ResetSuccessModal } from "../../component";
 
@@ -59,6 +59,7 @@ const SetNewPassword = () => {
           <ResetSuccessModal
             text={message}
             text2={"Close"}
+            src={ps}
             heading={"Password Reset Successful"}
             func={() => {
               setShowModal(false);
