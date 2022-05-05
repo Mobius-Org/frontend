@@ -20,6 +20,7 @@ const Video = ({ func }) => {
   const { sections } = courseData;
   const introduction = sections?.introduction;
   const contents = sections?.contents.length > 0 ? [...sections?.contents] : [];
+  console.log(contents);
   const Course = [introduction, ...contents];
   const [watchComplete, setWatchComplete] = useState(false);
   const [currVal, setCurrVal] = useState(0);

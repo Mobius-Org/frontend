@@ -90,7 +90,7 @@ const CourseThumbNail = styled.div`
     width: 100%;
     height: 100%;
     border-radius: inherit;
-
+    object-fit: cover;
     @media (min-width: 769px) and (max-width: 1024px) {
       /* max-width: 100%;
       width: 100%; */
