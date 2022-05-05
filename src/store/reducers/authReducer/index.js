@@ -14,6 +14,7 @@ const authReducer = (state = init, action) => {
       ...state,
       profile: action.payload,
       sign_up: true,
+      sign_in: true,
     };
   }
   if (action.type === SIGNIN) {
@@ -21,10 +22,10 @@ const authReducer = (state = init, action) => {
       ...state,
       profile: action.payload,
       sign_in: true,
+      sign_up: true,
     };
   }
   if (action.type === LOGOUT) {
-    console.log(action.type);
     return {
       ...state,
       profile: null,
