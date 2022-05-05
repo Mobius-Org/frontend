@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import { Container, MenuList, PopOver } from "./style";
 import { FaChevronDown } from "react-icons/fa";
 const Dropdown = ({ sort, functionName, style }) => {
-  const [value, setValue] = useState("5");
+  const [value, setValue] = useState("default");
   const handleChange = (value) => {
+    alert(value);
     setValue(value);
     functionName(Number(value));
   };
@@ -20,6 +21,7 @@ const Dropdown = ({ sort, functionName, style }) => {
         <MenuList arrow={<FaChevronDown />} />
         <PopOver>
           <ListboxList>
+            <ListboxOption value="default">-- select age</ListboxOption>
             <ListboxOption value="5">05 years</ListboxOption>
             <ListboxOption value="6">06 years</ListboxOption>
             <ListboxOption value="7">07 years</ListboxOption>

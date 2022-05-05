@@ -155,7 +155,7 @@ const Input = styled.input`
   width: 100%;
   border: 3px solid rgba(217, 217, 217, 1);
   transition: all 0.3s ease-in-out;
-  color: #eee;
+
   @media (max-width: 768px) {
     font-size: 1rem;
   }
