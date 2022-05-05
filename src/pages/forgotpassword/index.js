@@ -35,11 +35,15 @@ const ForgotPassword = () => {
         email,
       });
       setResponseMessage(response?.data.message);
+
       setShowModal(true);
       setLoading(false);
     } catch (err) {
       setLoading(false);
-      toast.error(err.data.message);
+      toast.error(err.response.data.message, {
+        position: "top-center",
+        autoClose: 10000,
+      });
     }
   };
   return (
@@ -60,7 +64,7 @@ const ForgotPassword = () => {
       />
       <img src={kiddles} alt="doddle" />
       <Wrap>
-        <HeadingText>Forgotten Password</HeadingText>
+        <HeadingText>Forgot Password</HeadingText>
         <InputWrap>
           <InputWrapDiv>
             <InputField
