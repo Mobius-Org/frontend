@@ -26,6 +26,7 @@ const Nav = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("Home");
+  const ActivePath = currentlocation.split("/")[2];
   document.addEventListener("scroll", function (e) {
     setScrollPosition(window.scrollY);
   });
@@ -83,14 +84,22 @@ const Nav = () => {
                     routeObject.name !== "View Course" &&
                     routeObject.name !== "Course Exercise"
                 )
-                .map(({ name, icon, path, displayName }, i) => (
-                  <MenuItem key={i}>
-                    {" "}
-                    <Link onClick={handleClick} className="link" to={path}>
-                      {name}
-                    </Link>
-                  </MenuItem>
-                ))}
+                .map(({ name, icon, path, displayName }, i) => {
+                  return (
+                    <MenuItem key={i}>
+                      {" "}
+                      <Link
+                        onClick={handleClick}
+                        className={
+                          ActivePath === path.split("/")[2] ? "active" : null
+                        }
+                        to={path}
+                      >
+                        {name}
+                      </Link>
+                    </MenuItem>
+                  );
+                })}
             </span>
           ) : (
             <span>
@@ -122,23 +131,7 @@ const Nav = () => {
                   Contact us
                 </HashLink>
               </MenuItem>
-              <MenuItem>
-                {" "}
-                <Link className="link" onClick={handleClick} to={""}>
-                  Parent Page
-                </Link>
-              </MenuItem>
-              <MenuItem
-                className="drp"
-                // onClick={(e) => {
-                //   alert(e.target.classList[0]);
-                //   if (e.target.classList.includes("active")) {
-                //     e.target.classList.remove("active");
-                //     return;
-                //   }
-                //   e.target.classList.add("active");
-                // }}
-              >
+              <MenuItem className="drp">
                 {" "}
                 <Link
                   className="link"
@@ -161,6 +154,16 @@ const Nav = () => {
                   <Link to={"/signup"}>SignUp</Link>
                   <Link to={"/signin"}>SignIn</Link>
                 </LinkDropDown>
+              </MenuItem>
+              <MenuItem className="small">
+                <Link className="link" onClick={handleClick} to="/signup">
+                  SignUp
+                </Link>
+              </MenuItem>
+              <MenuItem className="small">
+                <Link className="link" onClick={handleClick} to="/signin">
+                  Sigin
+                </Link>
               </MenuItem>
             </span>
           )}

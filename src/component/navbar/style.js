@@ -244,6 +244,16 @@ export const MenuItem = styled.li`
       border-radius: 0.5px;
     }
   }
+  @media (max-width: 1098px) {
+    &.drp {
+      display: none;
+    }
+  }
+  @media (min-width: 1098px) {
+    &.small {
+      display: none;
+    }
+  }
   &.active .dropdown {
     transform: translateX(25%) translateY(0);
     opacity: 1;
@@ -289,9 +299,10 @@ export const LinkDropDown = styled.div`
     text-align: center !important;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   }
-  @media (max-width: 768px) {
+  @media (max-width: 1098px) {
     position: unset;
     opacity: 1;
     transform: unset;
+    pointer-events: unset;
   }
 `;

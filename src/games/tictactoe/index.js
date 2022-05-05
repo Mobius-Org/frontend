@@ -18,8 +18,8 @@ const TicTacToe = () => {
   const [won, setWon] = useState(false);
   const [wonModal, setWonModal] = useState(false);
   const [wonPlayer, setWonPlayer] = useState("");
-  const [attemptedCount, setAttemptedCount] = useState(0);
-  const [solved, setSolved] = useState(0);
+  const [performance, setPerformance] = useState(0);
+  const [finish, setFinish] = useState(false);
   const WIN_CONDITIONS = useMemo(
     () => [
       [0, 1, 2],
@@ -108,16 +108,15 @@ const TicTacToe = () => {
     [won, checkWinner]
   );
   useEffect(() => {
-    if (xPlaying) {
+    if (xPlaying && finish === false) {
       setShowModal(true);
     }
-    if (xPlaying === false && won === false) {
+    if (xPlaying === false && won === false && finish === false) {
       setTimeout(() => {
-        console.log("started");
         cPlayer(board);
       }, 1500);
     }
-    if (won) {
+    if (won && finish === false) {
       setWonModal(true);
       setTimeout(() => {
         setShowModal(false);
@@ -132,10 +131,10 @@ const TicTacToe = () => {
           <TicTacToeQuestion
             setShowModal={setShowModal}
             showModal={showModal}
-            solved={solved}
-            setSolved={setSolved}
-            attemptedCount={attemptedCount}
-            setAttemptedCount={setAttemptedCount}
+            scores={scores}
+            setScores={setScores}
+            setPerformance={setPerformance}
+            func={resetBoard}
           />
         }
         setShowModal={setShowModal}
@@ -163,12 +162,7 @@ const TicTacToe = () => {
           <span>
             <AiFillTrophy />
           </span>
-          <span>
-            {solved === 0 && attemptedCount === 0
-              ? 0
-              : (solved / attemptedCount) * 100}
-            %
-          </span>
+          <span>{performance <= 0 ? 0 : performance}%</span>
         </span>
       </TopItems>
       <Board board={board} onClick={gameOver ? resetBoard : handleBoxClick} />

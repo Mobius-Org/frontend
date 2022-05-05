@@ -1,78 +1,153 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
 import { BsFillPatchCheckFill } from "react-icons/bs";
-const TicTacToeQuestion = ({ showModal, setShowModal, func }) => {
-  const Operands = ["-", "+"];
-  const [correctAnswer, setCorrectAnswer] = useState(false);
+import { toast } from "react-toastify";
+const TicTacToeQuestion = ({
+  setShowModal,
+  func,
+  scores,
+  setScores,
+  setWonPlayer,
+  setXPlaying,
+  setPerformance,
+}) => {
+  let { oScore } = scores;
+  const Operands = ["-", "+", "x"];
+  const [correctAnswer, setCorrectAnswer] = useState(null);
+  const [value, setValue] = useState("");
+  const [num1, setNum1] = useState(0);
+  const [num2, setNum2] = useState(0);
+  const [operand, setOperand] = useState("+");
+  const [result, setResult] = useState(false);
+  const [attemptedCount, setAttemptedCount] = useState(0);
+  const [solved, setSolved] = useState(0);
 
   const handleBackToGame = () => {
     if (correctAnswer) {
       setTimeout(() => {
         setShowModal(false);
-        setCorrectAnswer(false);
+        setCorrectAnswer(null);
+        setResult(!result);
       }, 700);
     }
   };
-  const handleSolveAgain = () => setCorrectAnswer(false);
-  const handleKeyUp = (e) => {
-    setTimeout(() => {
-      alert(e.target.value);
-    }, 5000);
+  const UpdatePerformance = useCallback(() => {
+    setPerformance(((solved / attemptedCount) * 100).toFixed(1));
+  }, [solved, attemptedCount]);
+  const generateNum = useCallback(() => {
+    return Math.floor(Math.random() * 10) + 100;
+  }, []);
+
+  const generateOperand = useCallback(() => {
+    return Operands[Math.floor(Math.random() * Operands.length)];
+  }, []);
+
+  const handleSolveAgain = () => {
+    setResult(false);
+    setCorrectAnswer(null);
   };
-  const handleSolve = ({ target }) => {
-    const { value } = target;
+  const handleSolve = () => {
+    if (value === "") {
+      toast.error("Please Enter an Answer", {
+        position: "top-center",
+      });
+      return;
+    }
+    setAttemptedCount(attemptedCount + 1);
     const operator = document.getElementById("operator").textContent;
     const q1 = Number(document.getElementById("q1").textContent);
     const q2 = Number(document.getElementById("q2").textContent);
 
     if (operator === "+" && q1 + q2 === Number(value)) {
-      setCorrectAnswer(!correctAnswer);
+      setCorrectAnswer(true);
+      setResult(!result);
+      setSolved(solved + 1);
     } else if (operator === "-" && q1 - q2 === Number(value)) {
-      setCorrectAnswer(!correctAnswer);
+      setCorrectAnswer(true);
+      setResult(!result);
+      setSolved(solved + 1);
     } else if (operator === "x" && q1 * q2 === Number(value)) {
-      setCorrectAnswer(!correctAnswer);
+      setCorrectAnswer(true);
+      setResult(!result);
+      setSolved(solved + 1);
     } else if (
       operator === "÷" &&
       (q1 / q2).toFixed(3) === Number(value).toFixed(3)
     ) {
-      setCorrectAnswer(!correctAnswer);
+      setCorrectAnswer(true);
+      setResult(!result);
+      setSolved(solved + 1);
     } else {
+      setCorrectAnswer(false);
+      setResult(!result);
       return;
     }
   };
-  const operand = Operands[Math.floor(Math.random() * Operands.length)];
-  const text = operand === "+" ? "Addition" : "Subtraction";
+  const text =
+    operand === "+"
+      ? "Addition"
+      : operand === "-"
+      ? "Subtraction"
+      : operand === "x"
+      ? "Multiplication"
+      : "Division";
+
+  useEffect(() => {
+    setNum1(generateNum());
+    setNum2(generateNum());
+    setOperand(generateOperand());
+    setValue("");
+  }, [result]);
+  useEffect(() => {
+    UpdatePerformance();
+  }, [attemptedCount]);
 
   return (
     <QuestionWrapper>
-      <Heading>Solve To Play: {text}</Heading>
-      {correctAnswer ? (
-        <CorrectWrapper>
-          <h3>
-            <BsFillPatchCheckFill size={80} />
-          </h3>
-          <BtnWraps>
-            <Btn onClick={handleSolveAgain}>Solve Again</Btn>
-            <Btn onClick={handleBackToGame}>Back To Game</Btn>
-          </BtnWraps>
-        </CorrectWrapper>
+      {correctAnswer === null ? (
+        <Heading>Solve To Play: {text}</Heading>
+      ) : correctAnswer === true ? (
+        <Heading>Correct Answer</Heading>
+      ) : (
+        <Heading>Wrong Answer</Heading>
+      )}
+      {result ? (
+        correctAnswer ? (
+          <CorrectWrapper>
+            <h3>
+              <BsFillPatchCheckFill size={80} />
+            </h3>
+            <BtnWraps>
+              <Btn onClick={handleBackToGame}>Play</Btn>
+            </BtnWraps>
+          </CorrectWrapper>
+        ) : (
+          <CorrectWrapper>
+            <h3>
+              <span>x</span>
+            </h3>
+            <BtnWraps>
+              <Btn onClick={handleSolveAgain}>Try Again</Btn>
+            </BtnWraps>
+          </CorrectWrapper>
+        )
       ) : (
         <QWrap>
           <div>
             <h1 id="operator">{operand}</h1>
             <span>
-              <Q1 id="q1">{Math.floor(Math.random() * 10) + 100}</Q1>
-              <Q2 id="q2">{Math.floor(Math.random() * 10) + 100}</Q2>
+              <Q1 id="q1">{num1}</Q1>
+              <Q2 id="q2">{num2}</Q2>
             </span>
           </div>
           <span className="btn-icon">
             <input
               type={"number"}
-              onKeyUp={handleKeyUp}
-              onChange={handleSolve}
+              value={value}
+              onChange={({ target }) => setValue(target.value)}
             />
-            <Btn>Solve</Btn>
+            <Btn onClick={handleSolve}>Solve</Btn>
           </span>
         </QWrap>
       )}
@@ -100,6 +175,15 @@ const CorrectWrapper = styled.div`
   & > h3 {
     color: ${colors.sucess_color};
     margin: 0.5rem;
+    width: max-content;
+    height: max-content;
+
+    span {
+      font-size: 80px;
+      border-radius: 50%;
+      text-shadow: 0px 0px 4px salmon;
+      color: ${colors.error_color};
+    }
   }
 `;
 const Heading = styled.h3`

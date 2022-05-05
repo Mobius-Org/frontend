@@ -1,31 +1,126 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../colors";
 import { Button } from "../../component";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import ReactPlayer from "react-player";
+import { BsArrowLeft } from "react-icons/bs";
 const UploadPage = ({ showModal, setShowModal }) => {
-  // const [video, setVideo] = useState(null);
-  // const fileInputRef = useRef();
-  // const [preview, setPreview] = useState(null);
+  const [video, setVideo] = useState(null);
+  const fileInputRef = useRef();
+  const [preview, setPreview] = useState(null);
+  const [showContent, setShowContent] = useState(false);
+
+  const handleVideo = (e) => {
+    setVideo(e.target.files[0]);
+  };
+  useEffect(() => {
+    if (video) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result.toString());
+      };
+      reader.readAsDataURL(video);
+    } else {
+      setPreview(null);
+    }
+  }, [video]);
   return (
     <UploadPageWrapper showModal={showModal}>
       <Container showModal={showModal}>
-        <Heading>
-          <h1>Upload - Content</h1>
-          <CloseBtn>&times;</CloseBtn>
-        </Heading>
-        <VidContent>
-          <div className="uWrap">
-            <span>
-              <FaCloudUploadAlt />
-            </span>
-            <UploadBtn>Upload Media</UploadBtn>
-            <p>PNG, GIF, WEMP, MP4 max 50mb</p>
-          </div>
-        </VidContent>
-        <BtnWrap>
-          <Button text={"Next"} bgColor={colors.secondary80} />
-        </BtnWrap>
+        {!showContent ? (
+          <>
+            <input
+              type={"file"}
+              ref={fileInputRef}
+              accept={"video/*"}
+              style={{ display: "none" }}
+              onChange={handleVideo}
+            />
+            <Heading>
+              <h1>Upload - Content</h1>
+              <CloseBtn
+                onClick={() => {
+                  setPreview(null);
+                  setVideo(null);
+                  setShowModal(!showModal);
+                  setShowContent(false);
+                }}
+              >
+                &times;
+              </CloseBtn>
+            </Heading>
+            <VidContent>
+              {preview === null ? (
+                <div className="uWrap">
+                  <span>
+                    <FaCloudUploadAlt size={50} />
+                  </span>
+                  <UploadBtn
+                    onClick={(e) => {
+                      e.preventDefault();
+                      fileInputRef.current.click();
+                    }}
+                  >
+                    Upload Media
+                  </UploadBtn>
+                  <p>PNG, GIF, WEMP, MP4 max 50mb</p>
+                </div>
+              ) : (
+                <ReactPlayer
+                  controls
+                  url={preview}
+                  height={"100%"}
+                  width={"100%"}
+                />
+              )}
+            </VidContent>
+            <BtnWrap onClick={() => setShowContent(true)}>
+              <Button text={"Next"} bgColor={colors.secondary80} />
+            </BtnWrap>
+          </>
+        ) : (
+          <>
+            <Heading>
+              <div
+                style={{ display: "flex", gap: "1rem" }}
+                className="smT"
+                onClick={() => setShowContent(false)}
+              >
+                <span>
+                  <BsArrowLeft size={30} />
+                </span>
+                <h3>Finish your upload</h3>
+              </div>
+              <CloseBtn
+                onClick={() => {
+                  setPreview(null);
+                  setVideo(null);
+                  setShowModal(!showModal);
+                  setShowContent(false);
+                }}
+              >
+                &times;
+              </CloseBtn>
+            </Heading>
+            <InputsWrapper>
+              <HeaderText>
+                <h4>Content Header</h4>
+                <input placeholder="type in your haeder..." />
+              </HeaderText>
+              <HeaderText>
+                <h4>Content Description</h4>
+                <textarea
+                  className="Cd"
+                  placeholder="Enter your description here..."
+                />
+              </HeaderText>
+              <BtnWrap onClick={() => setShowContent(true)}>
+                <Button text={"Upload Content"} bgColor={colors.secondary80} />
+              </BtnWrap>
+            </InputsWrapper>
+          </>
+        )}
       </Container>
     </UploadPageWrapper>
   );
@@ -96,16 +191,35 @@ const Heading = styled.div`
   & h1 {
     font-size: 2rem;
   }
+  & h3 {
+    font: 1rem;
+  }
+  @media (max-width: 500px) {
+    & div.smT {
+      font-size: 16px;
+    }
+  }
 `;
 const CloseBtn = styled.button`
-  padding: 0.3rem 0.75rem;
   font-size: 3rem;
-  height: max-content;
-  width: max-content;
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
   border: none;
   color: grey;
   background-color: unset;
   font-weight: normal;
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    background-color: ${colors.secondary80};
+    color: #fff;
+    border-radius: 10px;
+  }
 `;
 const VidContent = styled.div`
   width: 90%;
@@ -129,6 +243,9 @@ const VidContent = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     margin: auto;
+    & > span {
+      color: ${colors.secondary80};
+    }
   }
 `;
 const BtnWrap = styled.div`
@@ -141,4 +258,43 @@ const UploadBtn = styled.div`
   border-radius: 20px;
   border: 1px solid ${colors.secondary80};
   color: ${colors.secondary80};
+  font-size: bold;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    background-color: ${colors.secondary80};
+    color: white;
+    cursor: pointer;
+  }
+`;
+const HeaderText = styled.div`
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-direction: column;
+
+  textarea,
+  input {
+    width: 100%;
+    height: 3rem;
+    border: 0;
+    outline: 0;
+    box-shadow: 0 0 2px #333;
+    border-radius: 10px;
+    padding: 0 15px;
+  }
+  & > textarea.Cd {
+    height: 30vh;
+    padding: 10px;
+    text-align: start;
+  }
+`;
+const InputsWrapper = styled.div`
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 `;

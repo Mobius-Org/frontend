@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { girlCanva } from "../../../../assets";
 import { EmptyItem } from "../../../../component";
 import OurCourses from "../ourcourses/index";
+import { UploadPage } from "../../../uploadpage";
 
 const MyContents = () => {
   const state = useSelector((state) => state);
   const enrolledCourses = state?.auth?.profile?.enrolledCourse;
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <Container>
       <MyContentInner>
+        <UploadPage showModal={showModal} setShowModal={setShowModal} />
         {enrolledCourses?.length > 0 ? (
           <OurCourses text={"My Contents"} />
         ) : (
@@ -20,6 +23,7 @@ const MyContents = () => {
             text={"You have not uploaded any content yet."}
             alt={"Upload Now"}
             text2={"Create Content"}
+            func={() => setShowModal(true)}
           />
         )}
       </MyContentInner>
