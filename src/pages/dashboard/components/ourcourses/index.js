@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { colors } from "../../../../colors";
 import { CourseCard } from "../../../../component";
 
-const OurCourses = ({ text, data, func, courseDetails }) => {
+const OurCourses = ({ text, data, func }) => {
   const courses = data;
   return (
     <Container>
@@ -30,7 +30,6 @@ const OurCourses = ({ text, data, func, courseDetails }) => {
                   id={studentEnrolled}
                   courseId={courseId}
                   func={func}
-                  courseDetails={courseDetails[index]}
                 />
               </>
             );

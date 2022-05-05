@@ -40,12 +40,7 @@ const CourseCard = ({
                   localStorage.setItem("cPCount", 2);
                 }}
               >
-                <Button
-                  text={
-                    details.length === 0 ? `View Course` : details[0].progress
-                  }
-                  bgColor={colors.secondary80}
-                />
+                <Button text={`View Course`} bgColor={colors.secondary80} />
               </span>
             ) : (
               <span
