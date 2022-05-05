@@ -13,6 +13,9 @@ export const SignUpWrapper = styled(motion.div)`
   position: relative;
   display: flex;
   flex-direction: column;
+  @media (min-width: 769px) and (max-width: 1350px) {
+    height: fit-content;
+  }
   & > img {
     position: absolute;
     height: 30rem;
@@ -57,6 +60,9 @@ export const FirstWrap = styled.div`
   position: unset;
   transition: all 0.3s ease-in-out;
   opacity: 1;
+  @media (min-width: 769px) and (max-width: 1350px) {
+    max-width: 70%;
+  }
   @media (max-width: 768px) {
     transition: all 0.3s ease-in-out;
     height: max-content;
