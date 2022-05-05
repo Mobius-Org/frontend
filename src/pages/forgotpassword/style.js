@@ -140,7 +140,7 @@ export const CtaWrap = styled.div`
     font-style: normal;
     font-weight: bold;
     font-size: 20px;
-    min-width: 200px;
+    min-width: fit-content;
     @media (max-width: 768px) {
       font-size: 1rem;
       width: 100%;
