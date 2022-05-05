@@ -5,7 +5,6 @@ import { FaChevronDown } from "react-icons/fa";
 const Dropdown = ({ sort, functionName, style }) => {
   const [value, setValue] = useState("default");
   const handleChange = (value) => {
-    alert(value);
     setValue(value);
     functionName(Number(value));
   };
