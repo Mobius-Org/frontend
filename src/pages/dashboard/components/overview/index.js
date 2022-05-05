@@ -114,7 +114,6 @@ const OverviewWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  border: 1px solid red;
 `;
 
 const Banner = styled.div`

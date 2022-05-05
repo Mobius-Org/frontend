@@ -46,9 +46,8 @@ const Main = styled.main`
     max-width: 95%;
     margin: 0 auto;
   }
-  @media (min-width: 769px) and (max-width: 1200px) {
+  @media (min-width: 769px) and (max-width: 1350px) {
     max-width: 90%;
-    border: 1px solid green;
     margin: 0 auto;
   }
 `;

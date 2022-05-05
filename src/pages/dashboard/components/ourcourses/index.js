@@ -5,6 +5,7 @@ import { CourseCard } from "../../../../component";
 
 const OurCourses = ({ text, data, func }) => {
   const courses = data;
+  console.log(courses);
   return (
     <Container>
       <OurProgramsWrapper>

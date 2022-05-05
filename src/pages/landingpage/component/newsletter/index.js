@@ -1,9 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 import styled from "styled-components";
+import mobiusApp from "../../../../api/mobiusApp";
 import { colors } from "../../../../colors";
 import { Button } from "../../../../component";
 
 const Newsletter = () => {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const handleSubscription = async () => {
+    setLoading(true);
+    try {
+      const response = await mobiusApp.post("/users/subscribe", {
+        email,
+      });
+
+      setLoading(false);
+      document.getElementById("sId").textContent = " ";
+      toast.success(response?.data?.message, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch (err) {
+      setLoading(false);
+      toast.error(err?.response?.data?.message, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
   return (
     <Container>
       <NewLetterWraper>
@@ -18,12 +53,21 @@ const Newsletter = () => {
           </p>
         </div>
         <NewsletterInput>
-          <input type="text" placeholder="Type in your email address here" />
-          <Button
-            bgColor={colors.secondary80}
-            text={"Subscribe"}
-            className="button"
+          <input
+            type="text"
+            value={email}
+            id="sId"
+            loadingState={loading}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Type in your email address here"
           />
+          <span onClick={handleSubscription}>
+            <Button
+              bgColor={colors.secondary80}
+              text={"Subscribe"}
+              className="button"
+            />
+          </span>
         </NewsletterInput>
       </NewLetterWraper>
     </Container>
