@@ -216,10 +216,9 @@ const SignUp = () => {
             />
             {passwordError === false && (
               <ErrorMessage errFor={"passWord"}>
-                <p>Please enter a valid password:</p>
                 <p>
-                  password must contain atleast 1 uppercase, 1 lowercase and
-                  must be 6 character long .
+                  password must contain atleast 1 uppercase, 1 lowercase, a
+                  number and must be 6 character long .
                 </p>
               </ErrorMessage>
             )}
