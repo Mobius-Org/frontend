@@ -30,7 +30,7 @@ const OurCourses = ({ text, data, func, courseDetails }) => {
                   id={studentEnrolled}
                   courseId={courseId}
                   func={func}
-                  courseDetails={courseDetails ? courseDetails : null}
+                  courseDetails={courseDetails ? courseDetails[index] : null}
                 />
               </>
             );

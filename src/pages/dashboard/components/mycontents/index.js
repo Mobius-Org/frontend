@@ -10,7 +10,31 @@ const MyContents = () => {
   const state = useSelector((state) => state);
   const enrolledCourses = state?.auth?.profile?.enrolledCourse;
   const [showModal, setShowModal] = useState(false);
-
+  const { auth } = state;
+  const { profile } = auth;
+  const token = profile?.token;
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [courseDetails, setCourseDetails] = useState([]);
+  //  useEffect(() => {
+  //    const handleGetAllMyCourse = async () => {
+  //      setLoading(true);
+  //      try {
+  //        const res = await mobiusApp.get("/users/dashboard/my-contents", {
+  //          headers: {
+  //            Authorization: `Bearer ${token}`,
+  //          },
+  //        });
+  //        const data = res?.data;
+  //        setData(data?.enrolledCourses);
+  //        setCourseDetails(data?.enrolledCoursesDetails);
+  //        setLoading(false);
+  //      } catch (error) {
+  //        setLoading(false);
+  //      }
+  //    };
+  //    handleGetAllMyCourse();
+  //  }, [token]);
   return (
     <Container>
       <MyContentInner>

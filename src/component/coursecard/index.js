@@ -45,7 +45,7 @@ const CourseCard = ({
                 <Button
                   text={
                     location.pathname.includes("/dashboard/myCourses")
-                      ? courseDetails[0]?.progress?.status
+                      ? courseDetails?.progress?.status
                       : "View Course"
                   }
                   bgColor={colors.secondary80}
