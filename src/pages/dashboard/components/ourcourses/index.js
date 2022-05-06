@@ -1,22 +1,43 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
-import { CourseCard } from "../../../../component";
+import { Button, CourseCard } from "../../../../component";
 
-const OurCourses = ({ text, data, func, courseDetails }) => {
+const OurCourses = ({
+  text,
+  data,
+  func,
+  courseDetails,
+  showModal,
+  setShowModal,
+}) => {
   const courses = data;
+  const location = useLocation();
   return (
     <Container>
       <OurProgramsWrapper>
         <SecHeading>
-          <h2>{text}</h2>
+          <h2>{text}</h2>{" "}
+          {location.pathname.includes("/dashboard/Content") && (
+            <ButtonWrapper onClick={() => setShowModal(true)}>
+              <Button
+                text={"Upload"}
+                dir={"right"}
+                filled={false}
+                bgColor={colors.secondary_color}
+              />
+            </ButtonWrapper>
+          )}
         </SecHeading>
         <CoursesList>
           {courses?.map((course, index) => {
-            const title = course?.courseName;
-            const description = course?.description?.shortSummary;
-            const price = course?.description?.price;
-            const image = course?.description?.image;
+            localStorage.setItem("vUrl", course?.videoc);
+            const title = course?.courseName || course?.courseTitle;
+            const description =
+              course?.description?.shortSummary || course?.descriptionc;
+            const price = course?.description?.price || "Free";
+            const image = course?.description?.image || course?.courseImage;
             const studentEnrolled = course?.description?.studentEnrolled;
             const courseId = course?.courseId;
             return (
@@ -31,6 +52,7 @@ const OurCourses = ({ text, data, func, courseDetails }) => {
                   courseId={courseId}
                   func={func}
                   courseDetails={courseDetails ? courseDetails[index] : null}
+                  txt={course?.status ? course?.status : null}
                 />
               </>
             );
@@ -69,7 +91,9 @@ const OurProgramsWrapper = styled.div`
 `;
 const SecHeading = styled.div`
   display: flex;
+  justify-content: space-between;
   // flex-direction: column;
+  align-items: center;
   align-self: start;
   width: 100%;
   height: fit-content;
@@ -118,4 +142,9 @@ const CoursesList = styled.div`
     width: 100%;
     flex-direction: row;
   }
+`;
+const ButtonWrapper = styled.div`
+  width: fit-content;
+  margin: 0;
+  padding: 1rem;
 `;

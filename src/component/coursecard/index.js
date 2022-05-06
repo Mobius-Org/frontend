@@ -12,6 +12,7 @@ const CourseCard = ({
   id,
   courseId,
   courseDetails,
+  txt,
 }) => {
   const location = useLocation();
   const details = [courseDetails];
@@ -19,7 +20,7 @@ const CourseCard = ({
   const state = useSelector((state) => state);
   const { profile } = state?.auth;
   const _id = profile?._id;
-  console.log(location.pathname);
+  console.log(location.pathname.includes("/dashboard/Content"));
 
   return (
     <Card>
@@ -54,11 +55,22 @@ const CourseCard = ({
             ) : (
               <span
                 onClick={() => {
-                  navigate(`/courseDetails/${courseId}`);
-                  localStorage.setItem("courseId", courseId);
+                  if (location.pathname.includes("/dashboard/Content")) {
+                    return;
+                  } else {
+                    navigate(`/courseDetails/${courseId}`);
+                    localStorage.setItem("courseId", courseId);
+                  }
                 }}
               >
-                <Button text={"Enroll Now"} bgColor={colors.secondary80} />
+                <Button
+                  text={
+                    location.pathname.includes("/dashboard/Content")
+                      ? txt.toUpperCase()
+                      : "Enroll Now"
+                  }
+                  bgColor={colors.secondary80}
+                />
               </span>
             )}
           </CourseCta>

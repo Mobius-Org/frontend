@@ -1,46 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { girlCanva } from "../../../../assets";
 import { EmptyItem } from "../../../../component";
 import OurCourses from "../ourcourses/index";
 import { UploadPage } from "../../../uploadpage";
+import mobiusApp from "../../../../api/mobiusApp";
 
 const MyContents = () => {
   const state = useSelector((state) => state);
-  const enrolledCourses = state?.auth?.profile?.enrolledCourse;
-  const [showModal, setShowModal] = useState(false);
   const { auth } = state;
   const { profile } = auth;
   const token = profile?.token;
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [courseDetails, setCourseDetails] = useState([]);
-  //  useEffect(() => {
-  //    const handleGetAllMyCourse = async () => {
-  //      setLoading(true);
-  //      try {
-  //        const res = await mobiusApp.get("/users/dashboard/my-contents", {
-  //          headers: {
-  //            Authorization: `Bearer ${token}`,
-  //          },
-  //        });
-  //        const data = res?.data;
-  //        setData(data?.enrolledCourses);
-  //        setCourseDetails(data?.enrolledCoursesDetails);
-  //        setLoading(false);
-  //      } catch (error) {
-  //        setLoading(false);
-  //      }
-  //    };
-  //    handleGetAllMyCourse();
-  //  }, [token]);
+  const [showModal, setShowModal] = useState(false);
+  useEffect(() => {
+    const handleGetAllMyContents = async () => {
+      setLoading(true);
+      try {
+        const res = await mobiusApp.get("/users/dashboard/my-contents", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = res?.data;
+        setData(data?.result.filter((el) => el.status === "approved"));
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
+    };
+    handleGetAllMyContents();
+  }, [token]);
   return (
     <Container>
       <MyContentInner>
         <UploadPage showModal={showModal} setShowModal={setShowModal} />
-        {enrolledCourses?.length > 0 ? (
-          <OurCourses text={"My Contents"} />
+        {data?.length > 0 ? (
+          <OurCourses data={data} text={"My Contents"} />
         ) : (
           <EmptyItem
             src={girlCanva}

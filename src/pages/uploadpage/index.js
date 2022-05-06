@@ -25,31 +25,33 @@ const UploadPage = ({ showModal, setShowModal }) => {
     setFiles(e.target.files[0]);
   };
   const handleUpload = async () => {
-    if (title === "" || description === "" || files === null)
+    if (title === "" || description === "" || files === null) {
       toast.error("please fill the fields");
-    setLoading(true);
-    let formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("files", files);
-    try {
-      const res = mobiusApp.post(
-        `/courses/student-upload/${localStorage.getItem("courseId")}`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "content-type": "multipart/form-data",
-          },
-        }
-      );
-      toast.success(res.message);
-      setTitle("");
-      setDescription("");
-      setFiles(null);
-      setLoading(false);
-    } catch (error) {
-      console.log("Upload failed");
+    } else {
+      setLoading(true);
+      let formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("files", files);
+      try {
+        const res = mobiusApp.post(
+          `/courses/student-upload/${localStorage.getItem("courseId")}`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "content-type": "multipart/form-data",
+            },
+          }
+        );
+        toast.success(res.message);
+        setTitle("");
+        setDescription("");
+        setFiles(null);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
     }
   };
   useEffect(() => {
@@ -174,7 +176,11 @@ const UploadPage = ({ showModal, setShowModal }) => {
                 />
               </HeaderText>
               <BtnWrap onClick={handleUpload}>
-                <Button text={"Upload Content"} bgColor={colors.secondary80} />
+                <Button
+                  text={"Upload Content"}
+                  loadingState={loading}
+                  bgColor={colors.secondary80}
+                />
               </BtnWrap>
             </InputsWrapper>
           </>
