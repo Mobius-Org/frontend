@@ -171,8 +171,8 @@ const TicTacToe = () => {
           <ResetSuccessModal
             text={
               performance > 49
-                ? `Your score was ${performance} and you have been rewarded with the Master Gamer Badge. `
-                : `Your score was 30. `
+                ? `You scored ${performance}% and have been rewarded with the Master Gamer Badge. `
+                : `You scored ${performance}%. No reward `
             }
             text2={performance > 49 ? "Go to My Badges" : "Try Again"}
             src={performance ? kiddles3 : gameBadge}
@@ -184,6 +184,7 @@ const TicTacToe = () => {
                 return;
               } else {
                 setFinish(false);
+                setPerformance(0);
                 resetBoard();
                 return;
               }
@@ -207,10 +208,7 @@ const TicTacToe = () => {
         </span>
       </TopItems>
       <Board board={board} onClick={gameOver ? resetBoard : handleBoxClick} />
-      <ResetButton
-        score={scores}
-        resetBoard={scores.xScore > 0 ? resetBoard : () => console.log("ye")}
-      />
+      <ResetButton score={scores} resetBoard={FinishGame} />
     </TicTacToeWrapper>
   );
 };
