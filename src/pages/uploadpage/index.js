@@ -5,29 +5,78 @@ import { Button } from "../../component";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import ReactPlayer from "react-player";
 import { BsArrowLeft } from "react-icons/bs";
+import mobiusApp from "../../api/mobiusApp";
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 const UploadPage = ({ showModal, setShowModal }) => {
-  const [video, setVideo] = useState(null);
+  const [files, setFiles] = useState(null);
+  const [loading, setLoading] = useState(false);
   const fileInputRef = useRef();
   const [preview, setPreview] = useState(null);
   const [showContent, setShowContent] = useState(false);
-
+  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
+  const state = useSelector((state) => state);
+  const { auth } = state;
+  const { profile } = auth;
+  const token = profile?.token;
+  var formData = new FormData();
   const handleVideo = (e) => {
-    setVideo(e.target.files[0]);
+    setFiles(e.target.files[0]);
+  };
+  const handleUpload = async () => {
+    if (title === "" || description === "" || files === null)
+      toast.error("please fill the fields");
+    setLoading(true);
+    let formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("files", files);
+    try {
+      const res = mobiusApp.post(
+        `/courses/student-upload/${localStorage.getItem("courseId")}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "content-type": "multipart/form-data",
+          },
+        }
+      );
+      toast.success(res.message);
+      setTitle("");
+      setDescription("");
+      setFiles(null);
+      setLoading(false);
+    } catch (error) {
+      console.log("Upload failed");
+    }
   };
   useEffect(() => {
-    if (video) {
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("files", files);
+  }, [title, description, files]);
+  useEffect(() => {
+    if (files) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreview(reader.result.toString());
       };
-      reader.readAsDataURL(video);
+      reader.readAsDataURL(files);
     } else {
       setPreview(null);
     }
-  }, [video]);
+  }, [files]);
   return (
     <UploadPageWrapper showModal={showModal}>
-      <Container showModal={showModal}>
+      <Container
+        id="myForm"
+        showModal={showModal}
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         {!showContent ? (
           <>
             <input
@@ -36,13 +85,14 @@ const UploadPage = ({ showModal, setShowModal }) => {
               accept={"video/*"}
               style={{ display: "none" }}
               onChange={handleVideo}
+              id={"files"}
             />
             <Heading>
               <h1>Upload - Content</h1>
               <CloseBtn
                 onClick={() => {
                   setPreview(null);
-                  setVideo(null);
+                  setFiles(null);
                   setShowModal(!showModal);
                   setShowContent(false);
                 }}
@@ -95,7 +145,7 @@ const UploadPage = ({ showModal, setShowModal }) => {
               <CloseBtn
                 onClick={() => {
                   setPreview(null);
-                  setVideo(null);
+                  setFiles(null);
                   setShowModal(!showModal);
                   setShowContent(false);
                 }}
@@ -106,16 +156,24 @@ const UploadPage = ({ showModal, setShowModal }) => {
             <InputsWrapper>
               <HeaderText>
                 <h4>Content Header</h4>
-                <input placeholder="type in your haeder..." />
+                <input
+                  placeholder="type in your haeder..."
+                  value={title}
+                  id="title"
+                  onChange={(e) => setTitle(e.target.value)}
+                />
               </HeaderText>
               <HeaderText>
                 <h4>Content Description</h4>
                 <textarea
                   className="Cd"
+                  id={"description"}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
                   placeholder="Enter your description here..."
                 />
               </HeaderText>
-              <BtnWrap onClick={() => setShowContent(true)}>
+              <BtnWrap onClick={handleUpload}>
                 <Button text={"Upload Content"} bgColor={colors.secondary80} />
               </BtnWrap>
             </InputsWrapper>
@@ -154,7 +212,7 @@ const UploadPageWrapper = styled.div`
   
     `}
 `;
-const Container = styled.div`
+const Container = styled.form`
   width: 65vw;
   border-radius: 10px;
   height: fit-content;

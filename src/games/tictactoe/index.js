@@ -35,9 +35,7 @@ const TicTacToe = () => {
   const handleUpdateProgress = async (score) => {
     try {
       const res = await mobiusApp.patch(
-        `/users/view-course/set-game-rewards/${localStorage.getItem(
-          "courseId"
-        )}`,
+        `/users/view-course/set-game-score/${localStorage.getItem("courseId")}`,
         {
           score,
         },

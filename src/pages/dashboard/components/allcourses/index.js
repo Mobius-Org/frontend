@@ -26,10 +26,8 @@ const AllCourses = () => {
           },
         });
         const data = res?.data;
-        console.log(data);
         setData(data?.enrolledCourses);
         setCourseDetails(data?.enrolledCoursesDetails);
-
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -47,7 +45,11 @@ const AllCourses = () => {
         ) : (
           <>
             {data?.length > 0 ? (
-              <OurCourses data={data} text={"Enrolled Courses"} />
+              <OurCourses
+                data={data}
+                courseDetails={courseDetails}
+                text={"Enrolled Courses"}
+              />
             ) : (
               <EmptyItem
                 src={broCanva}
