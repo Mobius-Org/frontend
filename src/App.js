@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Modal } from "./component";
 import { UploadPage } from "./pages";
 
+
 function App() {
   const [showModal, setShowModal] = useState(true);
   return (

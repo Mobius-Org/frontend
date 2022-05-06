@@ -46,8 +46,9 @@ const Overview = () => {
                 <TextContainer>
                   <h2>Welcome to Mobius!</h2>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac
-                    nec in porttitor libero nunc dignissim mollis.
+                    
+                    Get familiar with the dasboard and start your learning
+                    journey.
                   </p>
                 </TextContainer>
               </ImgTextContainer>

@@ -3,6 +3,7 @@ import { logo } from "../../assets";
 import "./style.css";
 import { FaBell } from "react-icons/fa";
 import data from "./data";
+import {Profile} from '../profile'
 
 const Admin = () => {
   //   const [data, setData] = useState(data);
@@ -18,7 +19,10 @@ const Admin = () => {
             <div className="underline"></div>
           </div>
           <div>
-            <FaBell className="Bell-Icon" />
+            {/* <FaBell className="Bell-Icon" />
+             */}
+
+             <Profile />
           </div>
         </div>
 
