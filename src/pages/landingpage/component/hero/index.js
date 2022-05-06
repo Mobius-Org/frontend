@@ -20,11 +20,9 @@ const Hero = () => {
             Learning made easy and fun with interactive games and activities.
           </Heading>
           <Paragraph>
-            {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-            adipiscing nullam dapibus justo ac lectus eros facilisi. Arcu nisl,
-            nisl venenatis ut velit habitasse mi placerat. */}
-
-            Join Mobius today and experience a new form of learning. Have fun while learning by playing an interactive game and upload your content. 
+            Join Mobius today and experience a new form of learning. Have fun
+            while learning by playing an interactive game and upload your
+            content.
           </Paragraph>
           <BtnWrap
             onClick={() => {
