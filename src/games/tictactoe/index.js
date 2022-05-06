@@ -12,6 +12,8 @@ import { Modal } from "../../component/modal";
 import { gameBadge, kiddles3, ps } from "../../assets";
 import { ResetSuccessModal } from "../../component";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import mobiusApp from "../../api/mobiusApp";
 const TicTacToe = () => {
   const [showModal, setShowModal] = useState(false);
   const [xPlaying, setXPlaying] = useState(false);
@@ -24,6 +26,31 @@ const TicTacToe = () => {
   const [performance, setPerformance] = useState(0);
   const [finish, setFinish] = useState(false);
   const navigate = useNavigate();
+
+  const state = useSelector((state) => state);
+  const { auth } = state;
+  const { profile } = auth;
+  const token = profile?.token;
+
+  const handleUpdateProgress = async (score) => {
+    try {
+      const res = await mobiusApp.patch(
+        `/users/view-course/set-game-rewards/${localStorage.getItem(
+          "courseId"
+        )}`,
+        {
+          score,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.log("error");
+    }
+  };
   const WIN_CONDITIONS = useMemo(
     () => [
       [0, 1, 2],
@@ -180,6 +207,7 @@ const TicTacToe = () => {
             func={() => {
               if (performance > 49) {
                 setFinish(false);
+                handleUpdateProgress(performance);
                 navigate("/dashboard/Badges");
                 return;
               } else {
