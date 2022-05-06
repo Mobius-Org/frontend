@@ -30,8 +30,10 @@ import rafiki from "./rafiki.svg";
 import ps from "./pS.svg";
 import pe from "./pe.svg";
 import gameBg from "./gameBg.svg";
+import gameBadge from "./gameBadge.svg";
 export {
   girlCanva,
+  gameBadge,
   gameBg,
   ps,
   pe,

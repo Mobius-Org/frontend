@@ -8,7 +8,7 @@ const ScoreBoard = ({
   xPlaying,
   wonPlayer,
   handlePlayAgain,
-  Finish,
+  FinishGame,
 }) => {
   // const { xScore, oScore } = scores;
 
@@ -17,7 +17,7 @@ const ScoreBoard = ({
       <h1>{wonPlayer} Takes This Round</h1>
       <BtnWraps>
         <Btn onClick={handlePlayAgain}>Play Again</Btn>
-        <Btn onClick={Finish}>Finish</Btn>
+        <Btn onClick={() => FinishGame()}>Finish</Btn>
       </BtnWraps>
     </ScoreboardWraap>
   );

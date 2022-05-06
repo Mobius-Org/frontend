@@ -9,6 +9,9 @@ import styled from "styled-components";
 import { colors } from "../../colors";
 import { AiFillTrophy } from "react-icons/ai";
 import { Modal } from "../../component/modal";
+import { gameBadge, kiddles3, ps } from "../../assets";
+import { ResetSuccessModal } from "../../component";
+import { useNavigate } from "react-router-dom";
 const TicTacToe = () => {
   const [showModal, setShowModal] = useState(false);
   const [xPlaying, setXPlaying] = useState(false);
@@ -20,6 +23,7 @@ const TicTacToe = () => {
   const [wonPlayer, setWonPlayer] = useState("");
   const [performance, setPerformance] = useState(0);
   const [finish, setFinish] = useState(false);
+  const navigate = useNavigate();
   const WIN_CONDITIONS = useMemo(
     () => [
       [0, 1, 2],
@@ -33,6 +37,13 @@ const TicTacToe = () => {
     ],
     []
   );
+  const FinishGame = () => {
+    setXPlaying(false);
+    setWonModal(false);
+    setWon(false);
+    setShowModal(false);
+    setFinish(true);
+  };
   const handleBoxClick = (boxIdx) => {
     if (xPlaying === false) return;
     // Step 1: Update the board
@@ -149,7 +160,34 @@ const TicTacToe = () => {
             scores={scores}
             xPlaying={xPlaying}
             wonPlayer={wonPlayer}
-            Finish={() => {}}
+            FinishGame={FinishGame}
+          />
+        }
+      />
+      <Modal
+        setShowModal={setFinish}
+        showModal={finish}
+        children={
+          <ResetSuccessModal
+            text={
+              performance > 49
+                ? `Your score was ${performance} and you have been rewarded with the Master Gamer Badge. `
+                : `Your score was 30. `
+            }
+            text2={performance > 49 ? "Go to My Badges" : "Try Again"}
+            src={performance ? kiddles3 : gameBadge}
+            heading={performance > 49 ? `Congratulations!` : "Game Over"}
+            func={() => {
+              if (performance > 49) {
+                setFinish(false);
+                navigate("/dashboard/Badges");
+                return;
+              } else {
+                setFinish(false);
+                resetBoard();
+                return;
+              }
+            }}
           />
         }
       />
@@ -162,7 +200,10 @@ const TicTacToe = () => {
           <span>
             <AiFillTrophy />
           </span>
-          <span>{performance <= 0 ? 0 : performance}%</span>
+
+          <span>
+            {performance === "NaN" || performance < 0 ? 0 : performance}%
+          </span>
         </span>
       </TopItems>
       <Board board={board} onClick={gameOver ? resetBoard : handleBoxClick} />
