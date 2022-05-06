@@ -50,9 +50,9 @@ const KidAdvert = () => {
         <KidAdvertWrapperInnerText>
           <Heading>Best place to entrust your children’s education</Heading>
           <Paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-            adipiscing nullam dapibus justo ac lectus eros facilisi. Arcu nisl,
-            nisl venenatis ut velit habitasse mi placerat.
+            In Mobius we contribute to a child’s growth and development by
+            ensuring that our student’s develop some new set of skills that
+            promote their productive efficiency.
           </Paragraph>
           <BtnWrap
             onClick={() => {
