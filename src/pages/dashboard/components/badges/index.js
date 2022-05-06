@@ -58,6 +58,9 @@ const Badge = styled.div`
     object-fit: contain;
     margin: auto;
   }
+  @media (min-width: 320px) and (max-width: 390px) {
+    width: 100%;
+  }
 `;
 
 const SecHeading = styled.div`
@@ -115,5 +118,7 @@ const BadgesList = styled.div`
   @media (min-width: 768px) {
     width: 100%;
     flex-direction: row;
+  }
+  @media (min-width: 320px) and (max-width: 390px) {
   }
 `;
